@@ -1,0 +1,2806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Core Pipes & Fittings | Industrial Supply, Paving & Plumbing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Bebas Neue', 'sans-serif'],
+            body: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --off-white: #f8fafc;
+      --blue-light: #dbeafe;
+      --blue-mid: #3b82f6;
+      --blue-deep: #1d4ed8;
+      --navy: #0f172a;
+      --navy-mid: #1e3a5f;
+      --navy-soft: #1e40af;
+      --red-accent: #dc2626;
+      --red-soft: #fee2e2;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--navy); overflow-x: hidden; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-deep); border-radius: 99px; }
+
+    /* ═══════════════════════════════════════
+       EPIC PIPE SYSTEM DIVIDER
+    ═══════════════════════════════════════ */
+    .pipe-system {
+      width: 100%;
+      background: var(--gray-100);
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .pipe-system svg {
+      width: 100%;
+      display: block;
+    }
+    /* Pipe metal texture */
+    .pipe-metal {
+      fill: url(#pipeMetal);
+    }
+    .pipe-highlight {
+      fill: url(#pipeHighlight);
+    }
+    /* Water flow animation */
+    @keyframes waterFlow {
+      0% { stroke-dashoffset: 300; opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0.7; }
+    }
+    @keyframes waterFlow2 {
+      0% { stroke-dashoffset: 400; opacity: 0.5; }
+      100% { stroke-dashoffset: 0; opacity: 0.5; }
+    }
+    @keyframes bubbleRise {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      100% { transform: translateY(-40px) scale(0.3); opacity: 0; }
+    }
+    @keyframes pressureGlow {
+      0%,100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .water-flow-1 {
+      stroke-dasharray: 12 6;
+      animation: waterFlow 2.5s linear infinite;
+    }
+    .water-flow-2 {
+      stroke-dasharray: 8 10;
+      animation: waterFlow2 3.5s linear infinite;
+      animation-delay: 0.8s;
+    }
+    .gauge-needle {
+      transform-origin: 50% 85%;
+      animation: needleSpin 4s ease-in-out infinite;
+    }
+    @keyframes needleSpin {
+      0%,100% { transform: rotate(-30deg); }
+      50% { transform: rotate(25deg); }
+    }
+    .pressure-dot {
+      animation: pressureGlow 2s ease-in-out infinite;
+    }
+
+    /* ── GLASS ── */
+    .glass {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.85);
+    }
+    .glass-navy {
+      background: rgba(15,23,42,0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .glass-blue {
+      background: rgba(29,78,216,0.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(59,130,246,0.22);
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: all 0.4s ease;
+    }
+    #navbar.scrolled {
+      box-shadow: 0 4px 32px rgba(15,23,42,0.12);
+    }
+    .nav-inner {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(29,78,216,0.10);
+    }
+    .nav-link {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.25s;
+      letter-spacing: 0.01em;
+    }
+    .nav-link:hover { color: var(--blue-deep); background: rgba(29,78,216,0.06); }
+    .nav-link.active { color: var(--blue-deep); font-weight: 600; }
+
+    /* ══════════════════════════════════════
+       HERO CAROUSEL
+    ══════════════════════════════════════ */
+    .hero-section {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Carousel slides */
+    .carousel-slides {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .carousel-slide.active {
+      opacity: 1;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.05);
+      transition: transform 8s ease-out;
+    }
+    .carousel-slide.active img {
+      transform: scale(1);
+    }
+
+    /* Slide-specific overlays — each one different for variety */
+    .carousel-slide:nth-child(1) .slide-overlay {
+      background: linear-gradient(115deg, rgba(255,255,255,0.97) 0%, rgba(248,250,252,0.92) 28%, rgba(219,234,254,0.72) 55%, rgba(29,78,216,0.22) 85%, rgba(15,23,42,0.35) 100%);
+    }
+    .carousel-slide:nth-child(2) .slide-overlay {
+      background: linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(248,250,252,0.90) 30%, rgba(220,38,38,0.08) 60%, rgba(15,23,42,0.40) 100%);
+    }
+    .carousel-slide:nth-child(3) .slide-overlay {
+      background: linear-gradient(105deg, rgba(255,255,255,0.97) 0%, rgba(219,234,254,0.88) 35%, rgba(29,78,216,0.30) 70%, rgba(15,23,42,0.50) 100%);
+    }
+    .carousel-slide:nth-child(4) .slide-overlay {
+      background: linear-gradient(120deg, rgba(255,255,255,0.97) 0%, rgba(248,250,252,0.91) 32%, rgba(219,234,254,0.65) 58%, rgba(29,78,216,0.28) 85%, rgba(15,23,42,0.38) 100%);
+    }
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* Carousel dots */
+    .carousel-dots {
+      position: absolute;
+      bottom: 130px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(29,78,216,0.25);
+      border: 1.5px solid rgba(29,78,216,0.4);
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+    .carousel-dot.active {
+      width: 28px;
+      border-radius: 4px;
+      background: var(--blue-deep);
+      border-color: var(--blue-deep);
+    }
+
+    /* Carousel arrows */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(29,78,216,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: var(--blue-deep);
+      font-size: 0.85rem;
+    }
+    .carousel-arrow:hover {
+      background: white;
+      border-color: var(--blue-deep);
+      box-shadow: 0 4px 20px rgba(29,78,216,0.2);
+      transform: translateY(-50%) scale(1.05);
+    }
+    .carousel-arrow.prev { left: 24px; }
+    .carousel-arrow.next { right: 24px; }
+
+    /* Slide label pill */
+    .slide-label-pill {
+      position: absolute;
+      bottom: 145px;
+      right: 32px;
+      z-index: 20;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .slide-label {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(29,78,216,0.2);
+      border-radius: 99px;
+      padding: 6px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.6s ease 0.5s;
+    }
+    .carousel-slide.active ~ .slide-label-pill .slide-label,
+    .slide-label.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── HEADLINE ── */
+    .headline-main {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--navy);
+    }
+    .headline-accent {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 60%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .headline-red {
+      background: linear-gradient(135deg, var(--red-accent) 0%, #ef4444 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── BUTTONS — HIGHLY VISIBLE ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 34px;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      border-radius: 14px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 8px 28px rgba(29,78,216,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(29,78,216,0.55), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: white;
+      color: var(--blue-deep);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      border-radius: 14px;
+      text-decoration: none;
+      border: 2.5px solid var(--blue-deep);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 4px 16px rgba(29,78,216,0.15);
+      text-transform: uppercase;
+    }
+    .btn-outline:hover {
+      border-color: var(--blue-deep);
+      background: var(--blue-deep);
+      color: white;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(29,78,216,0.35);
+    }
+
+    /* HERO BUTTONS - Even more prominent */
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, var(--blue-deep) 0%, #2563eb 50%, var(--blue-mid) 100%);
+      color: white;
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      border-radius: 16px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 10px 35px rgba(29,78,216,0.5), 0 2px 0 rgba(255,255,255,0.15) inset, 0 -2px 0 rgba(0,0,0,0.15) inset;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-hero-primary::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn-hero-primary:hover::after { left: 150%; }
+    .btn-hero-primary:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 20px 50px rgba(29,78,216,0.6);
+    }
+
+    .btn-hero-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 17px 38px;
+      background: rgba(255,255,255,0.95);
+      color: var(--navy);
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      border-radius: 16px;
+      text-decoration: none;
+      border: 2.5px solid rgba(29,78,216,0.3);
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 6px 24px rgba(15,23,42,0.12);
+      backdrop-filter: blur(8px);
+    }
+    .btn-hero-outline:hover {
+      border-color: var(--blue-deep);
+      background: white;
+      color: var(--blue-deep);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 14px 40px rgba(29,78,216,0.2);
+    }
+
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--red-accent), #ef4444);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      border-radius: 10px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(220,38,38,0.3);
+    }
+    .btn-red:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(220,38,38,0.45); }
+
+    /* ── CARDS ── */
+    .feature-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 4px 20px rgba(15,23,42,0.06);
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(29,78,216,0.15);
+      border-color: rgba(59,130,246,0.3);
+    }
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 2px 12px rgba(15,23,42,0.06);
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(29,78,216,0.13);
+      border-color: rgba(59,130,246,0.3);
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      background: rgba(29,78,216,0.07);
+      border: 1px solid rgba(29,78,216,0.18);
+      padding: 6px 16px;
+      border-radius: 99px;
+    }
+    .section-label-red {
+      color: var(--red-accent);
+      background: rgba(220,38,38,0.06);
+      border-color: rgba(220,38,38,0.2);
+    }
+
+    /* ── STAT CARD ── */
+    .stat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(15,23,42,0.05);
+    }
+    .stat-card:hover {
+      border-color: rgba(59,130,246,0.35);
+      box-shadow: 0 8px 32px rgba(29,78,216,0.12);
+      transform: translateY(-4px);
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SHIMMER ── */
+    @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+    .shimmer-line {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--blue-mid), var(--blue-deep), var(--blue-mid), transparent);
+      background-size: 200% auto;
+      animation: shimmer 2.5s linear infinite;
+      border-radius: 99px;
+    }
+
+    /* ── MARQUEE ── */
+    @keyframes marqueeScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .marquee-inner { display:flex; animation:marqueeScroll 22s linear infinite; width:max-content; }
+    .marquee-inner:hover { animation-play-state:paused; }
+
+    /* ── HERO IMAGE STRIP ── */
+    .img-strip-card {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .img-strip-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .img-strip-card:hover img { transform: scale(1.08); }
+
+    /* ── LOGIN MODAL ── */
+    #login-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(15,23,42,0.7);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    #login-modal.open { display: flex; }
+    .modal-card {
+      background: white;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 420px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(15,23,42,0.3);
+      animation: modalIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes modalIn { from{opacity:0;transform:scale(0.92) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+    /* ── FORM INPUTS ── */
+    .inp {
+      width: 100%;
+      padding: 13px 16px 13px 44px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--navy);
+      background: var(--off-white);
+      outline: none;
+      transition: all 0.3s;
+    }
+    .inp::placeholder { color: var(--gray-400); }
+    .inp:focus {
+      border-color: var(--blue-deep);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(29,78,216,0.08);
+    }
+    .inp-plain {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--navy);
+      background: var(--off-white);
+      outline: none;
+      transition: all 0.3s;
+    }
+    .inp-plain::placeholder { color: var(--gray-400); }
+    .inp-plain:focus { border-color: var(--blue-deep); background: white; box-shadow: 0 0 0 4px rgba(29,78,216,0.08); }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── CATALOGUE SECTION ── */
+    .cat-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 99px;
+      border: 1px solid rgba(29,78,216,0.2);
+      color: var(--blue-deep);
+      background: rgba(29,78,216,0.05);
+    }
+
+    /* ── ADMIN / CLIENT PANELS ── */
+    .panel-card {
+      background: white;
+      border-radius: 20px;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(15,23,42,0.06);
+    }
+    .panel-head {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--gray-200);
+      background: linear-gradient(135deg, var(--off-white), white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .panel-head h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--navy);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .admin-stat {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(15,23,42,0.05);
+      transition: all 0.3s;
+    }
+    .admin-stat:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(29,78,216,0.1); border-color: rgba(59,130,246,0.3); }
+    .badge-pending  { background:rgba(245,158,11,0.1); color:#d97706; border:1px solid rgba(245,158,11,0.25); padding:4px 12px; border-radius:99px; font-size:0.72rem; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.08em; }
+    .badge-approved { background:rgba(5,150,105,0.1); color:#059669; border:1px solid rgba(5,150,105,0.25); padding:4px 12px; border-radius:99px; font-size:0.72rem; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.08em; }
+    .badge-rejected { background:rgba(220,38,38,0.1);  color:#dc2626; border:1px solid rgba(220,38,38,0.25); padding:4px 12px; border-radius:99px; font-size:0.72rem; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.08em; }
+    .tab-active { background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid)) !important; color: white !important; box-shadow: 0 4px 16px rgba(29,78,216,0.35); }
+
+    /* ── TECH SPECS ── */
+    .spec-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.35s;
+      box-shadow: 0 2px 12px rgba(15,23,42,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .spec-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-mid));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .spec-card:hover::after { transform: scaleX(1); }
+    .spec-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(29,78,216,0.13); border-color: rgba(59,130,246,0.3); }
+
+    /* ── CONTACT SECTION ── */
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .contact-info-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    /* ── HERO BADGE ── */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: rgba(29,78,216,0.08);
+      border: 1px solid rgba(29,78,246,0.2);
+      border-radius: 99px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--blue-mid);
+      box-shadow: 0 0 8px var(--blue-mid);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
+
+    /* ── IMAGE HOVER OVERLAY ── */
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(15,23,42,0.75) 100%);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .headline-main { font-size: clamp(3rem, 14vw, 5rem); }
+      .stat-num { font-size: 2.8rem; }
+      .carousel-arrow { display: none; }
+      .btn-hero-primary, .btn-hero-outline { font-size: 1rem; padding: 15px 28px; }
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); color: white; }
+
+    /* ── RED/BLUE LINES ── */
+    .red-line { width: 40px; height: 3px; background: var(--red-accent); border-radius: 2px; }
+    .blue-line { width: 40px; height: 3px; background: var(--blue-deep); border-radius: 2px; }
+
+    /* ── FLOATING CARD ── */
+    .float-card { animation: floatY 6s ease-in-out infinite; }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+    /* ── PIPE SYSTEM WRAPPER ── */
+    .pipe-system-wrapper {
+      background: var(--gray-100);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Pressure gauge spin */
+    @keyframes gaugeSpin {
+      0%   { transform: rotate(-45deg); transform-origin: 12px 15px; }
+      30%  { transform: rotate(20deg);  transform-origin: 12px 15px; }
+      60%  { transform: rotate(-10deg); transform-origin: 12px 15px; }
+      100% { transform: rotate(-45deg); transform-origin: 12px 15px; }
+    }
+
+    /* Hero content animation on slide change */
+    @keyframes heroContentIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .hero-content-animated {
+      animation: heroContentIn 0.8s ease 0.3s both;
+    }
+
+    /* Floating right image cluster */
+    .hero-right-images {
+      position: absolute;
+      right: 0; top: 0;
+      width: 48%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-18">
+
+        <!-- Logo -->
+        <a href="#" onclick="goHome()" class="flex items-center gap-3 group">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:0.06em;color:var(--navy);line-height:1;">
+              CORE<span style="color:var(--blue-deep);">PIPES</span>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--gray-400);text-transform:uppercase;line-height:1;">& Fittings</div>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="#" onclick="scrollTo2('hero');return false;" class="nav-link active">Home</a>
+          <a href="about.html" class="nav-link">Our Story</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <!-- Right -->
+        <div class="flex items-center gap-3">
+          <div id="nav-user-area"></div>
+          <button onclick="openLogin()" id="nav-login-btn" class="btn-primary text-sm hidden lg:flex" style="padding:10px 22px;font-size:0.8rem;">
+            <i class="fas fa-sign-in-alt text-xs"></i> Sign In
+          </button>
+          <button onclick="toggleMobileNav()" id="hamburger" class="lg:hidden w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-gray-500 hover:border-blue-300 hover:text-blue-700 transition-all">
+            <i class="fas fa-bars text-sm" id="ham-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile Nav -->
+  <div id="mobile-nav" class="hidden" style="background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray-200);">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
+      <a href="#" onclick="scrollTo2('hero');closeMNav();return false;" class="nav-link text-base">Home</a>
+      <a href="about.html" class="nav-link text-base">Our Story</a>
+      <a href="contact.html" class="nav-link text-base">Contact</a>
+      <div class="pt-2 pb-1">
+        <button onclick="openLogin();closeMNav();" class="btn-primary w-full justify-center">
+          <i class="fas fa-sign-in-alt text-xs"></i> Sign In to Order
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════════ HERO SECTION — CAROUSEL ═══════════════ -->
+<section id="hero" class="hero-section">
+
+  <!-- ── Carousel Slides ── -->
+  <div class="carousel-slides">
+
+    <!-- Slide 1 -->
+    <div class="carousel-slide active" id="slide-0">
+      <img src="assets/elbow.png" alt="Industrial pipes and infrastructure">
+      <div class="slide-overlay"></div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-slide" id="slide-1">
+      <img src="assets/bulkpipe.png" alt="PVC pipes">
+      <div class="slide-overlay"></div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-slide" id="slide-2">
+      <img src="assets/pipehero.png" alt="Paving and Civil">
+      <div class="slide-overlay"></div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="carousel-slide" id="slide-3">
+      <img src="assets/T.png" alt="Plumbing fittings">
+      <div class="slide-overlay"></div>
+    </div>
+  </div>
+
+  <!-- ── Carousel Arrows ── -->
+  <button class="carousel-arrow prev hidden lg:flex" onclick="prevSlide()">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <button class="carousel-arrow next hidden lg:flex" onclick="nextSlide()">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+
+  <!-- ── Carousel Dots ── -->
+  <div class="carousel-dots">
+    <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+    <div class="carousel-dot" onclick="goToSlide(1)"></div>
+    <div class="carousel-dot" onclick="goToSlide(2)"></div>
+    <div class="carousel-dot" onclick="goToSlide(3)"></div>
+  </div>
+
+  <!-- ── Slide context label (bottom right) ── -->
+  <div id="slide-label-wrap" style="position:absolute;bottom:145px;right:32px;z-index:20;display:flex;gap:8px;align-items:center;" class="hidden lg:flex">
+    <div id="slide-counter" style="background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);border:1px solid rgba(29,78,216,0.2);border-radius:99px;padding:6px 16px;font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue-deep);">
+      01 / 04
+    </div>
+    <div id="slide-tag" style="background:rgba(29,78,216,0.1);backdrop-filter:blur(12px);border:1px solid rgba(29,78,216,0.25);border-radius:99px;padding:6px 16px;font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue-deep);">
+      Industrial Systems
+    </div>
+  </div>
+
+  <!-- ── Floating Right Image Cluster 
+  <div class="hero-right-images hidden lg:block">
+    <div class="absolute right-10 top-24 w-72 h-48 float-card" style="animation-delay:0s;">
+      <div class="img-strip-card w-full h-full">
+        <img src="assets/hpipe4.png" alt="PVC pipes">
+        <div class="img-overlay"></div>
+        <div class="absolute bottom-3 left-3 text-white text-xs font-mono uppercase tracking-widest opacity-80">PVC Pipe Systems</div>
+      </div>
+    </div>
+    <div class="absolute right-4 top-80 w-52 h-40 float-card" style="animation-delay:2s;">
+      <div class="img-strip-card w-full h-full">
+        <img src="assets/hpipe2.png" alt="Paving">
+        <div class="img-overlay"></div>
+        <div class="absolute bottom-3 left-3 text-white text-xs font-mono uppercase tracking-widest opacity-80">Paving & Civil</div>
+      </div>
+    </div>
+    <div class="absolute right-72 top-48 w-44 h-36 float-card" style="animation-delay:4s;">
+      <div class="img-strip-card w-full h-full">
+        <img src="assets/hpipe3.png" alt="Plumbing fittings">
+        <div class="img-overlay"></div>
+        <div class="absolute bottom-3 left-3 text-white text-xs font-mono uppercase tracking-widest opacity-80">Fittings</div>
+      </div>
+    </div>
+  </div>── -->
+
+  <!-- ── Hero Content ── -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-12">
+    <div class="max-w-2xl hero-content-animated">
+
+      <div class="hero-badge mb-6">
+        <span class="hero-badge-dot"></span>
+        B2B Wholesale Portal · EST. 2010
+      </div>
+
+      <h1 class="headline-main mb-4">
+        <span class="block">INSTALL IT</span>
+        <span class="block headline-accent">ONCE.</span>
+        <span class="block">RELY ON IT</span>
+        <span class="block headline-red">FOREVER.</span>
+      </h1>
+
+      <p class="text-gray-600 text-lg font-light leading-relaxed max-w-xl mb-8" style="font-family:'Outfit',sans-serif;">
+        Industrial-grade PVC pipes &amp; fittings engineered to withstand South Africa's most demanding environments. Leak-proof performance for contractors, engineers &amp; developers.
+      </p>
+
+      <!-- Triple tag line -->
+      <div class="flex flex-wrap gap-3 mb-10">
+        <div class="glass rounded-xl px-5 py-3 flex items-center gap-3 border border-blue-100">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-search text-white text-xs"></i>
+          </div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.05em;color:var(--navy);">FIND</div>
+            <div class="text-xs text-gray-500">A solution</div>
+          </div>
+        </div>
+        <div class="glass rounded-xl px-5 py-3 flex items-center gap-3 border border-blue-100">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,var(--blue-mid),#60a5fa);">
+            <i class="fas fa-water text-white text-xs"></i>
+          </div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.05em;color:var(--navy);">FLOW</div>
+            <div class="text-xs text-gray-500">Water conveyance</div>
+          </div>
+        </div>
+        <div class="glass rounded-xl px-5 py-3 flex items-center gap-3 border border-blue-100">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#059669,#34d399);">
+            <i class="fas fa-leaf text-white text-xs"></i>
+          </div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.05em;color:var(--navy);">FUTURE</div>
+            <div class="text-xs text-gray-500">For generations</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── HERO BUTTONS — HIGHLY VISIBLE & PROMINENT ── -->
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#" onclick="scrollTo2('catalogue');return false;" class="btn-hero-primary">
+          <i class="fas fa-cubes"></i> View Catalogue
+        </a>
+        <a href="#" onclick="scrollTo2('tech-specs');return false;" class="btn-hero-outline">
+          <i class="fas fa-file-alt text-blue-700"></i>
+          <span>Tech Specifications</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Stats Bar -->
+  <div class="absolute bottom-0 left-0 right-0 z-10">
+    <div class="glass border-t border-white/60 py-4 px-4">
+      <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:divide-x divide-gray-300/50">
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">500<span style="color:var(--red-accent);">+</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Contractors</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">6K<span style="color:var(--red-accent);">+</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Units Stocked</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">24<span style="color:var(--red-accent);">h</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Dispatch</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">15<span style="color:var(--red-accent);">+</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Years Supply</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MARQUEE ═══════════════ -->
+<div class="overflow-hidden py-3" style="background:linear-gradient(90deg,var(--navy),var(--navy-mid),var(--navy));border-top:3px solid var(--red-accent);border-bottom:3px solid var(--blue-deep);">
+  <div class="marquee-inner">
+    <div class="flex items-center gap-8 pr-8 text-xs font-mono text-white/50 uppercase tracking-widest">
+      <span class="flex items-center gap-2"><i class="fas fa-industry text-blue-400"></i> PVC Pipes</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-water text-blue-400"></i> Plumbing Fittings</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-road text-blue-400"></i> Paving Blocks</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-wrench text-blue-400"></i> Civil Supply</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-shield-alt text-blue-400"></i> SABS Certified</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-truck text-blue-400"></i> Nationwide Delivery</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-hard-hat text-blue-400"></i> Infrastructure Projects</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-400"></i> 100% Compatibility</span>
+      <span class="text-red-500">✦</span>
+    </div>
+    <div class="flex items-center gap-8 pr-8 text-xs font-mono text-white/50 uppercase tracking-widest">
+      <span class="flex items-center gap-2"><i class="fas fa-industry text-blue-400"></i> PVC Pipes</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-water text-blue-400"></i> Plumbing Fittings</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-road text-blue-400"></i> Paving Blocks</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-wrench text-blue-400"></i> Civil Supply</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-shield-alt text-blue-400"></i> SABS Certified</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-truck text-blue-400"></i> Nationwide Delivery</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-hard-hat text-blue-400"></i> Infrastructure Projects</span>
+      <span class="text-red-500">✦</span>
+      <span class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-400"></i> 100% Compatibility</span>
+      <span class="text-red-500">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PIPE SYSTEM DIVIDER #1 — "WHY CORE PIPES"
+     Full plumbing network with elbow, tee, valves
+═══════════════════════════════════════════════ -->
+<div class="pipe-system-wrapper">
+  <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:120px;">
+    <defs>
+      <!-- Pipe metal gradient — top highlight -->
+      <linearGradient id="pipeMetal1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="18%" stop-color="#f8fafc"/>
+        <stop offset="45%" stop-color="#cbd5e1"/>
+        <stop offset="72%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+      <!-- Pipe inner channel -->
+      <linearGradient id="pipeInner1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+        <stop offset="100%" stop-color="rgba(148,163,184,0.4)"/>
+      </linearGradient>
+      <!-- Fitting/joint gradient -->
+      <linearGradient id="jointGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#94a3b8"/>
+        <stop offset="50%" stop-color="#64748b"/>
+        <stop offset="100%" stop-color="#94a3b8"/>
+      </linearGradient>
+      <!-- Elbow gradient -->
+      <linearGradient id="elbowGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="40%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#cbd5e1"/>
+      </linearGradient>
+      <!-- Valve body gradient -->
+      <linearGradient id="valveGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1d4ed8"/>
+        <stop offset="100%" stop-color="#1e40af"/>
+      </linearGradient>
+      <!-- Water flow -->
+      <linearGradient id="waterGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="transparent"/>
+        <stop offset="40%" stop-color="rgba(59,130,246,0.6)"/>
+        <stop offset="60%" stop-color="rgba(29,78,216,0.5)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </linearGradient>
+      <!-- Pressure gauge face -->
+      <radialGradient id="gaugeFace">
+        <stop offset="0%" stop-color="#f8fafc"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </radialGradient>
+      <!-- Red accent gradient -->
+      <linearGradient id="redGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#dc2626"/>
+        <stop offset="100%" stop-color="#ef4444"/>
+      </linearGradient>
+    </defs>
+
+    <!-- ═══ BACKGROUND ═══ -->
+    <rect width="1200" height="120" fill="#f1f5f9"/>
+
+    <!-- ═══ MAIN HORIZONTAL PIPE — full width ═══ -->
+    <!-- Pipe body -->
+    <rect x="0" y="44" width="1200" height="32" fill="url(#pipeMetal1)" rx="0"/>
+    <!-- Inner bore shine -->
+    <rect x="0" y="49" width="1200" height="6" fill="rgba(255,255,255,0.75)" rx="0"/>
+    <!-- Shadow line bottom -->
+    <rect x="0" y="73" width="1200" height="3" fill="rgba(15,23,42,0.08)"/>
+    <!-- Top border line -->
+    <rect x="0" y="44" width="1200" height="2" fill="#94a3b8"/>
+    <!-- Bottom border line -->
+    <rect x="0" y="74" width="1200" height="2" fill="#64748b"/>
+
+    <!-- ═══ WATER FLOW ANIMATION inside pipe ═══ -->
+    <rect x="0" y="54" width="1200" height="10" fill="none">
+      <animate attributeName="x" from="-300" to="1200" dur="2.8s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="-300" y="55" width="400" height="9" fill="url(#waterGrad)" rx="2" opacity="0.6">
+      <animate attributeName="x" from="-400" to="1400" dur="2.8s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="-600" y="55" width="280" height="9" fill="url(#waterGrad)" rx="2" opacity="0.45">
+      <animate attributeName="x" from="-600" to="1200" dur="3.8s" repeatCount="indefinite" begin="1.2s"/>
+    </rect>
+
+    <!-- ═══ COUPLING JOINT at x=180 ═══ -->
+    <rect x="170" y="38" width="24" height="44" fill="url(#jointGrad)" rx="3"/>
+    <rect x="173" y="41" width="18" height="38" fill="url(#pipeInner1)" rx="2"/>
+    <!-- Bolt details -->
+    <circle cx="176" cy="44" r="2" fill="#475569"/>
+    <circle cx="188" cy="44" r="2" fill="#475569"/>
+    <circle cx="176" cy="76" r="2" fill="#475569"/>
+    <circle cx="188" cy="76" r="2" fill="#475569"/>
+
+    <!-- ═══ 90° TEE JUNCTION at x=340 — branches UP ═══ -->
+    <!-- Vertical branch pipe going up -->
+    <rect x="325" y="0" width="30" height="60" fill="url(#pipeMetal1)"/>
+    <rect x="330" y="0" width="6" height="55" fill="rgba(255,255,255,0.7)"/>
+    <rect x="325" y="0" width="2" height="60" fill="#94a3b8"/>
+    <rect x="353" y="0" width="2" height="60" fill="#64748b"/>
+    <!-- Tee body -->
+    <rect x="318" y="38" width="44" height="32" fill="url(#jointGrad)" rx="4"/>
+    <rect x="322" y="42" width="36" height="24" fill="url(#pipeInner1)" rx="2"/>
+    <!-- Label on branch -->
+    <rect x="310" y="2" width="50" height="16" fill="url(#valveGrad)" rx="8"/>
+    <text x="335" y="13" fill="white" font-family="JetBrains Mono, monospace" font-size="7" text-anchor="middle" letter-spacing="0.5">WHY CORE</text>
+
+    <!-- ═══ GATE VALVE at x=520 ═══ -->
+    <!-- Valve body -->
+    <rect x="505" y="36" width="48" height="36" fill="url(#valveGrad)" rx="6"/>
+    <!-- Valve body outline -->
+    <rect x="505" y="36" width="48" height="36" fill="none" stroke="#1e40af" stroke-width="1.5" rx="6"/>
+    <!-- Valve stem -->
+    <rect x="525" y="10" width="8" height="28" fill="#64748b" rx="2"/>
+    <!-- Valve handwheel -->
+    <circle cx="529" cy="10" r="12" fill="none" stroke="#dc2626" stroke-width="3"/>
+    <line x1="519" y1="10" x2="539" y2="10" stroke="#dc2626" stroke-width="2.5"/>
+    <line x1="529" y1="0" x2="529" y2="20" stroke="#dc2626" stroke-width="2.5"/>
+    <!-- Valve center bolt -->
+    <circle cx="529" cy="54" r="5" fill="#1e40af" stroke="#60a5fa" stroke-width="1.5"/>
+    <!-- Pressure dot -->
+    <circle cx="529" cy="54" r="2.5" fill="#60a5fa" opacity="0.9">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- ═══ COUPLING JOINT at x=640 ═══ -->
+    <rect x="630" y="38" width="24" height="44" fill="url(#jointGrad)" rx="3"/>
+    <rect x="633" y="41" width="18" height="38" fill="url(#pipeInner1)" rx="2"/>
+    <circle cx="636" cy="44" r="2" fill="#475569"/>
+    <circle cx="648" cy="44" r="2" fill="#475569"/>
+    <circle cx="636" cy="76" r="2" fill="#475569"/>
+    <circle cx="648" cy="76" r="2" fill="#475569"/>
+
+    <!-- ═══ PRESSURE GAUGE at x=780 (mounted on top) ═══ -->
+    <!-- Gauge stem from pipe -->
+    <rect x="779" y="28" width="6" height="18" fill="#64748b"/>
+    <!-- Gauge body circle -->
+    <circle cx="782" cy="22" r="18" fill="url(#gaugeFace)" stroke="#64748b" stroke-width="2.5"/>
+    <circle cx="782" cy="22" r="14" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    <!-- Gauge scale marks -->
+    <line x1="769" y1="18" x2="771" y2="20" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="795" y1="18" x2="793" y2="20" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="776" y1="9" x2="777" y2="11" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="788" y1="9" x2="787" y2="11" stroke="#94a3b8" stroke-width="1"/>
+    <!-- Gauge red zone arc -->
+    <path d="M 795 16 A 14 14 0 0 1 795 28" fill="none" stroke="#dc2626" stroke-width="3" opacity="0.5"/>
+    <!-- Gauge needle -->
+    <line x1="782" y1="22" x2="793" y2="14" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" values="-30 782 22;25 782 22;-30 782 22" dur="4s" repeatCount="indefinite"/>
+    </line>
+    <!-- Gauge center -->
+    <circle cx="782" cy="22" r="2.5" fill="#475569"/>
+    <!-- Gauge label -->
+    <text x="782" y="34" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="4.5" text-anchor="middle">BAR</text>
+
+    <!-- ═══ 90° TEE at x=900 — branches DOWN ═══ -->
+    <!-- Downward branch -->
+    <rect x="887" y="60" width="30" height="60" fill="url(#pipeMetal1)"/>
+    <rect x="892" y="60" width="6" height="60" fill="rgba(255,255,255,0.7)"/>
+    <rect x="887" y="60" width="2" height="60" fill="#94a3b8"/>
+    <rect x="915" y="60" width="2" height="60" fill="#64748b"/>
+    <!-- Tee body -->
+    <rect x="880" y="38" width="44" height="32" fill="url(#jointGrad)" rx="4"/>
+    <rect x="884" y="42" width="36" height="24" fill="url(#pipeInner1)" rx="2"/>
+    <!-- Label -->
+    <rect x="875" y="102" width="54" height="16" fill="url(#redGrad)" rx="8"/>
+    <text x="902" y="113" fill="white" font-family="JetBrains Mono, monospace" font-size="7" text-anchor="middle" letter-spacing="0.5">PIPES</text>
+
+    <!-- ═══ END CAP at right ═══ -->
+    <rect x="1166" y="38" width="34" height="36" fill="url(#jointGrad)" rx="14"/>
+    <rect x="1170" y="42" width="26" height="28" fill="url(#pipeInner1)" rx="10"/>
+    <circle cx="1183" cy="56" r="7" fill="#1d4ed8" opacity="0.8"/>
+    <circle cx="1183" cy="56" r="3.5" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- ═══ END CAP at left ═══ -->
+    <rect x="0" y="38" width="34" height="36" fill="url(#jointGrad)" rx="14"/>
+    <rect x="4" y="42" width="26" height="28" fill="url(#pipeInner1)" rx="10"/>
+    <circle cx="17" cy="56" r="7" fill="#1d4ed8" opacity="0.8"/>
+
+    <!-- ═══ Coupling at x=1060 ═══ -->
+    <rect x="1050" y="38" width="24" height="44" fill="url(#jointGrad)" rx="3"/>
+    <rect x="1053" y="41" width="18" height="38" fill="url(#pipeInner1)" rx="2"/>
+    <circle cx="1056" cy="44" r="2" fill="#475569"/>
+    <circle cx="1068" cy="44" r="2" fill="#475569"/>
+  </svg>
+</div>
+
+<!-- ═══════════════ ABOUT / STORY SECTION ═══════════════ -->
+<section id="about" style="background:white;padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: Copy -->
+      <div class="reveal">
+        <div class="section-label mb-5"><i class="fas fa-building text-xs"></i> Our Story</div>
+        <h2 class="font-display text-5xl lg:text-6xl mb-6" style="color:var(--navy);line-height:0.95;letter-spacing:0.03em;">
+          ENGINEERED<br>FOR <span style="color:var(--blue-deep);">PERFORMANCE</span>
+        </h2>
+        <div class="red-line mb-6"></div>
+        <p class="text-gray-600 text-base leading-relaxed mb-5">
+          Our systems meet rigorous <strong class="text-navy font-semibold">SABS testing standards</strong> to deliver leak-proof performance in the most demanding pressures — with industrial-grade PVC designed to withstand extreme weather, abrasion and soil stress.
+        </p>
+        <p class="text-gray-600 text-base leading-relaxed mb-8">
+          Streamline your supply chain with a single source for high-grade pipes and perfectly matched joints. We guarantee <strong class="text-navy font-semibold">100% component compatibility</strong> and rapid stock availability to keep your operation moving.
+        </p>
+
+        <!-- Feature list -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(29,78,216,0.08);border:1px solid rgba(29,78,216,0.15);">
+              <i class="fas fa-check text-blue-700 text-xs"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-navy text-sm">Single-source supply</div>
+              <div class="text-gray-500 text-xs mt-0.5">Pipes, fittings & civil materials</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(29,78,216,0.08);border:1px solid rgba(29,78,216,0.15);">
+              <i class="fas fa-check text-blue-700 text-xs"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-navy text-sm">SABS certified</div>
+              <div class="text-gray-500 text-xs mt-0.5">Meets SANS 966 standards</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(29,78,216,0.08);border:1px solid rgba(29,78,216,0.15);">
+              <i class="fas fa-check text-blue-700 text-xs"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-navy text-sm">100% compatibility</div>
+              <div class="text-gray-500 text-xs mt-0.5">All components matched</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(220,38,38,0.07);border:1px solid rgba(220,38,38,0.18);">
+              <i class="fas fa-truck text-red-600 text-xs"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-navy text-sm">Rapid stock availability</div>
+              <div class="text-gray-500 text-xs mt-0.5">24h dispatch nationwide</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="#" onclick="scrollTo2('tech-specs');return false;" class="btn-primary">
+            <i class="fas fa-file-alt text-xs"></i> Tech Specifications
+          </a>
+          <a href="#" onclick="scrollTo2('contact');return false;" class="btn-outline">
+            <i class="fas fa-headset text-xs"></i> Get in Touch
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Image grid -->
+      <div class="reveal grid grid-cols-2 gap-4">
+        <div class="img-strip-card h-56">
+          <img src="assets/plumbingpipe.png" alt="Plumbing">
+          <div class="img-overlay"></div>
+          <div class="absolute bottom-3 left-3 text-white text-xs font-mono uppercase tracking-widest">Plumbing</div>
+        </div>
+        <div class="img-strip-card h-56 mt-8">
+          <img src="assets/pavingpipe.png" alt="Paving">
+          <div class="img-overlay"></div>
+          <div class="absolute bottom-3 left-3 text-white text-xs font-mono uppercase tracking-widest">Paving</div>
+        </div>
+        <div class="img-strip-card h-56">
+          <img src="assets/pipes1.png" alt="PVC Pipes">
+          <div class="img-overlay"></div>
+          <div class="absolute bottom-3 left-3 text-white text-xs font-mono uppercase tracking-widest">PVC Pipes</div>
+        </div>
+        <div class="img-strip-card h-56 mt-8">
+          <img src="assets/ivilpipe.png" alt="Infrastructure">
+          <div class="img-overlay"></div>
+          <div class="absolute bottom-3 left-3 text-white text-xs font-mono uppercase tracking-widest">Civil Supply</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature Cards Row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-16 reveal">
+      <div class="feature-card">
+        <div class="relative h-40">
+          <img src="assets/fitting.png" alt="Plumbing" class="w-full h-full object-cover">
+          <div class="img-overlay"></div>
+          <div class="absolute top-3 left-3">
+            <span class="text-xs font-mono text-white/80 uppercase tracking-widest glass-navy px-2 py-1 rounded-lg">Plumbing</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <i class="fas fa-water mb-2 block" style="color:var(--blue-deep);"></i>
+          <div class="font-bold text-navy text-base mb-1" style="font-family:'Outfit',sans-serif;">Fittings & Valves</div>
+          <div class="text-gray-500 text-xs leading-relaxed">Complete range of connectors, elbows, tees, and gate valves for all pipe systems.</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="relative h-40">
+          <img src="assets/indpipe.png" alt="Pipes" class="w-full h-full object-cover">
+          <div class="img-overlay"></div>
+          <div class="absolute top-3 left-3">
+            <span class="text-xs font-mono text-white/80 uppercase tracking-widest glass-navy px-2 py-1 rounded-lg">Pipes</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <i class="fas fa-industry mb-2 block" style="color:var(--blue-deep);"></i>
+          <div class="font-bold text-navy text-base mb-1">Industrial Grade PVC</div>
+          <div class="text-gray-500 text-xs leading-relaxed">Schedule 40 & 80 PVC rated for high-pressure systems from 20–315mm diameter.</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="relative h-40">
+          <img src="assets/paving.png" alt="Paving" class="w-full h-full object-cover">
+          <div class="img-overlay"></div>
+          <div class="absolute top-3 left-3">
+            <span class="text-xs font-mono text-white/80 uppercase tracking-widest glass-navy px-2 py-1 rounded-lg">Paving</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <i class="fas fa-road mb-2 block" style="color:var(--blue-deep);"></i>
+          <div class="font-bold text-navy text-base mb-1">Paving & Civil</div>
+          <div class="text-gray-500 text-xs leading-relaxed">Block paving, edging, and civil drainage solutions for residential and commercial projects.</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="relative h-40">
+          <img src="assets/supply.png" alt="Supply" class="w-full h-full object-cover">
+          <div class="img-overlay"></div>
+          <div class="absolute top-3 left-3">
+            <span class="text-xs font-mono text-white/80 uppercase tracking-widest glass-navy px-2 py-1 rounded-lg">Supply</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <i class="fas fa-truck mb-2 block" style="color:var(--red-accent);"></i>
+          <div class="font-bold text-navy text-base mb-1">Trade Supply</div>
+          <div class="text-gray-500 text-xs leading-relaxed">Exclusive bulk trade pricing with rapid 24h dispatch for verified contractors.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PIPE SYSTEM DIVIDER #2 — "PRODUCT CATALOGUE"
+     Cross/T layout with downward branch + valve
+═══════════════════════════════════════════════ -->
+<div class="pipe-system-wrapper">
+  <svg viewBox="0 0 1200 140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:140px;">
+    <defs>
+      <linearGradient id="pm2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="18%" stop-color="#f8fafc"/>
+        <stop offset="48%" stop-color="#cbd5e1"/>
+        <stop offset="75%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+      <linearGradient id="pm2v" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="18%" stop-color="#f8fafc"/>
+        <stop offset="48%" stop-color="#cbd5e1"/>
+        <stop offset="75%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+      <linearGradient id="jg2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#94a3b8"/>
+        <stop offset="50%" stop-color="#64748b"/>
+        <stop offset="100%" stop-color="#94a3b8"/>
+      </linearGradient>
+      <linearGradient id="wg2" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="transparent"/>
+        <stop offset="50%" stop-color="rgba(59,130,246,0.55)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </linearGradient>
+      <linearGradient id="vg2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1d4ed8"/>
+        <stop offset="100%" stop-color="#1e40af"/>
+      </linearGradient>
+      <radialGradient id="gf2">
+        <stop offset="0%" stop-color="#f8fafc"/>
+        <stop offset="100%" stop-color="#dbeafe"/>
+      </radialGradient>
+    </defs>
+
+    <rect width="1200" height="140" fill="#f1f5f9"/>
+
+    <!-- Main horizontal pipe — sits at y=56 -->
+    <rect x="0" y="52" width="1200" height="36" fill="url(#pm2)"/>
+    <rect x="0" y="57" width="1200" height="7" fill="rgba(255,255,255,0.7)"/>
+    <rect x="0" y="52" width="1200" height="2" fill="#94a3b8"/>
+    <rect x="0" y="86" width="1200" height="2" fill="#64748b"/>
+    <rect x="0" y="88" width="1200" height="3" fill="rgba(15,23,42,0.06)"/>
+
+    <!-- Water flow -->
+    <rect x="-450" y="62" width="450" height="10" fill="url(#wg2)" rx="2" opacity="0.65">
+      <animate attributeName="x" from="-450" to="1400" dur="3.2s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="-750" y="62" width="300" height="10" fill="url(#wg2)" rx="2" opacity="0.4">
+      <animate attributeName="x" from="-750" to="1200" dur="4.2s" repeatCount="indefinite" begin="1.5s"/>
+    </rect>
+
+    <!-- Left end flange -->
+    <rect x="0" y="46" width="28" height="48" fill="url(#jg2)" rx="12"/>
+    <rect x="4" y="50" width="20" height="40" fill="#cbd5e1" rx="8"/>
+    <circle cx="14" cy="70" r="6" fill="#1d4ed8" opacity="0.7"/>
+
+    <!-- Coupling at x=200 -->
+    <rect x="190" y="46" width="28" height="48" fill="url(#jg2)" rx="3"/>
+    <rect x="194" y="50" width="20" height="40" fill="#dde4ee" rx="2"/>
+    <circle cx="196" cy="54" r="2.2" fill="#475569"/>
+    <circle cx="212" cy="54" r="2.2" fill="#475569"/>
+    <circle cx="196" cy="86" r="2.2" fill="#475569"/>
+    <circle cx="212" cy="86" r="2.2" fill="#475569"/>
+
+    <!-- CROSS JUNCTION at x=370 — up AND down branches -->
+    <!-- Up branch -->
+    <rect x="358" y="0" width="32" height="56" fill="url(#pm2)"/>
+    <rect x="363" y="0" width="7" height="52" fill="rgba(255,255,255,0.7)"/>
+    <rect x="358" y="0" width="2" height="56" fill="#94a3b8"/>
+    <rect x="388" y="0" width="2" height="56" fill="#64748b"/>
+    <!-- Down branch -->
+    <rect x="358" y="88" width="32" height="52" fill="url(#pm2)"/>
+    <rect x="363" y="88" width="7" height="52" fill="rgba(255,255,255,0.7)"/>
+    <rect x="358" y="88" width="2" height="52" fill="#94a3b8"/>
+    <rect x="388" y="88" width="2" height="52" fill="#64748b"/>
+    <!-- Cross fitting body -->
+    <rect x="348" y="44" width="52" height="52" fill="url(#jg2)" rx="5"/>
+    <rect x="353" y="49" width="42" height="42" fill="#dde4ee" rx="3"/>
+    <!-- Center bolt -->
+    <circle cx="374" cy="70" r="8" fill="#1d4ed8"/>
+    <circle cx="374" cy="70" r="4" fill="#3b82f6">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Label above up branch -->
+    <rect x="346" y="4" width="60" height="18" fill="url(#vg2)" rx="9"/>
+    <text x="376" y="16" fill="white" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="0.5">CATALOGUE</text>
+    <!-- Label below down branch -->
+    <rect x="348" y="118" width="56" height="18" fill="#dc2626" rx="9"/>
+    <text x="376" y="130" fill="white" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="0.5">PRODUCTS</text>
+
+    <!-- Ball valve at x=560 -->
+    <rect x="545" y="44" width="52" height="52" fill="url(#vg2)" rx="8"/>
+    <rect x="545" y="44" width="52" height="52" fill="none" stroke="#1e3a8a" stroke-width="1.5" rx="8"/>
+    <!-- Ball valve indicator line -->
+    <line x1="571" y1="54" x2="571" y2="86" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-linecap="round"/>
+    <!-- Valve stem -->
+    <rect x="568" y="26" width="6" height="20" fill="#64748b" rx="2"/>
+    <!-- Valve handwheel (horizontal = OPEN) -->
+    <rect x="554" y="22" width="34" height="6" fill="#dc2626" rx="3"/>
+    <circle cx="571" cy="25" r="5" fill="#b91c1c" stroke="#dc2626" stroke-width="1.5"/>
+    <circle cx="571" cy="70" r="8" fill="#2563eb">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <text x="571" y="74" fill="white" font-family="JetBrains Mono, monospace" font-size="6" text-anchor="middle">ON</text>
+
+    <!-- Coupling at x=700 -->
+    <rect x="690" y="46" width="28" height="48" fill="url(#jg2)" rx="3"/>
+    <rect x="694" y="50" width="20" height="40" fill="#dde4ee" rx="2"/>
+    <circle cx="696" cy="54" r="2.2" fill="#475569"/>
+    <circle cx="712" cy="54" r="2.2" fill="#475569"/>
+
+    <!-- PRESSURE GAUGE at x=860 mounted on top -->
+    <rect x="859" y="30" width="6" height="24" fill="#64748b"/>
+    <circle cx="862" cy="24" r="21" fill="url(#gf2)" stroke="#64748b" stroke-width="2.5"/>
+    <circle cx="862" cy="24" r="16" fill="none" stroke="#dbeafe" stroke-width="1.5"/>
+    <!-- Red zone arc top right -->
+    <path d="M 875 18 A 16 16 0 0 1 875 30" fill="none" stroke="#dc2626" stroke-width="4" opacity="0.6"/>
+    <!-- Tick marks -->
+    <line x1="848" y1="19" x2="850" y2="22" stroke="#94a3b8" stroke-width="1.2"/>
+    <line x1="876" y1="19" x2="874" y2="22" stroke="#94a3b8" stroke-width="1.2"/>
+    <line x1="856" y1="10" x2="857" y2="13" stroke="#94a3b8" stroke-width="1.2"/>
+    <line x1="868" y1="10" x2="867" y2="13" stroke="#94a3b8" stroke-width="1.2"/>
+    <line x1="862" y1="8" x2="862" y2="11" stroke="#94a3b8" stroke-width="1.5"/>
+    <!-- Needle -->
+    <line x1="862" y1="24" x2="872" y2="14" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" values="-40 862 24;30 862 24;-40 862 24" dur="5s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="862" cy="24" r="3" fill="#475569"/>
+    <text x="862" y="38" fill="#64748b" font-family="JetBrains Mono, monospace" font-size="5" text-anchor="middle">PN16</text>
+
+    <!-- TEE at x=1040 (branch up) -->
+    <rect x="1028" y="0" width="32" height="56" fill="url(#pm2)"/>
+    <rect x="1033" y="0" width="7" height="52" fill="rgba(255,255,255,0.7)"/>
+    <rect x="1028" y="0" width="2" height="56" fill="#94a3b8"/>
+    <rect x="1058" y="0" width="2" height="56" fill="#64748b"/>
+    <rect x="1018" y="44" width="52" height="44" fill="url(#jg2)" rx="5"/>
+    <rect x="1023" y="49" width="42" height="34" fill="#dde4ee" rx="3"/>
+    <circle cx="1044" cy="66" r="7" fill="#1d4ed8" opacity="0.8"/>
+    <rect x="1026" y="4" width="60" height="18" fill="#dc2626" rx="9"/>
+    <text x="1056" y="16" fill="white" font-family="JetBrains Mono, monospace" font-size="7" text-anchor="middle" letter-spacing="0.5">SUPPLY</text>
+
+    <!-- Right end cap -->
+    <rect x="1172" y="46" width="28" height="48" fill="url(#jg2)" rx="14"/>
+    <rect x="1176" y="50" width="20" height="40" fill="#cbd5e1" rx="10"/>
+    <circle cx="1186" cy="70" r="7" fill="#1d4ed8" opacity="0.7"/>
+    <circle cx="1186" cy="70" r="3.5" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+  </svg>
+</div>
+
+<!-- ═══════════════ CATALOGUE SECTION ═══════════════ -->
+<section id="catalogue" style="background:var(--off-white);padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header with hero image -->
+    <div class="relative rounded-3xl overflow-hidden mb-12 reveal" style="min-height:240px;">
+      <img src="assets/pipes1.png" alt="Catalogue" class="w-full h-full object-cover absolute inset-0">
+      <div class="absolute inset-0" style="background:linear-gradient(115deg,rgba(255,255,255,0.97) 0%,rgba(255,255,255,0.85) 40%,rgba(29,78,216,0.5) 100%);"></div>
+      <div class="relative z-10 p-10 flex flex-wrap items-center justify-between gap-6">
+        <div>
+          <div class="section-label mb-3"><i class="fas fa-cubes text-xs"></i> Product Catalogue</div>
+          <h2 class="font-display text-5xl lg:text-6xl" style="color:var(--navy);letter-spacing:0.03em;line-height:0.95;">
+            PIPES <span style="color:var(--blue-deep);">&amp;</span> FITTINGS
+          </h2>
+          <p class="text-gray-600 text-sm mt-2 max-w-md">Browse our full range. Sign in to add items to your cart and place orders.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <button onclick="filterProducts('all')" id="filter-all" class="cat-tag cursor-pointer hover:bg-blue-50 transition-all" style="background:rgba(29,78,216,0.1);font-size:0.75rem;padding:8px 18px;">All Items</button>
+          <button onclick="filterProducts('pipe')" id="filter-pipe" class="cat-tag cursor-pointer hover:bg-blue-50 transition-all" style="font-size:0.75rem;padding:8px 18px;">Pipes</button>
+          <button onclick="filterProducts('fitting')" id="filter-fitting" class="cat-tag cursor-pointer hover:bg-blue-50 transition-all" style="font-size:0.75rem;padding:8px 18px;">Fittings</button>
+          <button onclick="filterProducts('paving')" id="filter-paving" class="cat-tag cursor-pointer hover:bg-blue-50 transition-all" style="font-size:0.75rem;padding:8px 18px;">Paving</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div id="catalogue-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal"></div>
+
+    <!-- Login prompt (when not logged in) -->
+    <div id="login-prompt-bar" class="mt-8 rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4 reveal" style="background:linear-gradient(135deg,rgba(29,78,216,0.07),rgba(59,130,246,0.04));border:1.5px dashed rgba(29,78,216,0.25);">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-lock text-white text-sm"></i>
+        </div>
+        <div>
+          <div class="font-bold text-navy text-base">Sign in to place orders</div>
+          <div class="text-gray-500 text-sm">Register or log in with your trade account to add items and purchase.</div>
+        </div>
+      </div>
+      <button onclick="openLogin()" class="btn-primary">
+        <i class="fas fa-sign-in-alt text-xs"></i> Sign In to Order
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CLIENT ORDER PANEL ═══════════════ -->
+<div id="client-order-panel" style="display:none;background:var(--off-white);padding:0 0 80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Cart pipe divider mini -->
+    <div style="padding:24px 0 0 0;">
+      <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px;display:block;">
+        <defs>
+          <linearGradient id="pm3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e2e8f0"/>
+            <stop offset="40%" stop-color="#f8fafc"/>
+            <stop offset="70%" stop-color="#cbd5e1"/>
+            <stop offset="100%" stop-color="#e2e8f0"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="60" fill="#f1f5f9"/>
+        <rect x="0" y="18" width="1200" height="24" fill="url(#pm3)"/>
+        <rect x="0" y="20" width="1200" height="5" fill="rgba(255,255,255,0.65)"/>
+        <rect x="0" y="18" width="1200" height="1.5" fill="#94a3b8"/>
+        <rect x="0" y="41" width="1200" height="1.5" fill="#64748b"/>
+        <rect x="-300" y="24" width="300" height="8" rx="2" fill="rgba(59,130,246,0.5)" opacity="0.7">
+          <animate attributeName="x" from="-300" to="1300" dur="3s" repeatCount="indefinite"/>
+        </rect>
+        <!-- Label banner -->
+        <rect x="540" y="10" width="120" height="40" fill="url(#pm3)" rx="0"/>
+        <rect x="532" y="14" width="136" height="32" fill="white" rx="4" opacity="0.9"/>
+        <text x="600" y="34" fill="#1d4ed8" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle" letter-spacing="1" font-weight="500">YOUR CART</text>
+        <!-- Joints -->
+        <rect x="510" y="12" width="22" height="36" fill="#94a3b8" rx="3"/>
+        <rect x="668" y="12" width="22" height="36" fill="#94a3b8" rx="3"/>
+      </svg>
+    </div>
+
+    <div class="panel-card mb-8">
+      <div class="panel-head">
+        <h3><i class="fas fa-shopping-cart text-blue-700"></i> Cart Summary</h3>
+        <span id="cart-badge" class="cat-tag text-xs">0 items</span>
+      </div>
+      <div class="p-6">
+        <ul id="cart-items-list"></ul>
+        <div class="mt-5 pt-4 flex flex-wrap items-center justify-between gap-4" style="border-top:1px dashed var(--gray-200);">
+          <div class="font-display text-3xl" style="color:var(--navy);letter-spacing:0.04em;">
+            TOTAL: <span style="color:var(--blue-deep);" id="cart-total-val">R0.00</span>
+          </div>
+          <button onclick="placeOrder()" class="btn-primary" style="background:linear-gradient(135deg,#065f46,#059669);box-shadow:0 6px 24px rgba(5,150,105,0.3);">
+            <i class="fas fa-check-circle text-xs"></i> Place Order
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:0 0 16px 0;">
+      <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px;display:block;">
+        <defs>
+          <linearGradient id="pm3b" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e2e8f0"/>
+            <stop offset="40%" stop-color="#f8fafc"/>
+            <stop offset="70%" stop-color="#cbd5e1"/>
+            <stop offset="100%" stop-color="#e2e8f0"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="60" fill="#f8fafc"/>
+        <rect x="0" y="18" width="1200" height="24" fill="url(#pm3b)"/>
+        <rect x="0" y="20" width="1200" height="5" fill="rgba(255,255,255,0.65)"/>
+        <rect x="0" y="18" width="1200" height="1.5" fill="#94a3b8"/>
+        <rect x="0" y="41" width="1200" height="1.5" fill="#64748b"/>
+        <rect x="-300" y="24" width="300" height="8" rx="2" fill="rgba(59,130,246,0.5)" opacity="0.5">
+          <animate attributeName="x" from="-300" to="1300" dur="4s" repeatCount="indefinite" begin="0.8s"/>
+        </rect>
+        <rect x="524" y="14" width="152" height="32" fill="white" rx="4" opacity="0.9"/>
+        <text x="600" y="34" fill="#1d4ed8" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle" letter-spacing="1" font-weight="500">ORDER HISTORY</text>
+        <rect x="502" y="12" width="22" height="36" fill="#94a3b8" rx="3"/>
+        <rect x="676" y="12" width="22" height="36" fill="#94a3b8" rx="3"/>
+      </svg>
+    </div>
+    <div id="client-orders-list" class="flex flex-col gap-4"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ ADMIN DASHBOARD ═══════════════ -->
+<div id="admin-panel" style="display:none;background:var(--off-white);padding:0 0 80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl overflow-hidden mb-8 mt-0" style="min-height:160px;">
+      <img src="assets/plumbingpipe.png" alt="Admin" class="absolute inset-0 w-full h-full object-cover">
+      <div class="absolute inset-0" style="background:linear-gradient(115deg,rgba(255,255,255,0.97) 0%,rgba(255,255,255,0.85) 40%,rgba(15,23,42,0.6) 100%);"></div>
+      <div class="relative z-10 p-8 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="section-label section-label-red mb-2"><i class="fas fa-shield-alt text-xs"></i> Admin Access</div>
+          <div class="font-display text-4xl" style="color:var(--navy);letter-spacing:0.04em;">CRM DASHBOARD</div>
+        </div>
+        <div class="glass rounded-xl px-5 py-3 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+          <span class="text-gray-700 text-sm font-mono uppercase tracking-widest">Live Sync</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="admin-stat">
+        <div class="w-9 h-9 rounded-lg mb-3 flex items-center justify-center" style="background:rgba(29,78,216,0.1);"><i class="fas fa-shopping-cart text-blue-700 text-sm"></i></div>
+        <div class="font-display text-3xl text-navy" id="stat-total-orders" style="letter-spacing:0.04em;">0</div>
+        <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Total Orders</div>
+      </div>
+      <div class="admin-stat">
+        <div class="w-9 h-9 rounded-lg mb-3 flex items-center justify-center" style="background:rgba(245,158,11,0.1);"><i class="fas fa-clock text-yellow-600 text-sm"></i></div>
+        <div class="font-display text-3xl text-navy" id="stat-pending-orders" style="letter-spacing:0.04em;">0</div>
+        <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Pending</div>
+      </div>
+      <div class="admin-stat">
+        <div class="w-9 h-9 rounded-lg mb-3 flex items-center justify-center" style="background:rgba(5,150,105,0.1);"><i class="fas fa-users text-green-700 text-sm"></i></div>
+        <div class="font-display text-3xl text-navy" id="stat-total-customers" style="letter-spacing:0.04em;">0</div>
+        <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Customers</div>
+      </div>
+      <div class="admin-stat">
+        <div class="w-9 h-9 rounded-lg mb-3 flex items-center justify-center" style="background:rgba(124,58,237,0.1);"><i class="fas fa-coins text-purple-700 text-sm"></i></div>
+        <div class="font-display text-2xl text-navy" id="stat-revenue" style="letter-spacing:0.04em;">R0</div>
+        <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Revenue</div>
+      </div>
+    </div>
+
+    <div class="flex gap-2 flex-wrap p-1.5 rounded-2xl mb-5" style="background:var(--gray-100);border:1px solid var(--gray-200);">
+      <button id="atab-orders" onclick="switchAdminTab('orders')" class="admin-tab flex-1 min-w-20 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-widest transition-all tab-active text-gray-500">
+        <i class="fas fa-box text-xs"></i> Orders
+      </button>
+      <button id="atab-customers" onclick="switchAdminTab('customers')" class="admin-tab flex-1 min-w-20 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-widest transition-all hover:bg-white text-gray-500">
+        <i class="fas fa-users text-xs"></i> Customers
+      </button>
+      <button id="atab-analytics" onclick="switchAdminTab('analytics')" class="admin-tab flex-1 min-w-20 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-widest transition-all hover:bg-white text-gray-500">
+        <i class="fas fa-chart-line text-xs"></i> Analytics
+      </button>
+    </div>
+
+    <div id="admin-tab-orders">
+      <div class="panel-card mb-5">
+        <div class="panel-head">
+          <h3><i class="fas fa-clock text-yellow-600"></i> Pending Orders</h3>
+          <span id="pending-count" class="badge-pending">0</span>
+        </div>
+        <div class="p-6" id="admin-orders-list"></div>
+      </div>
+      <div class="panel-card">
+        <div class="panel-head"><h3><i class="fas fa-history text-blue-700"></i> All Orders</h3></div>
+        <div class="p-6" id="admin-all-orders"></div>
+      </div>
+    </div>
+
+    <div id="admin-tab-customers" class="hidden">
+      <div class="panel-card">
+        <div class="panel-head">
+          <h3><i class="fas fa-users text-blue-700"></i> Customers <span id="customer-count" class="cat-tag ml-2 text-xs"></span></h3>
+        </div>
+        <div class="p-4 overflow-x-auto">
+          <table class="w-full" style="border-collapse:collapse;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--gray-200);">
+                <th class="text-left py-3 px-4 text-xs font-mono uppercase tracking-widest text-gray-400">Customer</th>
+                <th class="text-left py-3 px-4 text-xs font-mono uppercase tracking-widest text-gray-400">Email</th>
+                <th class="text-center py-3 px-4 text-xs font-mono uppercase tracking-widest text-gray-400">Orders</th>
+                <th class="text-center py-3 px-4 text-xs font-mono uppercase tracking-widest text-gray-400">Spend</th>
+                <th class="text-center py-3 px-4 text-xs font-mono uppercase tracking-widest text-gray-400">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="customers-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="admin-tab-analytics" class="hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+        <div class="panel-card">
+          <div class="panel-head"><h3><i class="fas fa-chart-bar text-blue-700"></i> Orders by Status</h3></div>
+          <div class="p-6"><canvas id="chart-status" height="220"></canvas></div>
+        </div>
+        <div class="panel-card">
+          <div class="panel-head"><h3><i class="fas fa-chart-line text-blue-700"></i> Revenue Trend</h3></div>
+          <div class="p-6"><canvas id="chart-revenue" height="220"></canvas></div>
+        </div>
+      </div>
+      <div class="panel-card mb-5">
+        <div class="panel-head"><h3><i class="fas fa-trophy text-yellow-600"></i> Top Products</h3></div>
+        <div class="p-6"><canvas id="chart-products" height="160"></canvas></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="analytics-extra"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PIPE SYSTEM DIVIDER #3 — "TECH SPECS"
+     L-bend + manifold layout
+═══════════════════════════════════════════════ -->
+<div class="pipe-system-wrapper">
+  <svg viewBox="0 0 1200 130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:130px;">
+    <defs>
+      <linearGradient id="pm4" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="20%" stop-color="#f8fafc"/>
+        <stop offset="50%" stop-color="#cbd5e1"/>
+        <stop offset="78%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+      <linearGradient id="jg4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#94a3b8"/>
+        <stop offset="50%" stop-color="#64748b"/>
+        <stop offset="100%" stop-color="#94a3b8"/>
+      </linearGradient>
+      <linearGradient id="wg4" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="transparent"/>
+        <stop offset="50%" stop-color="rgba(59,130,246,0.55)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </linearGradient>
+      <linearGradient id="vg4" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1d4ed8"/>
+        <stop offset="100%" stop-color="#1e40af"/>
+      </linearGradient>
+      <radialGradient id="gf4">
+        <stop offset="0%" stop-color="#f8fafc"/>
+        <stop offset="100%" stop-color="#dbeafe"/>
+      </radialGradient>
+    </defs>
+
+    <rect width="1200" height="130" fill="#f1f5f9"/>
+
+    <!-- Main horizontal pipe at y=52 -->
+    <rect x="0" y="50" width="1200" height="30" fill="url(#pm4)"/>
+    <rect x="0" y="55" width="1200" height="6" fill="rgba(255,255,255,0.7)"/>
+    <rect x="0" y="50" width="1200" height="2" fill="#94a3b8"/>
+    <rect x="0" y="78" width="1200" height="2" fill="#64748b"/>
+
+    <!-- Water flow -->
+    <rect x="-500" y="59" width="500" height="8" fill="url(#wg4)" rx="2" opacity="0.6">
+      <animate attributeName="x" from="-500" to="1400" dur="3s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Left end cap -->
+    <rect x="0" y="44" width="28" height="42" fill="url(#jg4)" rx="12"/>
+    <rect x="4" y="48" width="20" height="34" fill="#cbd5e1" rx="8"/>
+    <circle cx="14" cy="65" r="6" fill="#1d4ed8" opacity="0.7"/>
+
+    <!-- MANIFOLD / HEADER at x=200 — 3 upward branches -->
+    <rect x="180" y="36" width="160" height="16" fill="url(#jg4)" rx="5"/>
+    <rect x="183" y="39" width="154" height="10" fill="#dde4ee" rx="3"/>
+    <!-- Branch 1 -->
+    <rect x="196" y="0" width="18" height="38" fill="url(#pm4)"/>
+    <rect x="199" y="0" width="5" height="36" fill="rgba(255,255,255,0.7)"/>
+    <rect x="196" y="0" width="1.5" height="38" fill="#94a3b8"/>
+    <rect x="212" y="0" width="1.5" height="38" fill="#64748b"/>
+    <circle cx="205" cy="6" r="5" fill="#1d4ed8" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Branch 2 -->
+    <rect x="251" y="0" width="18" height="38" fill="url(#pm4)"/>
+    <rect x="254" y="0" width="5" height="36" fill="rgba(255,255,255,0.7)"/>
+    <rect x="251" y="0" width="1.5" height="38" fill="#94a3b8"/>
+    <rect x="267" y="0" width="1.5" height="38" fill="#64748b"/>
+    <circle cx="260" cy="6" r="5" fill="#dc2626" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+    <!-- Branch 3 -->
+    <rect x="306" y="0" width="18" height="38" fill="url(#pm4)"/>
+    <rect x="309" y="0" width="5" height="36" fill="rgba(255,255,255,0.7)"/>
+    <rect x="306" y="0" width="1.5" height="38" fill="#94a3b8"/>
+    <rect x="322" y="0" width="1.5" height="38" fill="#64748b"/>
+    <circle cx="315" cy="6" r="5" fill="#1d4ed8" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+    <!-- Manifold label -->
+    <rect x="180" y="52" width="160" height="28" fill="url(#jg4)" rx="0"/>
+    <rect x="183" y="55" width="154" height="22" fill="#dde4ee" rx="0"/>
+
+    <!-- Ball valve at x=440 -->
+    <rect x="426" y="40" width="48" height="50" fill="url(#vg4)" rx="8"/>
+    <rect x="426" y="40" width="48" height="50" fill="none" stroke="#1e3a8a" stroke-width="1.5" rx="8"/>
+    <rect x="446" y="20" width="8" height="22" fill="#64748b" rx="2"/>
+    <!-- Handwheel -->
+    <ellipse cx="450" cy="18" rx="14" ry="5" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+    <line x1="436" y1="18" x2="464" y2="18" stroke="#dc2626" stroke-width="2.5"/>
+    <circle cx="450" cy="65" r="8" fill="#2563eb">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+    </circle>
+    <text x="450" y="69" fill="white" font-family="JetBrains Mono, monospace" font-size="5.5" text-anchor="middle">OPEN</text>
+
+    <!-- Label pill center -->
+    <rect x="516" y="40" width="168" height="50" fill="white" rx="6" opacity="0.92"/>
+    <rect x="516" y="40" width="168" height="50" fill="none" stroke="rgba(29,78,216,0.2)" stroke-width="1.5" rx="6"/>
+    <text x="600" y="60" fill="#1d4ed8" font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle" letter-spacing="1.5" font-weight="500">TECHNICAL</text>
+    <text x="600" y="76" fill="#0f172a" font-family="Bebas Neue, sans-serif" font-size="16" text-anchor="middle" letter-spacing="2">SPECIFICATIONS</text>
+    <!-- Joints at pill edges -->
+    <rect x="496" y="42" width="22" height="46" fill="url(#jg4)" rx="3"/>
+    <rect x="682" y="42" width="22" height="46" fill="url(#jg4)" rx="3"/>
+
+    <!-- PRESSURE GAUGE at x=850 -->
+    <rect x="849" y="26" width="6" height="26" fill="#64748b"/>
+    <circle cx="852" cy="20" r="21" fill="url(#gf4)" stroke="#64748b" stroke-width="2.5"/>
+    <circle cx="852" cy="20" r="16" fill="none" stroke="#dbeafe" stroke-width="1.5"/>
+    <path d="M 866 13 A 16 16 0 0 1 866 27" fill="none" stroke="#dc2626" stroke-width="4" opacity="0.6"/>
+    <line x1="852" y1="20" x2="863" y2="10" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" values="-35 852 20;35 852 20;-35 852 20" dur="6s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="852" cy="20" r="3" fill="#475569"/>
+
+    <!-- TEE at x=1000 down branch -->
+    <rect x="988" y="78" width="28" height="52" fill="url(#pm4)"/>
+    <rect x="993" y="78" width="6" height="52" fill="rgba(255,255,255,0.7)"/>
+    <rect x="988" y="78" width="2" height="52" fill="#94a3b8"/>
+    <rect x="1014" y="78" width="2" height="52" fill="#64748b"/>
+    <rect x="978" y="42" width="48" height="42" fill="url(#jg4)" rx="5"/>
+    <rect x="982" y="46" width="40" height="34" fill="#dde4ee" rx="3"/>
+    <circle cx="1002" cy="63" r="7" fill="#dc2626" opacity="0.8"/>
+    <circle cx="1002" cy="63" r="3.5" fill="#ef4444">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite" begin="0.7s"/>
+    </circle>
+    <rect x="978" y="110" width="50" height="18" fill="#dc2626" rx="9"/>
+    <text x="1003" y="122" fill="white" font-family="JetBrains Mono, monospace" font-size="7" text-anchor="middle" letter-spacing="0.5">SPECS</text>
+
+    <!-- Coupling at 1140 -->
+    <rect x="1130" y="44" width="26" height="42" fill="url(#jg4)" rx="3"/>
+    <rect x="1133" y="48" width="20" height="34" fill="#dde4ee" rx="2"/>
+    <circle cx="1136" cy="52" r="2.2" fill="#475569"/>
+    <circle cx="1150" cy="52" r="2.2" fill="#475569"/>
+
+    <!-- Right end flange -->
+    <rect x="1172" y="44" width="28" height="42" fill="url(#jg4)" rx="12"/>
+    <rect x="1176" y="48" width="20" height="34" fill="#cbd5e1" rx="8"/>
+    <circle cx="1186" cy="65" r="6" fill="#1d4ed8" opacity="0.7"/>
+    <circle cx="1186" cy="65" r="3" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2.2s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+  </svg>
+</div>
+
+<!-- ═══════════════ TECH SPECS ═══════════════ -->
+<section id="tech-specs" style="background:white;padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl overflow-hidden mb-12 reveal" style="height:220px;">
+      <img src="assets/plumb.png  " alt="Specs" class="w-full h-full object-cover">
+      <div class="absolute inset-0" style="background:linear-gradient(115deg,rgba(255,255,255,0.97) 0%,rgba(255,255,255,0.8) 35%,rgba(29,78,216,0.55) 100%);"></div>
+      <div class="relative z-10 p-10">
+        <div class="section-label mb-3"><i class="fas fa-cogs text-xs"></i> Technical</div>
+        <h2 class="font-display text-5xl lg:text-6xl" style="color:var(--navy);letter-spacing:0.03em;line-height:0.95;">
+          PRODUCT <span style="color:var(--blue-deep);">SPECIFICATIONS</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal">
+      <div class="spec-card">
+        <div class="font-display text-3xl mb-1" style="color:var(--blue-deep);letter-spacing:0.04em;">SCH 40 &amp; 80</div>
+        <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mb-4">Pressure Rating</div>
+        <div class="shimmer-line w-12 mb-4"></div>
+        <div class="text-gray-600 text-sm leading-relaxed">Rated for working pressures up to 260 PSI at 73°F. Suitable for potable water, chemical conveyance, and irrigation.</div>
+      </div>
+      <div class="spec-card">
+        <div class="font-display text-3xl mb-1" style="color:var(--blue-deep);letter-spacing:0.04em;">SANS 966</div>
+        <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mb-4">Certifications</div>
+        <div class="shimmer-line w-12 mb-4"></div>
+        <div class="text-gray-600 text-sm leading-relaxed">All products meet SANS 966 South African standards and ASTM D1785 international benchmarks for rigid PVC.</div>
+      </div>
+      <div class="spec-card">
+        <div class="font-display text-3xl mb-1" style="color:var(--blue-deep);letter-spacing:0.04em;">-15° – 60°C</div>
+        <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mb-4">Temperature Range</div>
+        <div class="shimmer-line w-12 mb-4"></div>
+        <div class="text-gray-600 text-sm leading-relaxed">Engineered for South African climate extremes — from cold highveld nights to hot coastal environments.</div>
+      </div>
+      <div class="spec-card">
+        <div class="font-display text-3xl mb-1" style="color:var(--blue-deep);letter-spacing:0.04em;">20–315 MM</div>
+        <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mb-4">Diameter Range</div>
+        <div class="shimmer-line w-12 mb-4"></div>
+        <div class="text-gray-600 text-sm leading-relaxed">Full range from residential 20mm to large-bore 315mm infrastructure mains. Custom lengths available.</div>
+      </div>
+    </div>
+
+    <div class="mt-10 panel-card reveal">
+      <div class="panel-head">
+        <h3><i class="fas fa-table text-blue-700"></i> Full Specification Table</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full" style="border-collapse:collapse;">
+          <thead>
+            <tr style="background:linear-gradient(90deg,var(--off-white),white);border-bottom:2px solid var(--blue-deep);">
+              <th class="text-left py-3 px-5 text-xs font-mono uppercase tracking-widest text-gray-600">Product Type</th>
+              <th class="text-left py-3 px-5 text-xs font-mono uppercase tracking-widest text-gray-600">Standard</th>
+              <th class="text-left py-3 px-5 text-xs font-mono uppercase tracking-widest text-gray-600">Pressure Class</th>
+              <th class="text-left py-3 px-5 text-xs font-mono uppercase tracking-widest text-gray-600">Size Range</th>
+              <th class="text-left py-3 px-5 text-xs font-mono uppercase tracking-widest text-gray-600">Application</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--gray-100);" class="hover:bg-blue-50/30 transition-colors">
+              <td class="py-3 px-5 font-semibold text-navy text-sm">uPVC Pressure Pipe</td>
+              <td class="py-3 px-5 text-gray-500 text-sm font-mono">SANS 966-1</td>
+              <td class="py-3 px-5"><span class="cat-tag text-xs">6–20 bar</span></td>
+              <td class="py-3 px-5 text-gray-600 text-sm">20–315 mm</td>
+              <td class="py-3 px-5 text-gray-500 text-sm">Water supply, irrigation</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-100);" class="hover:bg-blue-50/30 transition-colors">
+              <td class="py-3 px-5 font-semibold text-navy text-sm">uPVC Sewer Pipe</td>
+              <td class="py-3 px-5 text-gray-500 text-sm font-mono">SANS 791</td>
+              <td class="py-3 px-5"><span class="cat-tag text-xs">Gravity</span></td>
+              <td class="py-3 px-5 text-gray-600 text-sm">75–315 mm</td>
+              <td class="py-3 px-5 text-gray-500 text-sm">Sewage & drainage</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-100);" class="hover:bg-blue-50/30 transition-colors">
+              <td class="py-3 px-5 font-semibold text-navy text-sm">PVC Fittings</td>
+              <td class="py-3 px-5 text-gray-500 text-sm font-mono">SANS 1508</td>
+              <td class="py-3 px-5"><span class="cat-tag text-xs">Matched</span></td>
+              <td class="py-3 px-5 text-gray-600 text-sm">20–110 mm</td>
+              <td class="py-3 px-5 text-gray-500 text-sm">All pipe joints</td>
+            </tr>
+            <tr class="hover:bg-blue-50/30 transition-colors">
+              <td class="py-3 px-5 font-semibold text-navy text-sm">Conduit Pipe</td>
+              <td class="py-3 px-5 text-gray-500 text-sm font-mono">SANS 61386</td>
+              <td class="py-3 px-5"><span class="cat-tag text-xs" style="color:var(--red-accent);background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.2);">Electrical</span></td>
+              <td class="py-3 px-5 text-gray-600 text-sm">20–63 mm</td>
+              <td class="py-3 px-5 text-gray-500 text-sm">Cable management</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PIPE SYSTEM DIVIDER #4 — "CONTACT US"
+     Full pipeline with reducer + flow meter
+═══════════════════════════════════════════════ -->
+<div class="pipe-system-wrapper">
+  <svg viewBox="0 0 1200 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:110px;">
+    <defs>
+      <linearGradient id="pm5" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="20%" stop-color="#f8fafc"/>
+        <stop offset="50%" stop-color="#cbd5e1"/>
+        <stop offset="78%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+      <linearGradient id="jg5" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#94a3b8"/>
+        <stop offset="50%" stop-color="#64748b"/>
+        <stop offset="100%" stop-color="#94a3b8"/>
+      </linearGradient>
+      <linearGradient id="wg5" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="transparent"/>
+        <stop offset="50%" stop-color="rgba(59,130,246,0.55)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </linearGradient>
+    </defs>
+
+    <rect width="1200" height="110" fill="#f1f5f9"/>
+
+    <!-- Main pipe at y=40 -->
+    <rect x="0" y="38" width="1200" height="34" fill="url(#pm5)"/>
+    <rect x="0" y="43" width="1200" height="7" fill="rgba(255,255,255,0.7)"/>
+    <rect x="0" y="38" width="1200" height="2" fill="#94a3b8"/>
+    <rect x="0" y="70" width="1200" height="2" fill="#64748b"/>
+
+    <!-- Water flow -->
+    <rect x="-400" y="48" width="400" height="9" fill="url(#wg5)" rx="2" opacity="0.65">
+      <animate attributeName="x" from="-400" to="1400" dur="2.8s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="-700" y="48" width="300" height="9" fill="url(#wg5)" rx="2" opacity="0.4">
+      <animate attributeName="x" from="-700" to="1200" dur="3.8s" repeatCount="indefinite" begin="1.2s"/>
+    </rect>
+
+    <!-- Left flange -->
+    <rect x="0" y="32" width="26" height="46" fill="url(#jg5)" rx="12"/>
+    <rect x="4" y="36" width="18" height="38" fill="#cbd5e1" rx="8"/>
+    <circle cx="13" cy="55" r="6" fill="#1d4ed8" opacity="0.7"/>
+
+    <!-- Reducer at x=160 — shrinks pipe then back -->
+    <polygon points="148,36 180,42 180,68 148,74" fill="url(#jg5)"/>
+    <polygon points="180,42 210,44 210,66 180,68" fill="#cbd5e1"/>
+    <polygon points="210,44 240,42 240,68 210,66" fill="#cbd5e1"/>
+    <polygon points="240,42 272,36 272,74 240,68" fill="url(#jg5)"/>
+
+    <!-- FLOW METER at x=360 (round housing) -->
+    <rect x="345" y="30" width="60" height="50" fill="url(#jg5)" rx="6"/>
+    <rect x="349" y="34" width="52" height="42" fill="#dde4ee" rx="4"/>
+    <!-- Flow meter dial -->
+    <circle cx="375" cy="55" r="16" fill="white" stroke="#1d4ed8" stroke-width="1.5"/>
+    <!-- Rotation animation -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0 375 55;360 375 55" dur="3s" repeatCount="indefinite" additive="sum"/>
+      <line x1="375" y1="55" x2="384" y2="46" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+      <line x1="375" y1="55" x2="366" y2="64" stroke="#1d4ed8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    </g>
+    <circle cx="375" cy="55" r="3" fill="#475569"/>
+    <text x="375" y="82" fill="#475569" font-family="JetBrains Mono, monospace" font-size="5.5" text-anchor="middle">FLOW</text>
+
+    <!-- Coupling at x=490 -->
+    <rect x="480" y="34" width="24" height="42" fill="url(#jg5)" rx="3"/>
+    <rect x="483" y="37" width="18" height="36" fill="#dde4ee" rx="2"/>
+    <circle cx="486" cy="40" r="2" fill="#475569"/>
+    <circle cx="498" cy="40" r="2" fill="#475569"/>
+
+    <!-- Label pill center -->
+    <rect x="533" y="30" width="134" height="50" fill="white" rx="6" opacity="0.92"/>
+    <rect x="533" y="30" width="134" height="50" fill="none" stroke="rgba(29,78,216,0.2)" stroke-width="1.5" rx="6"/>
+    <text x="600" y="50" fill="#1d4ed8" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="1.5">GET IN</text>
+    <text x="600" y="68" fill="#0f172a" font-family="Bebas Neue, sans-serif" font-size="18" text-anchor="middle" letter-spacing="2">TOUCH</text>
+    <rect x="511" y="32" width="22" height="46" fill="url(#jg5)" rx="3"/>
+    <rect x="667" y="32" width="22" height="46" fill="url(#jg5)" rx="3"/>
+
+    <!-- Check valve at x=790 (arrow indicates direction) -->
+    <rect x="778" y="32" width="52" height="46" fill="#1d4ed8" rx="7"/>
+    <rect x="778" y="32" width="52" height="46" fill="none" stroke="#1e3a8a" stroke-width="1.5" rx="7"/>
+    <!-- Arrow -->
+    <polygon points="792,55 810,43 810,67" fill="rgba(255,255,255,0.25)"/>
+    <polygon points="808,55 822,43 822,67" fill="rgba(255,255,255,0.5)"/>
+    <circle cx="804" cy="55" r="5" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <text x="804" y="84" fill="#475569" font-family="JetBrains Mono, monospace" font-size="5" text-anchor="middle">CHECK</text>
+
+    <!-- Coupling at x=930 -->
+    <rect x="920" y="34" width="24" height="42" fill="url(#jg5)" rx="3"/>
+    <rect x="923" y="37" width="18" height="36" fill="#dde4ee" rx="2"/>
+
+    <!-- TEE at x=1060 upward -->
+    <rect x="1048" y="0" width="28" height="42" fill="url(#pm5)"/>
+    <rect x="1053" y="0" width="6" height="40" fill="rgba(255,255,255,0.7)"/>
+    <rect x="1048" y="0" width="1.5" height="42" fill="#94a3b8"/>
+    <rect x="1074" y="0" width="1.5" height="42" fill="#64748b"/>
+    <rect x="1038" y="32" width="48" height="44" fill="url(#jg5)" rx="5"/>
+    <rect x="1042" y="36" width="40" height="36" fill="#dde4ee" rx="3"/>
+    <circle cx="1062" cy="54" r="7" fill="#1d4ed8" opacity="0.8"/>
+    <rect x="1038" y="4" width="50" height="16" fill="#dc2626" rx="8"/>
+    <text x="1063" y="15" fill="white" font-family="JetBrains Mono, monospace" font-size="7" text-anchor="middle" letter-spacing="0.5">CONTACT</text>
+
+    <!-- Right end -->
+    <rect x="1174" y="34" width="26" height="42" fill="url(#jg5)" rx="12"/>
+    <rect x="1178" y="38" width="18" height="34" fill="#cbd5e1" rx="8"/>
+    <circle cx="1187" cy="55" r="5.5" fill="#1d4ed8" opacity="0.7"/>
+    <circle cx="1187" cy="55" r="2.5" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="1.3s"/>
+    </circle>
+  </svg>
+</div>
+
+<!-- ═══════════════ CONTACT SECTION ═══════════════ -->
+<section id="contact" style="background:white;padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl overflow-hidden mb-12 reveal" style="height:200px;">
+      <img src="assets/pipepvc.png" alt="Contact" class="w-full h-full object-cover">
+      <div class="absolute inset-0" style="background:linear-gradient(115deg,rgba(255,255,255,0.97) 0%,rgba(255,255,255,0.82) 40%,rgba(15,23,42,0.5) 100%);"></div>
+      <div class="relative z-10 p-10">
+        <div class="section-label mb-3"><i class="fas fa-headset text-xs"></i> Get In Touch</div>
+        <h2 class="font-display text-5xl lg:text-6xl" style="color:var(--navy);letter-spacing:0.03em;line-height:0.95;">
+          CONTACT <span style="color:var(--blue-deep);">US</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 reveal">
+      <div class="panel-card">
+        <div class="panel-head"><h3><i class="fas fa-building text-blue-700"></i> Core Pipes & Fittings</h3></div>
+        <div class="p-6">
+          <p class="text-gray-600 text-sm leading-relaxed mb-6">
+            Our trade team is ready to assist with quotes, bulk orders, and technical advice — Mon–Fri, 07:00–17:00 SAST.
+          </p>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mb-1">Address</div>
+              <div class="text-navy font-semibold text-sm">33a Circuit Rd, Westmead</div>
+              <div class="text-gray-600 text-sm">Durban, 3610</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mb-1">Phone</div>
+              <div class="text-navy font-semibold text-sm">(+27) 031 700 4099</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mb-1">Email</div>
+              <div class="text-navy font-semibold text-sm">info@corepipes.co.za</div>
+              <div class="text-gray-600 text-sm">sales@corepipes.co.za</div>
+            </div>
+          </div>
+          <div class="mt-5 p-4 rounded-xl" style="background:rgba(29,78,216,0.05);border:1px dashed rgba(29,78,216,0.2);">
+            <div class="text-xs font-mono text-blue-700 uppercase tracking-widest mb-2">Trading Hours</div>
+            <div class="text-gray-700 text-sm">Monday – Friday: 07:00 – 17:00 SAST</div>
+            <div class="text-gray-500 text-sm">Weekends: By appointment only</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-head"><h3><i class="fas fa-paper-plane text-blue-700"></i> Quick Enquiry</h3></div>
+        <div class="p-6 flex flex-col gap-4">
+          <input type="text" placeholder="Your name" class="inp-plain">
+          <input type="email" placeholder="Email address" class="inp-plain">
+          <input type="tel" placeholder="Phone number" class="inp-plain">
+          <select class="inp-plain">
+            <option value="">— What can we help you with? —</option>
+            <option>PVC Pipe Supply</option>
+            <option>Plumbing Fittings</option>
+            <option>Paving & Civil Materials</option>
+            <option>Technical Specifications</option>
+            <option>Bulk / Trade Pricing</option>
+            <option>Other</option>
+          </select>
+          <textarea rows="4" placeholder="Describe your project or enquiry..." class="inp-plain" style="resize:vertical;"></textarea>
+          <button onclick="alert('Thank you! We will get back to you within 24 hours.')" class="btn-primary justify-center w-full">
+            <i class="fas fa-paper-plane text-xs"></i> Send Enquiry
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer style="background:var(--navy);padding:48px 0 24px;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-water text-white text-sm"></i>
+          </div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:white;line-height:1;">CORE<span style="color:#60a5fa;">PIPES</span></div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;">& Fittings</div>
+          </div>
+        </div>
+        <p class="text-white/50 text-sm leading-relaxed mb-5 max-w-xs">Install it once. Rely on it forever. Premium industrial PVC systems for South Africa's infrastructure.</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);"><i class="fab fa-facebook text-xs"></i></a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);"><i class="fab fa-linkedin text-xs"></i></a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);"><i class="fab fa-whatsapp text-xs"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-mono uppercase tracking-widest mb-4">Navigate</div>
+        <div class="flex flex-col gap-2">
+          <a href="#" onclick="scrollTo2('hero');return false;" class="text-white/60 hover:text-white text-sm transition-colors">Home</a>
+          <a href="about.html" class="text-white/60 hover:text-white text-sm transition-colors">Our Story</a>
+          <a href="#" onclick="scrollTo2('catalogue');return false;" class="text-white/60 hover:text-white text-sm transition-colors">Catalogue</a>
+          <a href="#" onclick="scrollTo2('tech-specs');return false;" class="text-white/60 hover:text-white text-sm transition-colors">Tech Specs</a>
+          <a href="contact.html" class="text-white/60 hover:text-white text-sm transition-colors">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-mono uppercase tracking-widest mb-4">Contact</div>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-start gap-2 text-white/60 text-sm"><i class="fas fa-map-marker-alt text-blue-400 mt-0.5 text-xs flex-shrink-0"></i> 33a Circuit Rd, Westmead, Durban, 3610</div>
+          <div class="flex items-center gap-2 text-white/60 text-sm"><i class="fas fa-phone text-blue-400 text-xs"></i> (+27) 031 700 4099</div>
+          <div class="flex items-center gap-2 text-white/60 text-sm"><i class="fas fa-envelope text-blue-400 text-xs"></i> info@corepipes.co.za</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+      <div class="text-white/30 text-xs font-mono">© 2026 Core Pipes and Fittings — All Rights Reserved</div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-mono text-white/20 uppercase tracking-widest">SABS</span>
+        <span class="text-white/20">·</span>
+        <span class="text-xs font-mono text-white/20 uppercase tracking-widest">SANS 966</span>
+        <span class="text-white/20">·</span>
+        <span class="text-xs font-mono text-white/20 uppercase tracking-widest">ISO Certified</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ LOGIN MODAL ═══════════════ -->
+<div id="login-modal" onclick="handleModalBgClick(event)">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div style="height:4px;background:linear-gradient(90deg,var(--blue-deep),var(--blue-mid),#60a5fa);"></div>
+    <div class="px-7 pt-7 pb-0">
+      <div class="flex items-center justify-between mb-1">
+        <div class="section-label text-xs"><i class="fas fa-lock text-xs"></i> Secure Portal</div>
+        <button onclick="closeLogin()" class="w-8 h-8 rounded-lg flex items-center justify-center transition-all hover:bg-gray-100" style="color:var(--gray-400);font-size:1.1rem;">×</button>
+      </div>
+      <h2 class="font-display text-4xl mt-3 mb-1" style="color:var(--navy);letter-spacing:0.04em;">SIGN IN</h2>
+      <p class="text-gray-500 text-sm mb-6">Access your trade account to place orders</p>
+    </div>
+    <div class="px-7 pb-7 flex flex-col gap-4">
+      <div class="relative">
+        <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+        <input type="email" id="modal-email" placeholder="you@company.com" class="inp">
+      </div>
+      <div class="relative">
+        <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+        <input type="password" id="modal-password" placeholder="••••••••" class="inp">
+      </div>
+      <button onclick="loginUser()" class="btn-primary justify-center w-full mt-1" style="padding:15px;">
+        <i class="fas fa-sign-in-alt text-xs"></i> Access Portal
+      </button>
+      <div class="rounded-xl overflow-hidden" style="border:1px solid var(--gray-200);">
+        <div class="px-4 py-2.5 text-gray-500 text-xs font-mono uppercase tracking-widest flex items-center gap-2" style="background:var(--gray-100);">
+          <i class="fas fa-users text-blue-600 text-xs"></i> Demo accounts — click to fill
+        </div>
+        <div onclick="fillDemo('user@test.com','123456')" class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-blue-50 transition-colors" style="border-top:1px solid var(--gray-200);">
+          <span class="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></span>
+          <span class="text-navy text-xs font-semibold w-12">Client</span>
+          <span class="text-gray-500 text-xs">user@test.com / 123456</span>
+        </div>
+        <div onclick="fillDemo('admin@corepipes.com','admin123')" class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-blue-50 transition-colors" style="border-top:1px solid var(--gray-200);">
+          <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--red-accent);"></span>
+          <span class="text-navy text-xs font-semibold w-12">Admin</span>
+          <span class="text-gray-500 text-xs">admin@corepipes.com / admin123</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ═══════════════════════════════
+  // CAROUSEL
+  // ═══════════════════════════════
+  let currentSlide = 0;
+  const totalSlides = 4;
+  let carouselTimer = null;
+
+  const slideLabels = ['Industrial Systems', 'PVC Pipe Systems', 'Paving & Civil', 'Fittings & Joints'];
+
+  function goToSlide(idx) {
+    // Remove active from current
+    document.getElementById(`slide-${currentSlide}`)?.classList.remove('active');
+    document.querySelectorAll('.carousel-dot')[currentSlide]?.classList.remove('active');
+
+    currentSlide = (idx + totalSlides) % totalSlides;
+
+    // Add active to new
+    document.getElementById(`slide-${currentSlide}`)?.classList.add('active');
+    document.querySelectorAll('.carousel-dot')[currentSlide]?.classList.add('active');
+
+    // Update label
+    const counter = document.getElementById('slide-counter');
+    const tag = document.getElementById('slide-tag');
+    if (counter) counter.textContent = `0${currentSlide + 1} / 0${totalSlides}`;
+    if (tag) tag.textContent = slideLabels[currentSlide];
+
+    // Reset timer
+    clearInterval(carouselTimer);
+    carouselTimer = setInterval(() => goToSlide(currentSlide + 1), 5000);
+  }
+
+  function nextSlide() { goToSlide(currentSlide + 1); }
+  function prevSlide() { goToSlide(currentSlide - 1); }
+
+  // Start auto-carousel
+  carouselTimer = setInterval(() => goToSlide(currentSlide + 1), 5000);
+
+  // ═══════════════════════════════
+  // DATA
+  // ═══════════════════════════════
+  const mockUsers = [
+    { email:'admin@corepipes.com', password:'admin123', role:'admin' },
+    { email:'user@test.com', password:'123456', role:'client' },
+  ];
+  const mockProducts = [
+    { id:1, name:'uPVC Pressure Pipe 50mm', price:48.50, description:'SANS 966-1 certified, 6-bar rated, 3m length, solvent weld', stock:120, category:'pipe', image:'./assets/pipe1.png' },
+    { id:2, name:'90° PVC Elbow 50mm',      price:12.90, description:'Smooth-bore bend, SANS 1508, solvent weld socket fitting',  stock:350, category:'fitting', image:'./assets/elbow.png' },
+    { id:3, name:'PVC Equal Tee 50mm',       price:18.75, description:'Branch connection for all plumbing & irrigation systems',  stock:210, category:'fitting', image:'./assets/T.png' },
+    { id:4, name:'uPVC Pipe 100mm (4")',      price:92.30, description:'Heavy gauge SANS 966, ideal for mains & infrastructure',   stock:85,  category:'pipe', image:'./assets/hpipe.png' },
+    { id:5, name:'PVC End Cap 50mm',          price:6.50,  description:'Clean pipe termination, pressure rated, SW socket',       stock:500, category:'fitting', image:'./assets/supply.png' },
+    { id:6, name:'PVC Coupling 50mm',         price:8.25,  description:'Secure joint for extending pipe runs',                   stock:280, category:'fitting', image:'./assets/fitting4.png' },
+    { id:7, name:'PVC Sewer Pipe 110mm',      price:78.00, description:'SANS 791, gravity flow, ring seal joint',                stock:60,  category:'pipe', image:'./assets/indpipe.png' },
+    { id:8, name:'Concrete Paving Block 80mm',price:5.20,  description:'Heavy-duty charcoal block paving, per unit',             stock:800, category:'paving', image:'./assets/paving.png' },
+    { id:9, name:'PVC Gate Valve 50mm',       price:135.00,description:'Isolation valve, hand-wheel operated, PN16 rated',      stock:40,  category:'fitting', image:'./assets/supply.png' },
+  ];
+
+  let currentUser = null, cart = [];
+  let orders = JSON.parse(localStorage.getItem('cp_orders')) || [];
+  let customers = JSON.parse(localStorage.getItem('cp_customers')) || [{ email:'user@test.com', name:'Test Client', joined: new Date().toLocaleDateString() }];
+  let chartInstances = {};
+  let activeFilter = 'all';
+
+  function persist(){ localStorage.setItem('cp_orders',JSON.stringify(orders)); localStorage.setItem('cp_customers',JSON.stringify(customers)); }
+
+  // ═══════════════════════════════
+  // NAV
+  // ═══════════════════════════════
+  function scrollTo2(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
+  function toggleMobileNav(){
+    const n=document.getElementById('mobile-nav');
+    const i=document.getElementById('ham-icon');
+    if(n.classList.contains('hidden')){ n.classList.remove('hidden'); i.className='fas fa-times text-sm'; }
+    else { n.classList.add('hidden'); i.className='fas fa-bars text-sm'; }
+  }
+  function closeMNav(){ document.getElementById('mobile-nav').classList.add('hidden'); document.getElementById('ham-icon').className='fas fa-bars text-sm'; }
+
+  window.addEventListener('scroll',()=>{
+    const nb=document.getElementById('navbar');
+    if(window.scrollY>30) nb.classList.add('scrolled'); else nb.classList.remove('scrolled');
+  });
+
+  // ═══════════════════════════════
+  // LOGIN
+  // ═══════════════════════════════
+  function openLogin(){ document.getElementById('login-modal').classList.add('open'); }
+  function closeLogin(){ document.getElementById('login-modal').classList.remove('open'); }
+  function handleModalBgClick(e){ if(e.target===document.getElementById('login-modal')) closeLogin(); }
+  function fillDemo(e,p){ document.getElementById('modal-email').value=e; document.getElementById('modal-password').value=p; }
+
+  function loginUser(){
+    const email=document.getElementById('modal-email').value.trim();
+    const pw=document.getElementById('modal-password').value;
+    const user=mockUsers.find(u=>u.email===email&&u.password===pw);
+    if(!user){ alert('❌ Invalid credentials. Use the demo accounts below.'); return; }
+    currentUser=user; cart=[];
+    if(user.role==='client' && !customers.find(c=>c.email===email)){
+      customers.push({email,name:email.split('@')[0],joined:new Date().toLocaleDateString()});
+      persist();
+    }
+    closeLogin();
+    updateNavUser();
+    document.getElementById('login-prompt-bar').style.display='none';
+    if(user.role==='client'){
+      document.getElementById('client-order-panel').style.display='block';
+      document.getElementById('admin-panel').style.display='none';
+      renderCart(); renderClientOrders();
+    } else {
+      document.getElementById('admin-panel').style.display='block';
+      document.getElementById('client-order-panel').style.display='none';
+      renderAdminDashboard();
+    }
+    loadCatalogue();
+    scrollTo2('catalogue');
+  }
+
+  function logout(){
+    currentUser=null; cart=[];
+    updateNavUser();
+    document.getElementById('login-prompt-bar').style.display='';
+    document.getElementById('client-order-panel').style.display='none';
+    document.getElementById('admin-panel').style.display='none';
+    loadCatalogue();
+  }
+
+  function goHome(){ scrollTo2('hero'); }
+
+  function updateNavUser(){
+    const area=document.getElementById('nav-user-area');
+    const loginBtn=document.getElementById('nav-login-btn');
+    if(!currentUser){
+      area.innerHTML='';
+      if(loginBtn) loginBtn.style.display='';
+      return;
+    }
+    if(loginBtn) loginBtn.style.display='none';
+    const rc=currentUser.role==='admin'?'var(--red-accent)':'var(--blue-deep)';
+    area.innerHTML=`<div class="flex items-center gap-2 px-3 py-2 rounded-xl" style="border:1px solid var(--gray-200);background:white;">
+      <i class="fas fa-user-circle text-sm" style="color:${rc};"></i>
+      <span class="text-navy text-sm font-medium hidden sm:inline">${currentUser.email.split('@')[0]}</span>
+      <span class="text-xs font-mono px-2 py-0.5 rounded-full hidden sm:inline" style="background:rgba(29,78,216,0.08);color:${rc};">${currentUser.role}</span>
+      <button onclick="logout()" class="ml-1 text-xs px-2 py-1 rounded-lg transition-all hover:bg-red-50" style="background:rgba(220,38,38,0.07);color:var(--red-accent);border:1px solid rgba(220,38,38,0.2);"><i class="fas fa-sign-out-alt"></i></button>
+    </div>`;
+  }
+
+  // ═══════════════════════════════
+  // CATALOGUE
+  // ═══════════════════════════════
+  function filterProducts(cat){
+    activeFilter=cat;
+    ['all','pipe','fitting','paving'].forEach(f=>{
+      const btn=document.getElementById('filter-'+f);
+      if(!btn) return;
+      btn.style.background=f===cat?'rgba(29,78,216,0.15)':'';
+      btn.style.color=f===cat?'var(--blue-deep)':'';
+      btn.style.borderColor=f===cat?'rgba(29,78,216,0.4)':'';
+    });
+    loadCatalogue();
+  }
+
+  function loadCatalogue(){
+    const grid=document.getElementById('catalogue-grid'); if(!grid) return;
+    const filtered=activeFilter==='all'?mockProducts:mockProducts.filter(p=>p.category===activeFilter);
+    grid.innerHTML='';
+    filtered.forEach(p=>{
+      const canBuy=!!currentUser && currentUser.role==='client';
+      const div=document.createElement('div');
+      div.className='product-card group';
+      div.innerHTML=`
+        <div class="relative h-48 overflow-hidden">
+          <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'">
+          <div class="img-overlay"></div>
+          <div class="absolute top-3 left-3">
+            <span class="text-xs font-mono uppercase tracking-widest" style="background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.25);color:white;padding:4px 10px;border-radius:99px;">${p.category}</span>
+          </div>
+          <div class="absolute top-3 right-3 glass text-navy text-xs px-3 py-1 rounded-full flex items-center gap-1.5">
+            <i class="fas fa-boxes text-blue-600 text-xs"></i> ${p.stock} in stock
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="font-bold text-navy text-base mb-1" style="font-family:'Outfit',sans-serif;">${p.name}</div>
+          <div class="text-gray-500 text-xs mb-4 leading-relaxed">${p.description}</div>
+          <div class="flex items-end justify-between gap-3">
+            <div>
+              <div class="font-display text-3xl" style="color:var(--blue-deep);letter-spacing:0.04em;">R${p.price.toFixed(2)}</div>
+              <div class="text-gray-400 text-xs">per unit</div>
+            </div>
+            ${canBuy?`
+            <div class="flex items-center gap-2">
+              <input type="number" id="qty-${p.id}" min="1" max="${p.stock}" value="1" class="w-14 text-center px-2 py-2 rounded-lg text-navy text-sm font-bold outline-none" style="border:1.5px solid var(--gray-200);background:var(--off-white);">
+              <button onclick="addToCart(${p.id})" class="btn-primary flex items-center gap-1.5 px-4 py-2" style="font-size:0.78rem;padding:9px 18px;">
+                <i class="fas fa-cart-plus text-xs"></i> Add
+              </button>
+            </div>`:`
+            <button onclick="openLogin()" class="btn-outline flex items-center gap-2" style="font-size:0.78rem;padding:9px 18px;">
+              <i class="fas fa-lock text-xs"></i> Login to Buy
+            </button>`}
+          </div>
+        </div>`;
+      grid.appendChild(div);
+    });
+  }
+
+  // ═══════════════════════════════
+  // CART
+  // ═══════════════════════════════
+  function addToCart(id){
+    const p=mockProducts.find(x=>x.id===id); if(!p) return;
+    let qty=parseInt(document.getElementById(`qty-${id}`)?.value)||1;
+    if(qty>p.stock){ alert(`Only ${p.stock} available.`); return; }
+    const idx=cart.findIndex(i=>i.id===id);
+    if(idx!==-1){ const nq=cart[idx].qty+qty; if(nq>p.stock){alert(`Stock limit: ${p.stock}`);return;} cart[idx].qty=nq; }
+    else cart.push({id:p.id,name:p.name,price:p.price,qty,stock:p.stock});
+    renderCart();
+    const btn=document.querySelector(`button[onclick="addToCart(${id})"]`);
+    if(btn){ btn.innerHTML='<i class="fas fa-check text-xs"></i> Added!'; btn.style.background='linear-gradient(135deg,#065f46,#059669)'; setTimeout(()=>{btn.innerHTML='<i class="fas fa-cart-plus text-xs"></i> Add'; btn.style.background='';},1200); }
+  }
+
+  function renderCart(){
+    const ul=document.getElementById('cart-items-list');
+    const tv=document.getElementById('cart-total-val');
+    const cb=document.getElementById('cart-badge');
+    if(!ul) return;
+    if(!cart.length){
+      ul.innerHTML=`<li class="text-center py-10 text-gray-400"><i class="fas fa-box-open text-3xl mb-3 block opacity-30"></i><span class="text-sm">Your cart is empty</span></li>`;
+      if(tv) tv.textContent='R0.00'; if(cb) cb.textContent='0 items'; return;
+    }
+    let total=0; ul.innerHTML='';
+    cart.forEach(item=>{
+      const t=item.price*item.qty; total+=t;
+      const li=document.createElement('li');
+      li.className='flex flex-wrap items-center justify-between gap-3 py-3';
+      li.style.borderBottom='1px solid var(--gray-100)';
+      li.innerHTML=`
+        <div class="flex items-center gap-3 flex-1 min-w-40">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(29,78,216,0.08);border:1px solid rgba(29,78,216,0.15);">
+            <i class="fas fa-wrench text-blue-700 text-xs"></i>
+          </div>
+          <div>
+            <div class="text-navy font-semibold text-sm">${item.name}</div>
+            <div class="text-gray-400 text-xs">R${item.price.toFixed(2)} each</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center rounded-lg overflow-hidden" style="border:1.5px solid var(--gray-200);">
+            <button onclick="updateCartQty(${item.id},${item.qty-1})" class="px-3 py-1.5 text-blue-700 font-bold hover:bg-blue-50 transition-colors text-sm">−</button>
+            <span class="px-3 text-navy text-sm font-bold">${item.qty}</span>
+            <button onclick="updateCartQty(${item.id},${item.qty+1})" class="px-3 py-1.5 text-blue-700 font-bold hover:bg-blue-50 transition-colors text-sm">+</button>
+          </div>
+          <span class="font-bold text-blue-700 text-sm min-w-16 text-right">R${t.toFixed(2)}</span>
+          <button onclick="removeCartItem(${item.id})" class="text-gray-300 hover:text-red-500 transition-colors"><i class="fas fa-trash-alt text-sm"></i></button>
+        </div>`;
+      ul.appendChild(li);
+    });
+    if(tv) tv.textContent=`R${total.toFixed(2)}`;
+    if(cb) cb.textContent=`${cart.reduce((s,i)=>s+i.qty,0)} items`;
+  }
+
+  function updateCartQty(id,nq){
+    const item=cart.find(i=>i.id===id); if(!item) return;
+    const stock=mockProducts.find(p=>p.id===id)?.stock||0;
+    if(nq<=0) cart=cart.filter(i=>i.id!==id);
+    else if(nq>stock){alert(`Max stock: ${stock}`);return;}
+    else item.qty=nq;
+    renderCart();
+  }
+  function removeCartItem(id){ cart=cart.filter(i=>i.id!==id); renderCart(); }
+
+  function placeOrder(){
+    if(!cart.length){alert('🛒 Cart is empty.');return;}
+    const newOrder={id:Date.now(),userId:currentUser.email,customer:currentUser.email,items:cart.map(i=>({...i})),total:cart.reduce((s,i)=>s+(i.price*i.qty),0),status:'Pending',createdAt:new Date().toLocaleString()};
+    orders.push(newOrder);
+    cart.forEach(ci=>{const p=mockProducts.find(p=>p.id===ci.id);if(p&&p.stock>=ci.qty)p.stock-=ci.qty;});
+    cart=[]; persist(); renderCart(); loadCatalogue(); renderClientOrders();
+    alert(`✅ Order #${newOrder.id} placed! Awaiting approval from our team.`);
+  }
+
+  function renderClientOrders(){
+    const c=document.getElementById('client-orders-list'); if(!c) return;
+    const userOrders=orders.filter(o=>o.userId===currentUser?.email).sort((a,b)=>b.id-a.id);
+    if(!userOrders.length){c.innerHTML=`<div class="text-center py-10 text-gray-400"><i class="fas fa-receipt text-3xl mb-3 block opacity-30"></i><p class="text-sm">No orders yet</p></div>`;return;}
+    c.innerHTML=userOrders.map(order=>{
+      const cls=order.status==='Approved'?'badge-approved':order.status==='Rejected'?'badge-rejected':'badge-pending';
+      const ico=order.status==='Approved'?'fa-check-circle':order.status==='Rejected'?'fa-times-circle':'fa-hourglass-half';
+      return `<div class="panel-card mb-4">
+        <div class="panel-head">
+          <div>
+            <div class="text-gray-500 text-xs font-mono uppercase tracking-widest">Order #${order.id}</div>
+            <div class="text-gray-400 text-xs mt-0.5">${order.createdAt}</div>
+          </div>
+          <span class="${cls} flex items-center gap-1.5"><i class="fas ${ico} text-xs"></i> ${order.status}</span>
+        </div>
+        <div class="p-5">
+          ${order.items.map(it=>`<div class="flex justify-between py-2 text-sm text-gray-600" style="border-bottom:1px dashed var(--gray-200);"><span>${it.name} × ${it.qty}</span><span class="font-semibold text-navy">R${(it.price*it.qty).toFixed(2)}</span></div>`).join('')}
+          <div class="text-right mt-3 font-display text-2xl" style="color:var(--blue-deep);letter-spacing:0.04em;">R${order.total.toFixed(2)}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // ═══════════════════════════════
+  // ADMIN
+  // ═══════════════════════════════
+  function renderAdminDashboard(){ updateAdminStats(); renderAdminOrders(); renderAllOrders(); }
+
+  function updateAdminStats(){
+    const pending=orders.filter(o=>o.status==='Pending').length;
+    const revenue=orders.filter(o=>o.status==='Approved').reduce((s,o)=>s+o.total,0);
+    const setEl=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+    setEl('stat-total-orders',orders.length);
+    setEl('stat-pending-orders',pending);
+    setEl('stat-total-customers',customers.length);
+    setEl('stat-revenue',`R${revenue.toFixed(2)}`);
+    const pc=document.getElementById('pending-count');if(pc)pc.textContent=pending;
+  }
+
+  function renderAdminOrders(){
+    const c=document.getElementById('admin-orders-list'); if(!c) return;
+    const pending=orders.filter(o=>o.status==='Pending');
+    if(!pending.length){c.innerHTML=`<div class="text-center py-8 text-gray-400"><i class="fas fa-clipboard-check text-3xl mb-3 block opacity-30"></i><p class="text-sm">All clear — no pending orders</p></div>`;return;}
+    c.innerHTML='';
+    pending.forEach(order=>{
+      const div=document.createElement('div');
+      div.className='rounded-xl p-5 mb-4 transition-all hover:shadow-md';
+      div.style.cssText='background:var(--off-white);border:1px solid var(--gray-200);';
+      div.innerHTML=`<div class="flex flex-wrap items-start justify-between gap-4">
+        <div class="flex-1 min-w-48">
+          <div class="flex flex-wrap items-center gap-3 mb-1">
+            <span class="font-bold text-navy text-sm">${order.customer}</span>
+            <span class="cat-tag text-xs">Order #${order.id}</span>
+          </div>
+          <div class="text-gray-400 text-xs mb-3">${order.createdAt}</div>
+          <div class="rounded-lg p-3 text-sm" style="background:white;border:1px solid var(--gray-200);">
+            ${order.items.map(it=>`<div class="flex justify-between py-1.5 text-gray-600" style="border-bottom:1px dashed var(--gray-100);"><span>${it.name} × ${it.qty}</span><span class="font-semibold text-navy">R${(it.price*it.qty).toFixed(2)}</span></div>`).join('')}
+            <div class="text-right text-blue-700 font-bold mt-2">Total: R${order.total.toFixed(2)}</div>
+          </div>
+        </div>
+        <div class="flex gap-2 flex-shrink-0 self-center">
+          <button onclick="updateOrderStatus(${order.id},'Approved')" class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-xs font-bold uppercase tracking-widest transition-all hover:-translate-y-0.5" style="background:linear-gradient(135deg,#065f46,#059669);box-shadow:0 3px 14px rgba(5,150,105,0.25);">
+            <i class="fas fa-check"></i> Approve
+          </button>
+          <button onclick="updateOrderStatus(${order.id},'Rejected')" class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-xs font-bold uppercase tracking-widest transition-all hover:-translate-y-0.5" style="background:linear-gradient(135deg,#7f1d1d,#dc2626);box-shadow:0 3px 14px rgba(220,38,38,0.25);">
+            <i class="fas fa-ban"></i> Reject
+          </button>
+        </div>
+      </div>`;
+      c.appendChild(div);
+    });
+  }
+
+  function renderAllOrders(){
+    const c=document.getElementById('admin-all-orders'); if(!c) return;
+    const sorted=[...orders].sort((a,b)=>b.id-a.id);
+    if(!sorted.length){c.innerHTML=`<div class="text-center py-8 text-gray-400"><i class="fas fa-receipt text-3xl mb-3 block opacity-30"></i><p class="text-sm">No orders yet</p></div>`;return;}
+    c.innerHTML=sorted.map(o=>{
+      const cls=o.status==='Approved'?'badge-approved':o.status==='Rejected'?'badge-rejected':'badge-pending';
+      const ico=o.status==='Approved'?'fa-check-circle':o.status==='Rejected'?'fa-times-circle':'fa-hourglass-half';
+      return `<div class="flex justify-between items-center px-4 py-3 flex-wrap gap-2 hover:bg-blue-50/30 transition-colors rounded-lg">
+        <div>
+          <span class="font-semibold text-navy text-sm">${o.customer}</span>
+          <span class="text-gray-400 text-xs ml-2 font-mono">#${o.id}</span>
+          <span class="text-gray-400 text-xs block">${o.createdAt}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="font-display text-xl" style="color:var(--blue-deep);">R${o.total.toFixed(2)}</span>
+          <span class="${cls} flex items-center gap-1"><i class="fas ${ico} text-xs"></i> ${o.status}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function updateOrderStatus(id,status){
+    const idx=orders.findIndex(o=>o.id===id);
+    if(idx!==-1){orders[idx].status=status;persist();renderAdminDashboard();alert(`${status==='Approved'?'✅':'❌'} Order #${id} ${status}`);}
+  }
+
+  function renderCustomersTab(){
+    const tbody=document.getElementById('customers-tbody');
+    const cc=document.getElementById('customer-count');
+    if(!tbody) return;
+    if(cc) cc.textContent=customers.length;
+    tbody.innerHTML=customers.map(c=>{
+      const co=orders.filter(o=>o.userId===c.email);
+      const spend=co.filter(o=>o.status==='Approved').reduce((s,o)=>s+o.total,0);
+      return `<tr class="hover:bg-blue-50/20 transition-colors" style="border-bottom:1px solid var(--gray-100);">
+        <td class="py-3 px-4"><div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">${(c.name||c.email)[0].toUpperCase()}</div>
+          <div><div class="text-navy text-sm font-semibold">${c.name||c.email.split('@')[0]}</div><div class="text-gray-400 text-xs">Joined ${c.joined||'N/A'}</div></div>
+        </div></td>
+        <td class="py-3 px-4 text-gray-500 text-sm">${c.email}</td>
+        <td class="py-3 px-4 text-center"><span class="cat-tag text-xs">${co.length}</span></td>
+        <td class="py-3 px-4 text-center font-display text-xl" style="color:var(--blue-deep);letter-spacing:0.03em;">R${spend.toFixed(2)}</td>
+        <td class="py-3 px-4 text-center"><button onclick="alert('Message to ${c.email}')" class="text-xs px-3 py-1.5 rounded-lg transition-all hover:bg-blue-50" style="border:1px solid rgba(29,78,216,0.2);color:var(--blue-deep);"><i class="fas fa-envelope mr-1"></i>Msg</button></td>
+      </tr>`;
+    }).join('');
+  }
+
+  function renderAnalyticsTab(){
+    Object.values(chartInstances).forEach(c=>{try{c.destroy();}catch(e){}});
+    chartInstances={};
+    const approved=orders.filter(o=>o.status==='Approved');
+    const rejected=orders.filter(o=>o.status==='Rejected');
+    const pending=orders.filter(o=>o.status==='Pending');
+    const ctxS=document.getElementById('chart-status');
+    if(ctxS) chartInstances.status=new Chart(ctxS,{type:'doughnut',data:{labels:['Approved','Pending','Rejected'],datasets:[{data:[approved.length,pending.length,rejected.length],backgroundColor:['rgba(5,150,105,0.8)','rgba(245,158,11,0.8)','rgba(220,38,38,0.8)'],borderWidth:2,hoverOffset:6}]},options:{responsive:true,plugins:{legend:{labels:{color:'#475569',font:{family:"'Outfit',sans-serif"},padding:14}}},cutout:'65%'}});
+    const dayMap={};orders.filter(o=>o.status==='Approved').forEach(o=>{const d=o.createdAt?.split(',')[0]||'Today';dayMap[d]=(dayMap[d]||0)+o.total;});
+    const days=Object.keys(dayMap).slice(-7);
+    const ctxR=document.getElementById('chart-revenue');
+    if(ctxR) chartInstances.revenue=new Chart(ctxR,{type:'line',data:{labels:days.length?days:['No Data'],datasets:[{label:'Revenue (R)',data:days.length?days.map(d=>dayMap[d]):[0],borderColor:'var(--blue-mid)',backgroundColor:'rgba(59,130,246,0.08)',fill:true,tension:0.4,borderWidth:2,pointBackgroundColor:'var(--blue-deep)',pointRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(29,78,216,0.06)'},ticks:{color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:'#94a3b8',maxTicksLimit:6}}}}});
+    const pSales={};orders.forEach(o=>o.items.forEach(i=>{pSales[i.name]=(pSales[i.name]||0)+(i.price*i.qty);}));
+    const sorted=Object.entries(pSales).sort((a,b)=>b[1]-a[1]).slice(0,6);
+    const ctxP=document.getElementById('chart-products');
+    if(ctxP) chartInstances.products=new Chart(ctxP,{type:'bar',data:{labels:sorted.length?sorted.map(e=>e[0]):['No Orders'],datasets:[{label:'Revenue (R)',data:sorted.length?sorted.map(e=>e[1]):[0],backgroundColor:'rgba(29,78,216,0.65)',borderColor:'var(--blue-deep)',borderWidth:1,borderRadius:8,hoverBackgroundColor:'rgba(59,130,246,0.85)'}]},options:{responsive:true,plugins:{legend:{display:false}},indexAxis:'y',scales:{x:{grid:{color:'rgba(29,78,216,0.06)'},ticks:{color:'#94a3b8'}},y:{grid:{display:false},ticks:{color:'#475569'}}}}});
+    const avg=orders.length?orders.reduce((s,o)=>s+o.total,0)/orders.length:0;
+    const tCust=(()=>{const m={};orders.forEach(o=>{m[o.customer]=(m[o.customer]||0)+o.total;});const s=Object.entries(m).sort((a,b)=>b[1]-a[1]);return s.length?s[0]:null;})();
+    const conv=orders.length?((approved.length/orders.length)*100).toFixed(0):0;
+    document.getElementById('analytics-extra').innerHTML=`
+      <div class="admin-stat"><div class="w-9 h-9 rounded-lg mb-3 flex items-center justify-center" style="background:rgba(29,78,216,0.1);"><i class="fas fa-receipt text-blue-700 text-xs"></i></div><div class="font-display text-3xl text-navy" style="letter-spacing:0.04em;">R${avg.toFixed(2)}</div><div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Avg Order Value</div></div>
+      <div class="admin-stat"><div class="w-9 h-9 rounded-lg mb-3 flex items-center justify-center" style="background:rgba(5,150,105,0.1);"><i class="fas fa-percentage text-green-700 text-xs"></i></div><div class="font-display text-3xl text-navy" style="letter-spacing:0.04em;">${conv}%</div><div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Approval Rate</div></div>
+      <div class="admin-stat"><div class="w-9 h-9 rounded-lg mb-3 flex items-center justify-center" style="background:rgba(124,58,237,0.1);"><i class="fas fa-crown text-purple-700 text-xs"></i></div><div class="font-display text-2xl text-navy truncate" style="letter-spacing:0.04em;">${tCust?tCust[0].split('@')[0]:'—'}</div><div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Top Customer</div></div>`;
+  }
+
+  function switchAdminTab(tab){
+    ['orders','customers','analytics'].forEach(t=>{
+      const el=document.getElementById(`admin-tab-${t}`);
+      if(el) el.classList.toggle('hidden',t!==tab);
+      const btn=document.getElementById(`atab-${t}`);
+      if(btn){ btn.classList.toggle('tab-active',t===tab); btn.classList.toggle('text-gray-500',t!==tab); }
+    });
+    if(tab==='customers') renderCustomersTab();
+    if(tab==='analytics') renderAnalyticsTab();
+  }
+
+  // ═══════════════════════════════
+  // SCROLL REVEAL
+  // ═══════════════════════════════
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  // ═══════════════════════════════
+  // INIT
+  // ═══════════════════════════════
+  loadCatalogue();
+  updateNavUser();
+  setTimeout(()=>{ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el)); },400);
+</script>
+
+</body>
+</html>

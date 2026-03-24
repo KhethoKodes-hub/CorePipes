@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Our Story | Core Pipes & Fittings | Industrial Supply</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Bebas Neue', 'sans-serif'],
+            body: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --off-white: #f8fafc;
+      --blue-light: #dbeafe;
+      --blue-mid: #3b82f6;
+      --blue-deep: #1d4ed8;
+      --navy: #0f172a;
+      --navy-mid: #1e3a5f;
+      --navy-soft: #1e40af;
+      --red-accent: #dc2626;
+      --red-soft: #fee2e2;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--navy); overflow-x: hidden; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-deep); border-radius: 99px; }
+
+    /* ── GLASS EFFECTS ── */
+    .glass {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.85);
+    }
+    .glass-navy {
+      background: rgba(15,23,42,0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: all 0.4s ease;
+    }
+    #navbar.scrolled {
+      box-shadow: 0 4px 32px rgba(15,23,42,0.12);
+    }
+    .nav-inner {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(29,78,216,0.10);
+    }
+    .nav-link {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.25s;
+      letter-spacing: 0.01em;
+    }
+    .nav-link:hover { color: var(--blue-deep); background: rgba(29,78,216,0.06); }
+    .nav-link.active { color: var(--blue-deep); font-weight: 600; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      border-radius: 14px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 8px 28px rgba(29,78,216,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+      text-transform: uppercase;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(29,78,216,0.55);
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 30px;
+      background: white;
+      color: var(--blue-deep);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      border-radius: 14px;
+      text-decoration: none;
+      border: 2.5px solid var(--blue-deep);
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      text-transform: uppercase;
+    }
+    .btn-outline:hover {
+      border-color: var(--blue-deep);
+      background: var(--blue-deep);
+      color: white;
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      background: rgba(29,78,216,0.07);
+      border: 1px solid rgba(29,78,216,0.18);
+      padding: 6px 16px;
+      border-radius: 99px;
+    }
+
+    /* ── CARDS ── */
+    .feature-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 4px 20px rgba(15,23,42,0.06);
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(29,78,216,0.15);
+      border-color: rgba(59,130,246,0.3);
+    }
+
+    /* ── STAT CARD ── */
+    .stat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(15,23,42,0.05);
+    }
+    .stat-card:hover {
+      border-color: rgba(59,130,246,0.35);
+      box-shadow: 0 8px 32px rgba(29,78,216,0.12);
+      transform: translateY(-4px);
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SHIMMER ── */
+    @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+    .shimmer-line {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--blue-mid), var(--blue-deep), var(--blue-mid), transparent);
+      background-size: 200% auto;
+      animation: shimmer 2.5s linear infinite;
+      border-radius: 99px;
+    }
+
+    /* ── TEAM CARD ── */
+    .team-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 2px 12px rgba(15,23,42,0.06);
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(29,78,216,0.13);
+      border-color: rgba(59,130,246,0.3);
+    }
+    .team-img {
+      height: 260px;
+      overflow: hidden;
+      position: relative;
+    }
+    .team-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .team-card:hover .team-img img { transform: scale(1.08); }
+    .team-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(15,23,42,0.75) 100%);
+    }
+
+    /* ── VALUE CARD ── */
+    .value-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.35s;
+      box-shadow: 0 2px 12px rgba(15,23,42,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-mid));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .value-card:hover::after { transform: scaleX(1); }
+    .value-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(29,78,216,0.13);
+      border-color: rgba(59,130,246,0.3);
+    }
+
+    /* ── HERO SECTION ── */
+    .about-hero {
+      min-height: 70vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+    .hero-bg img.loaded { transform: scale(1); }
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg,
+        rgba(255,255,255,0.97) 0%,
+        rgba(248,250,252,0.92) 35%,
+        rgba(219,234,254,0.75) 65%,
+        rgba(29,78,216,0.35) 85%,
+        rgba(15,23,42,0.45) 100%);
+    }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── FLOATING CARD ── */
+    .float-card { animation: floatY 6s ease-in-out infinite; }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+    /* ── MILESTONE CARD ── */
+    .milestone-card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .milestone-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--blue-deep), var(--blue-mid));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.4s ease;
+    }
+    .milestone-card:hover::before { transform: scaleY(1); }
+    .milestone-card:hover {
+      transform: translateX(6px);
+      border-color: rgba(59,130,246,0.3);
+      box-shadow: 0 8px 24px rgba(29,78,216,0.1);
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-mid), var(--red-accent));
+    }
+
+    /* ── PIPE SYSTEM ── */
+    .pipe-system-wrapper {
+      background: var(--gray-100);
+      overflow: hidden;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .stat-num { font-size: 2.8rem; }
+      .team-img { height: 220px; }
+    }
+
+    /* ── HERO BADGE ── */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: rgba(29,78,216,0.08);
+      border: 1px solid rgba(29,78,216,0.2);
+      border-radius: 99px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--blue-mid);
+      box-shadow: 0 0 8px var(--blue-mid);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
+
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(15,23,42,0.75) 100%);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-18">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:0.06em;color:var(--navy);line-height:1;">
+              CORE<span style="color:var(--blue-deep);">PIPES</span>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--gray-400);text-transform:uppercase;line-height:1;">& Fittings</div>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link active">Our Story</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <!-- Right -->
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="btn-primary hidden lg:flex" style="padding:10px 22px;font-size:0.8rem;">
+            <i class="fas fa-arrow-left text-xs"></i> Back to Home
+          </a>
+          <button onclick="toggleMobileNav()" id="hamburger" class="lg:hidden w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-gray-500 hover:border-blue-300 hover:text-blue-700 transition-all">
+            <i class="fas fa-bars text-sm" id="ham-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile Nav -->
+  <div id="mobile-nav" class="hidden" style="background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray-200);">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
+      <a href="index.html" class="nav-link text-base">Home</a>
+      <a href="about.html" class="nav-link text-base active">Our Story</a>
+      <a href="contact.html" class="nav-link text-base">Contact</a>
+      <div class="pt-2 pb-1">
+        <a href="index.html" class="btn-primary w-full justify-center">
+          <i class="fas fa-arrow-left text-xs"></i> Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════════ HERO SECTION ═══════════════ -->
+<section class="about-hero">
+  <div class="hero-bg">
+    <img src="assets/paving.png" alt="Industrial pipes and infrastructure" onload="this.classList.add('loaded')">
+    <div class="hero-bg-overlay"></div>
+  </div>
+
+  <!-- Floating decorative images -->
+  <div class="absolute right-0 top-0 w-1/3 h-full overflow-hidden hidden lg:block pointer-events-none" style="z-index:1;">
+    <div class="absolute right-20 top-32 w-56 h-56 float-card" style="animation-delay:0s;">
+      <div class="rounded-2xl overflow-hidden shadow-2xl relative h-full">
+        <img src="assets/fitting.png" alt="PVC pipes" class="w-full h-full object-cover">
+        <div class="img-overlay"></div>
+        <div class="absolute bottom-3 left-3 text-white text-xs font-mono uppercase tracking-widest opacity-80">Fittings</div>
+      </div>
+    </div>
+    <div class="absolute right-64 top-80 w-40 h-40 float-card" style="animation-delay:2s;">
+      <div class="rounded-2xl overflow-hidden shadow-2xl relative h-full">
+        <img src="assets/plumbingpipe.png" alt="Plumbing" class="w-full h-full object-cover">
+        <div class="img-overlay"></div>
+        <div class="absolute bottom-3 left-3 text-white text-xs font-mono uppercase tracking-widest opacity-80">Plumbing</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-20 pt-32">
+    <div class="max-w-3xl">
+      <div class="hero-badge mb-6">
+        <span class="hero-badge-dot"></span>
+        Established 2010 · South Africa
+      </div>
+      <h1 class="font-display text-6xl lg:text-7xl xl:text-8xl mb-5 leading-[0.92] tracking-wide" style="color:var(--navy);">
+        FORGED IN<br>
+        <span style="background:linear-gradient(135deg, var(--blue-deep), var(--blue-mid), #60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">STEEL &amp; PIPE</span>
+      </h1>
+      <p class="text-gray-600 text-lg font-light leading-relaxed max-w-xl">
+        Over <strong class="text-blue-700">15 years</strong> supplying South Africa's construction and plumbing industry with industrial-grade PVC solutions — from a single warehouse to a national distribution network.
+      </p>
+    </div>
+  </div>
+
+  <!-- Bottom Stats Bar -->
+  <div class="absolute bottom-0 left-0 right-0 z-10">
+    <div class="glass border-t border-white/60 py-4 px-4">
+      <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:divide-x divide-gray-300/50">
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">15<span style="color:var(--red-accent);">+</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Years of Excellence</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">500<span style="color:var(--red-accent);">+</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Contractors Served</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">120<span style="color:var(--red-accent);">t</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Monthly Volume</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">8K<span style="color:var(--red-accent);">m²</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Distribution Centre</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PIPE DIVIDER #1 — OUR FOUNDATION
+     T-junction layout with upward branch + gauge
+═══════════════════════════════════════════════ -->
+<div class="pipe-system-wrapper">
+  <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:120px;display:block;">
+    <defs>
+      <linearGradient id="ab_pm1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="18%" stop-color="#f8fafc"/>
+        <stop offset="46%" stop-color="#cbd5e1"/>
+        <stop offset="74%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+      <linearGradient id="ab_jg1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#94a3b8"/>
+        <stop offset="50%" stop-color="#64748b"/>
+        <stop offset="100%" stop-color="#94a3b8"/>
+      </linearGradient>
+      <linearGradient id="ab_wg1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="transparent"/>
+        <stop offset="50%" stop-color="rgba(59,130,246,0.55)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </linearGradient>
+      <linearGradient id="ab_vg1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1d4ed8"/>
+        <stop offset="100%" stop-color="#1e40af"/>
+      </linearGradient>
+      <radialGradient id="ab_gf1">
+        <stop offset="0%" stop-color="#f8fafc"/>
+        <stop offset="100%" stop-color="#dbeafe"/>
+      </radialGradient>
+    </defs>
+
+    <rect width="1200" height="120" fill="#f1f5f9"/>
+
+    <!-- Main horizontal pipe -->
+    <rect x="0" y="44" width="1200" height="32" fill="url(#ab_pm1)"/>
+    <rect x="0" y="49" width="1200" height="6" fill="rgba(255,255,255,0.75)"/>
+    <rect x="0" y="44" width="1200" height="2" fill="#94a3b8"/>
+    <rect x="0" y="74" width="1200" height="2" fill="#64748b"/>
+    <rect x="0" y="76" width="1200" height="3" fill="rgba(15,23,42,0.06)"/>
+
+    <!-- Water flow -->
+    <rect x="-400" y="53" width="400" height="10" fill="url(#ab_wg1)" rx="2" opacity="0.65">
+      <animate attributeName="x" from="-400" to="1400" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="-700" y="53" width="300" height="10" fill="url(#ab_wg1)" rx="2" opacity="0.4">
+      <animate attributeName="x" from="-700" to="1200" dur="4s" repeatCount="indefinite" begin="1.5s"/>
+    </rect>
+
+    <!-- Left end cap -->
+    <rect x="0" y="38" width="28" height="44" fill="url(#ab_jg1)" rx="12"/>
+    <rect x="4" y="42" width="20" height="36" fill="#cbd5e1" rx="8"/>
+    <circle cx="14" cy="60" r="6" fill="#1d4ed8" opacity="0.7"/>
+
+    <!-- TEE at x=280 — branch UP -->
+    <rect x="268" y="0" width="30" height="48" fill="url(#ab_pm1)"/>
+    <rect x="273" y="0" width="6" height="44" fill="rgba(255,255,255,0.7)"/>
+    <rect x="268" y="0" width="2" height="48" fill="#94a3b8"/>
+    <rect x="296" y="0" width="2" height="48" fill="#64748b"/>
+    <rect x="258" y="38" width="48" height="42" fill="url(#ab_jg1)" rx="5"/>
+    <rect x="263" y="43" width="38" height="32" fill="#dde4ee" rx="3"/>
+    <circle cx="282" cy="59" r="7" fill="#1d4ed8" opacity="0.8"/>
+    <circle cx="282" cy="59" r="3.5" fill="#3b82f6">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Label -->
+    <rect x="252" y="4" width="68" height="18" fill="url(#ab_vg1)" rx="9"/>
+    <text x="286" y="16.5" fill="white" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="0.5">FOUNDATION</text>
+
+    <!-- Coupling at x=460 -->
+    <rect x="450" y="38" width="26" height="44" fill="url(#ab_jg1)" rx="3"/>
+    <rect x="453" y="42" width="20" height="36" fill="#dde4ee" rx="2"/>
+    <circle cx="456" cy="46" r="2.2" fill="#475569"/>
+    <circle cx="470" cy="46" r="2.2" fill="#475569"/>
+    <circle cx="456" cy="76" r="2.2" fill="#475569"/>
+    <circle cx="470" cy="76" r="2.2" fill="#475569"/>
+
+    <!-- Gate valve at x=580 -->
+    <rect x="566" y="36" width="50" height="48" fill="url(#ab_vg1)" rx="7"/>
+    <rect x="566" y="36" width="50" height="48" fill="none" stroke="#1e3a8a" stroke-width="1.5" rx="7"/>
+    <rect x="587" y="14" width="8" height="24" fill="#64748b" rx="2"/>
+    <!-- Handwheel -->
+    <circle cx="591" cy="13" r="13" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+    <line x1="578" y1="13" x2="604" y2="13" stroke="#dc2626" stroke-width="2.5"/>
+    <line x1="591" y1="0" x2="591" y2="26" stroke="#dc2626" stroke-width="2.5"/>
+    <circle cx="591" cy="60" r="8" fill="#2563eb">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <text x="591" y="64" fill="white" font-family="JetBrains Mono, monospace" font-size="6" text-anchor="middle">ON</text>
+
+    <!-- Label pill center -->
+    <rect x="672" y="36" width="130" height="48" fill="white" rx="6" opacity="0.92"/>
+    <rect x="672" y="36" width="130" height="48" fill="none" stroke="rgba(29,78,216,0.2)" stroke-width="1.5" rx="6"/>
+    <text x="737" y="56" fill="#1d4ed8" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="1">OUR</text>
+    <text x="737" y="73" fill="#0f172a" font-family="Bebas Neue, sans-serif" font-size="16" text-anchor="middle" letter-spacing="2">FOUNDATION</text>
+    <rect x="650" y="38" width="24" height="44" fill="url(#ab_jg1)" rx="3"/>
+    <rect x="800" y="38" width="24" height="44" fill="url(#ab_jg1)" rx="3"/>
+
+    <!-- Pressure gauge at x=940 -->
+    <rect x="939" y="26" width="6" height="20" fill="#64748b"/>
+    <circle cx="942" cy="20" r="19" fill="url(#ab_gf1)" stroke="#64748b" stroke-width="2.5"/>
+    <circle cx="942" cy="20" r="14" fill="none" stroke="#dbeafe" stroke-width="1.5"/>
+    <path d="M 954 13 A 14 14 0 0 1 954 27" fill="none" stroke="#dc2626" stroke-width="3.5" opacity="0.6"/>
+    <line x1="942" y1="20" x2="952" y2="10" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" values="-35 942 20;30 942 20;-35 942 20" dur="5s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="942" cy="20" r="3" fill="#475569"/>
+
+    <!-- Coupling at x=1080 -->
+    <rect x="1070" y="38" width="26" height="44" fill="url(#ab_jg1)" rx="3"/>
+    <rect x="1073" y="42" width="20" height="36" fill="#dde4ee" rx="2"/>
+
+    <!-- Right end cap -->
+    <rect x="1172" y="38" width="28" height="44" fill="url(#ab_jg1)" rx="12"/>
+    <rect x="1176" y="42" width="20" height="36" fill="#cbd5e1" rx="8"/>
+    <circle cx="1186" cy="60" r="6" fill="#1d4ed8" opacity="0.7"/>
+    <circle cx="1186" cy="60" r="3" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+    </circle>
+  </svg>
+</div>
+
+<!-- ═══════════════ FOUNDING STORY ═══════════════ -->
+<section style="background:white;padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: Story -->
+      <div class="reveal">
+        <div class="section-label mb-5"><i class="fas fa-hard-hat text-xs"></i> Built from the Ground Up</div>
+        <h2 class="font-display text-5xl lg:text-6xl mb-6" style="color:var(--navy);line-height:0.95;">
+          FROM A SINGLE<br>
+          <span style="color:var(--blue-deep);">TRADE COUNTER</span>
+        </h2>
+        <div style="width:60px;height:3px;background:var(--blue-deep);border-radius:2px;margin-bottom:24px;"></div>
+        <p class="text-gray-600 text-base leading-relaxed mb-5">
+          Core Pipes &amp; Fittings began as a <strong class="text-navy font-semibold">family-run trade counter</strong> in Westmead, Durban — serving local plumbers with a handful of PVC pipe sizes and a commitment to honest pricing.
+        </p>
+        <p class="text-gray-600 text-base leading-relaxed mb-5">
+          Our founders understood that contractors needed more than stock — they needed a partner who knew the material. Within five years, we expanded into <strong class="text-navy font-semibold">full B2B wholesale distribution</strong>, supplying civil contractors, municipalities, and national retailers.
+        </p>
+        <p class="text-gray-600 text-base leading-relaxed mb-8">
+          Today, from our <strong class="text-navy font-semibold">8,000 m² distribution centre</strong>, we move over 120 tonnes of PVC product monthly — and we still answer the phone ourselves.
+        </p>
+
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap gap-4">
+          <div class="flex items-center gap-2 px-4 py-2 rounded-xl" style="background:rgba(29,78,216,0.05);border:1px solid rgba(29,78,216,0.15);">
+            <i class="fas fa-check-circle text-blue-600 text-sm"></i>
+            <span class="text-sm text-gray-600">SABS Certified</span>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 rounded-xl" style="background:rgba(29,78,216,0.05);border:1px solid rgba(29,78,216,0.15);">
+            <i class="fas fa-truck text-blue-600 text-sm"></i>
+            <span class="text-sm text-gray-600">Nationwide Delivery</span>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 rounded-xl" style="background:rgba(220,38,38,0.05);border:1px solid rgba(220,38,38,0.15);">
+            <i class="fas fa-leaf text-red-500 text-sm"></i>
+            <span class="text-sm text-gray-600">Recycling Programme</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Stats Grid -->
+      <div class="reveal grid grid-cols-2 gap-4">
+        <div class="stat-card">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-3 mx-auto" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-building text-white text-sm"></i>
+          </div>
+          <div class="stat-num text-3xl" style="color:var(--blue-deep);">2010</div>
+          <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Year Founded</div>
+        </div>
+        <div class="stat-card">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-3 mx-auto" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-warehouse text-white text-sm"></i>
+          </div>
+          <div class="stat-num text-3xl" style="color:var(--blue-deep);">8,000<span style="font-size:1.2rem;">m²</span></div>
+          <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Facility Size</div>
+        </div>
+        <div class="stat-card">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-3 mx-auto" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-truck-fast text-white text-sm"></i>
+          </div>
+          <div class="stat-num text-3xl" style="color:var(--blue-deep);">14</div>
+          <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Delivery Vehicles</div>
+        </div>
+        <div class="stat-card">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-3 mx-auto" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-users text-white text-sm"></i>
+          </div>
+          <div class="stat-num text-3xl" style="color:var(--blue-deep);">68</div>
+          <div class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-1">Team Members</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PIPE DIVIDER #2 — OUR VALUES
+     Cross junction with 4 branches + flow meter
+═══════════════════════════════════════════════ -->
+<div class="pipe-system-wrapper">
+  <svg viewBox="0 0 1200 140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:140px;display:block;">
+    <defs>
+      <linearGradient id="ab_pm2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="18%" stop-color="#f8fafc"/>
+        <stop offset="48%" stop-color="#cbd5e1"/>
+        <stop offset="76%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+      <linearGradient id="ab_jg2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#94a3b8"/>
+        <stop offset="50%" stop-color="#64748b"/>
+        <stop offset="100%" stop-color="#94a3b8"/>
+      </linearGradient>
+      <linearGradient id="ab_wg2" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="transparent"/>
+        <stop offset="50%" stop-color="rgba(59,130,246,0.55)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </linearGradient>
+      <linearGradient id="ab_vg2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1d4ed8"/>
+        <stop offset="100%" stop-color="#1e40af"/>
+      </linearGradient>
+      <radialGradient id="ab_gf2">
+        <stop offset="0%" stop-color="#f8fafc"/>
+        <stop offset="100%" stop-color="#dbeafe"/>
+      </radialGradient>
+    </defs>
+
+    <rect width="1200" height="140" fill="#f1f5f9"/>
+
+    <!-- Main pipe at y=54 -->
+    <rect x="0" y="52" width="1200" height="36" fill="url(#ab_pm2)"/>
+    <rect x="0" y="57" width="1200" height="7" fill="rgba(255,255,255,0.7)"/>
+    <rect x="0" y="52" width="1200" height="2" fill="#94a3b8"/>
+    <rect x="0" y="86" width="1200" height="2" fill="#64748b"/>
+
+    <!-- Water flow -->
+    <rect x="-500" y="62" width="500" height="10" fill="url(#ab_wg2)" rx="2" opacity="0.6">
+      <animate attributeName="x" from="-500" to="1400" dur="3.2s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Left flange -->
+    <rect x="0" y="46" width="28" height="48" fill="url(#ab_jg2)" rx="12"/>
+    <rect x="4" y="50" width="20" height="40" fill="#cbd5e1" rx="8"/>
+    <circle cx="14" cy="70" r="6" fill="#1d4ed8" opacity="0.7"/>
+
+    <!-- CROSS JUNCTION at x=220 — up AND down branches -->
+    <!-- Up branch -->
+    <rect x="208" y="0" width="30" height="56" fill="url(#ab_pm2)"/>
+    <rect x="213" y="0" width="6" height="52" fill="rgba(255,255,255,0.7)"/>
+    <rect x="208" y="0" width="2" height="56" fill="#94a3b8"/>
+    <rect x="236" y="0" width="2" height="56" fill="#64748b"/>
+    <!-- Down branch -->
+    <rect x="208" y="88" width="30" height="52" fill="url(#ab_pm2)"/>
+    <rect x="213" y="88" width="6" height="52" fill="rgba(255,255,255,0.7)"/>
+    <rect x="208" y="88" width="2" height="52" fill="#94a3b8"/>
+    <rect x="236" y="88" width="2" height="52" fill="#64748b"/>
+    <!-- Cross fitting body -->
+    <rect x="198" y="44" width="50" height="52" fill="url(#ab_jg2)" rx="5"/>
+    <rect x="203" y="49" width="40" height="42" fill="#dde4ee" rx="3"/>
+    <circle cx="223" cy="70" r="8" fill="#1d4ed8"/>
+    <circle cx="223" cy="70" r="4" fill="#3b82f6">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Labels on branches -->
+    <rect x="198" y="4" width="50" height="18" fill="url(#ab_vg2)" rx="9"/>
+    <text x="223" y="16" fill="white" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="0.5">VALUES</text>
+    <rect x="200" y="118" width="48" height="18" fill="#dc2626" rx="9"/>
+    <text x="224" y="130" fill="white" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="0.5">PEOPLE</text>
+
+    <!-- Flow meter at x=430 -->
+    <rect x="416" y="42" width="56" height="56" fill="url(#ab_jg2)" rx="6"/>
+    <rect x="420" y="46" width="48" height="48" fill="#dde4ee" rx="4"/>
+    <circle cx="444" cy="70" r="17" fill="white" stroke="#1d4ed8" stroke-width="1.5"/>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0 444 70;360 444 70" dur="3s" repeatCount="indefinite" additive="sum"/>
+      <line x1="444" y1="70" x2="453" y2="60" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+      <line x1="444" y1="70" x2="435" y2="80" stroke="#1d4ed8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    </g>
+    <circle cx="444" cy="70" r="3.5" fill="#475569"/>
+
+    <!-- Label pill center -->
+    <rect x="522" y="42" width="156" height="56" fill="white" rx="6" opacity="0.92"/>
+    <rect x="522" y="42" width="156" height="56" fill="none" stroke="rgba(29,78,216,0.2)" stroke-width="1.5" rx="6"/>
+    <text x="600" y="63" fill="#1d4ed8" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="1.5">OUR</text>
+    <text x="600" y="81" fill="#0f172a" font-family="Bebas Neue, sans-serif" font-size="18" text-anchor="middle" letter-spacing="2">VALUES</text>
+    <rect x="498" y="44" width="26" height="52" fill="url(#ab_jg2)" rx="3"/>
+    <rect x="676" y="44" width="26" height="52" fill="url(#ab_jg2)" rx="3"/>
+
+    <!-- Ball valve at x=800 -->
+    <rect x="786" y="44" width="50" height="52" fill="url(#ab_vg2)" rx="8"/>
+    <rect x="786" y="44" width="50" height="52" fill="none" stroke="#1e3a8a" stroke-width="1.5" rx="8"/>
+    <rect x="807" y="22" width="8" height="24" fill="#64748b" rx="2"/>
+    <ellipse cx="811" cy="20" rx="14" ry="5" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+    <line x1="797" y1="20" x2="825" y2="20" stroke="#dc2626" stroke-width="2.5"/>
+    <circle cx="811" cy="70" r="8" fill="#2563eb">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="1.8s" repeatCount="indefinite" begin="0.4s"/>
+    </circle>
+
+    <!-- TEE at x=970 up branch -->
+    <rect x="958" y="0" width="30" height="56" fill="url(#ab_pm2)"/>
+    <rect x="963" y="0" width="6" height="52" fill="rgba(255,255,255,0.7)"/>
+    <rect x="958" y="0" width="2" height="56" fill="#94a3b8"/>
+    <rect x="986" y="0" width="2" height="56" fill="#64748b"/>
+    <rect x="948" y="44" width="50" height="52" fill="url(#ab_jg2)" rx="5"/>
+    <rect x="953" y="49" width="40" height="42" fill="#dde4ee" rx="3"/>
+    <circle cx="973" cy="70" r="7" fill="#dc2626" opacity="0.8"/>
+    <circle cx="973" cy="70" r="3.5" fill="#ef4444">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="0.7s"/>
+    </circle>
+    <rect x="950" y="4" width="50" height="18" fill="#dc2626" rx="9"/>
+    <text x="975" y="16" fill="white" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="0.5">CORE</text>
+
+    <!-- Coupling at x=1110 -->
+    <rect x="1100" y="46" width="26" height="48" fill="url(#ab_jg2)" rx="3"/>
+    <rect x="1103" y="50" width="20" height="40" fill="#dde4ee" rx="2"/>
+
+    <!-- Right end -->
+    <rect x="1172" y="46" width="28" height="48" fill="url(#ab_jg2)" rx="12"/>
+    <rect x="1176" y="50" width="20" height="40" fill="#cbd5e1" rx="8"/>
+    <circle cx="1186" cy="70" r="6" fill="#1d4ed8" opacity="0.7"/>
+    <circle cx="1186" cy="70" r="3" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+  </svg>
+</div>
+
+<!-- ═══════════════ VALUES SECTION ═══════════════ -->
+<section style="background:var(--off-white);padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <div class="section-label mx-auto mb-4"><i class="fas fa-star text-xs"></i> What We Stand For</div>
+      <h2 class="font-display text-5xl lg:text-6xl" style="color:var(--navy);">PRINCIPLES THAT<br><span style="color:var(--blue-deep);">DRIVE US</span></h2>
+      <div style="width:60px;height:3px;background:var(--blue-deep);border-radius:2px;margin:16px auto 0;"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+      <div class="value-card">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-medal text-white text-xl"></i>
+        </div>
+        <h3 class="font-bold text-navy text-xl mb-2">Uncompromising Quality</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Every product is tested to SANS 966 and ASTM D1785 standards before it leaves our floor. We do not stock sub-grade material.</p>
+      </div>
+      <div class="value-card">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-handshake text-white text-xl"></i>
+        </div>
+        <h3 class="font-bold text-navy text-xl mb-2">Trade Partnerships</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Bulk pricing, credit terms, and priority stock allocation for registered trade accounts. Every contractor is a partner.</p>
+      </div>
+      <div class="value-card">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-bolt text-white text-xl"></i>
+        </div>
+        <h3 class="font-bold text-navy text-xl mb-2">Speed to Site</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Same-day dispatch for orders before 12:00. 14 vehicles cover KZN daily with national courier for outlying regions.</p>
+      </div>
+      <div class="value-card">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-leaf text-white text-xl"></i>
+        </div>
+        <h3 class="font-bold text-navy text-xl mb-2">Responsible Sourcing</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">PVC compound from certified local manufacturers. Offcuts processed through our in-house recycling programme.</p>
+      </div>
+      <div class="value-card">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-headset text-white text-xl"></i>
+        </div>
+        <h3 class="font-bold text-navy text-xl mb-2">Expert Advice</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Our team includes qualified plumbers and civil engineers ready to spec the right product for any system.</p>
+      </div>
+      <div class="value-card">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-users text-white text-xl"></i>
+        </div>
+        <h3 class="font-bold text-navy text-xl mb-2">Community Roots</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Artisan plumbing bursaries annually and a free technical training programme for emerging contractors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PIPE DIVIDER #3 — MILESTONES
+     Manifold header with 3 upward branches + gauge
+═══════════════════════════════════════════════ -->
+<div class="pipe-system-wrapper">
+  <svg viewBox="0 0 1200 130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:130px;display:block;">
+    <defs>
+      <linearGradient id="ab_pm3" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="20%" stop-color="#f8fafc"/>
+        <stop offset="50%" stop-color="#cbd5e1"/>
+        <stop offset="78%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+      <linearGradient id="ab_jg3" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#94a3b8"/>
+        <stop offset="50%" stop-color="#64748b"/>
+        <stop offset="100%" stop-color="#94a3b8"/>
+      </linearGradient>
+      <linearGradient id="ab_wg3" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="transparent"/>
+        <stop offset="50%" stop-color="rgba(59,130,246,0.55)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </linearGradient>
+      <linearGradient id="ab_vg3" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1d4ed8"/>
+        <stop offset="100%" stop-color="#1e40af"/>
+      </linearGradient>
+      <radialGradient id="ab_gf3">
+        <stop offset="0%" stop-color="#f8fafc"/>
+        <stop offset="100%" stop-color="#dbeafe"/>
+      </radialGradient>
+    </defs>
+
+    <rect width="1200" height="130" fill="#f1f5f9"/>
+
+    <!-- Main pipe at y=50 -->
+    <rect x="0" y="50" width="1200" height="30" fill="url(#ab_pm3)"/>
+    <rect x="0" y="55" width="1200" height="6" fill="rgba(255,255,255,0.7)"/>
+    <rect x="0" y="50" width="1200" height="2" fill="#94a3b8"/>
+    <rect x="0" y="78" width="1200" height="2" fill="#64748b"/>
+
+    <!-- Water flow -->
+    <rect x="-400" y="59" width="400" height="9" fill="url(#ab_wg3)" rx="2" opacity="0.65">
+      <animate attributeName="x" from="-400" to="1400" dur="2.8s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Left cap -->
+    <rect x="0" y="44" width="26" height="42" fill="url(#ab_jg3)" rx="12"/>
+    <rect x="4" y="48" width="18" height="34" fill="#cbd5e1" rx="8"/>
+    <circle cx="13" cy="65" r="5.5" fill="#1d4ed8" opacity="0.7"/>
+
+    <!-- MANIFOLD at x=160 — 3 upward branches -->
+    <rect x="145" y="36" width="155" height="16" fill="url(#ab_jg3)" rx="5"/>
+    <rect x="148" y="39" width="149" height="10" fill="#dde4ee" rx="3"/>
+    <!-- Branch 1 -->
+    <rect x="162" y="0" width="18" height="38" fill="url(#ab_pm3)"/>
+    <rect x="165" y="0" width="5" height="36" fill="rgba(255,255,255,0.7)"/>
+    <rect x="162" y="0" width="1.5" height="38" fill="#94a3b8"/>
+    <rect x="178" y="0" width="1.5" height="38" fill="#64748b"/>
+    <circle cx="171" cy="6" r="5" fill="#1d4ed8" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Branch 2 -->
+    <rect x="216" y="0" width="18" height="38" fill="url(#ab_pm3)"/>
+    <rect x="219" y="0" width="5" height="36" fill="rgba(255,255,255,0.7)"/>
+    <rect x="216" y="0" width="1.5" height="38" fill="#94a3b8"/>
+    <rect x="232" y="0" width="1.5" height="38" fill="#64748b"/>
+    <circle cx="225" cy="6" r="5" fill="#dc2626" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+    <!-- Branch 3 -->
+    <rect x="270" y="0" width="18" height="38" fill="url(#ab_pm3)"/>
+    <rect x="273" y="0" width="5" height="36" fill="rgba(255,255,255,0.7)"/>
+    <rect x="270" y="0" width="1.5" height="38" fill="#94a3b8"/>
+    <rect x="286" y="0" width="1.5" height="38" fill="#64748b"/>
+    <circle cx="279" cy="6" r="5" fill="#1d4ed8" opacity="0.8">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+    <!-- Manifold body bottom -->
+    <rect x="145" y="52" width="155" height="26" fill="url(#ab_jg3)"/>
+    <rect x="148" y="55" width="149" height="20" fill="#dde4ee"/>
+
+    <!-- Coupling at x=390 -->
+    <rect x="380" y="44" width="24" height="42" fill="url(#ab_jg3)" rx="3"/>
+    <rect x="383" y="48" width="18" height="34" fill="#dde4ee" rx="2"/>
+
+    <!-- Label pill center -->
+    <rect x="454" y="38" width="160" height="54" fill="white" rx="6" opacity="0.92"/>
+    <rect x="454" y="38" width="160" height="54" fill="none" stroke="rgba(29,78,216,0.2)" stroke-width="1.5" rx="6"/>
+    <text x="534" y="59" fill="#1d4ed8" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="1">KEY</text>
+    <text x="534" y="78" fill="#0f172a" font-family="Bebas Neue, sans-serif" font-size="18" text-anchor="middle" letter-spacing="2">MILESTONES</text>
+    <rect x="430" y="40" width="26" height="50" fill="url(#ab_jg3)" rx="3"/>
+    <rect x="612" y="40" width="26" height="50" fill="url(#ab_jg3)" rx="3"/>
+
+    <!-- Ball valve at x=730 -->
+    <rect x="718" y="40" width="50" height="50" fill="url(#ab_vg3)" rx="8"/>
+    <rect x="718" y="40" width="50" height="50" fill="none" stroke="#1e3a8a" stroke-width="1.5" rx="8"/>
+    <rect x="739" y="18" width="8" height="24" fill="#64748b" rx="2"/>
+    <ellipse cx="743" cy="16" rx="14" ry="5" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+    <line x1="729" y1="16" x2="757" y2="16" stroke="#dc2626" stroke-width="2.5"/>
+    <circle cx="743" cy="65" r="7" fill="#2563eb">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+    </circle>
+
+    <!-- Pressure gauge at x=880 -->
+    <rect x="879" y="28" width="6" height="24" fill="#64748b"/>
+    <circle cx="882" cy="22" r="20" fill="url(#ab_gf3)" stroke="#64748b" stroke-width="2.5"/>
+    <circle cx="882" cy="22" r="15" fill="none" stroke="#dbeafe" stroke-width="1.5"/>
+    <path d="M 895 15 A 15 15 0 0 1 895 29" fill="none" stroke="#dc2626" stroke-width="3.5" opacity="0.6"/>
+    <line x1="882" y1="22" x2="893" y2="12" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" values="-40 882 22;30 882 22;-40 882 22" dur="6s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="882" cy="22" r="3" fill="#475569"/>
+
+    <!-- TEE at x=1040 down -->
+    <rect x="1028" y="78" width="28" height="52" fill="url(#ab_pm3)"/>
+    <rect x="1033" y="78" width="6" height="52" fill="rgba(255,255,255,0.7)"/>
+    <rect x="1028" y="78" width="2" height="52" fill="#94a3b8"/>
+    <rect x="1054" y="78" width="2" height="52" fill="#64748b"/>
+    <rect x="1018" y="42" width="48" height="42" fill="url(#ab_jg3)" rx="5"/>
+    <rect x="1022" y="46" width="40" height="34" fill="#dde4ee" rx="3"/>
+    <circle cx="1042" cy="63" r="7" fill="#1d4ed8" opacity="0.8"/>
+    <circle cx="1042" cy="63" r="3.5" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="0.9s"/>
+    </circle>
+
+    <!-- Right end -->
+    <rect x="1172" y="44" width="28" height="42" fill="url(#ab_jg3)" rx="12"/>
+    <rect x="1176" y="48" width="20" height="34" fill="#cbd5e1" rx="8"/>
+    <circle cx="1186" cy="65" r="6" fill="#1d4ed8" opacity="0.7"/>
+    <circle cx="1186" cy="65" r="3" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="1.2s"/>
+    </circle>
+  </svg>
+</div>
+
+<!-- ═══════════════ MILESTONES SECTION ═══════════════ -->
+<section style="background:white;padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <div class="section-label mx-auto mb-4"><i class="fas fa-flag-checkered text-xs"></i> Our Journey</div>
+      <h2 class="font-display text-5xl lg:text-6xl" style="color:var(--navy);">KEY MILESTONES<br><span style="color:var(--blue-deep);">THAT SHAPED US</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+      <div class="milestone-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <span class="text-white font-bold text-lg">'10</span>
+          </div>
+          <div>
+            <div class="font-bold text-navy text-lg">Doors Open</div>
+            <div class="text-gray-400 text-xs font-mono">Westmead, Durban</div>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">First trade counter opens with 12 pipe SKUs and two staff members. Serving local plumbers with quality PVC products.</p>
+      </div>
+      <div class="milestone-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <span class="text-white font-bold text-lg">'15</span>
+          </div>
+          <div>
+            <div class="font-bold text-navy text-lg">First Expansion</div>
+            <div class="text-gray-400 text-xs font-mono">Warehouse Growth</div>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">Moved to a 2,500 m² facility. Added fittings range and secured first municipal supply contracts.</p>
+      </div>
+      <div class="milestone-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <span class="text-white font-bold text-lg">'18</span>
+          </div>
+          <div>
+            <div class="font-bold text-navy text-lg">National Reach</div>
+            <div class="text-gray-400 text-xs font-mono">Nationwide Delivery</div>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">Partnered with national courier networks. Now shipping to Cape Town, Port Elizabeth, and Johannesburg contractors.</p>
+      </div>
+      <div class="milestone-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <span class="text-white font-bold text-lg">'20</span>
+          </div>
+          <div>
+            <div class="font-bold text-navy text-lg">Green Initiative</div>
+            <div class="text-gray-400 text-xs font-mono">Recycling Programme</div>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">Industry-first PVC offcut recovery system introduced. Over 50 tonnes diverted from landfill.</p>
+      </div>
+      <div class="milestone-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <span class="text-white font-bold text-lg">'22</span>
+          </div>
+          <div>
+            <div class="font-bold text-navy text-lg">8,000 m² Facility</div>
+            <div class="text-gray-400 text-xs font-mono">Distribution Centre</div>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">New purpose-built facility opens. Fleet grows to 14 vehicles. Staff count reaches 68.</p>
+      </div>
+      <div class="milestone-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <span class="text-white font-bold text-lg">'24</span>
+          </div>
+          <div>
+            <div class="font-bold text-navy text-lg">Digital Portal</div>
+            <div class="text-gray-400 text-xs font-mono">B2B Ordering</div>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">Real-time inventory and online ordering launched. 500+ contractors onboarded in the first 6 months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PIPE DIVIDER #4 — THE TEAM
+     Reducer + check valve + flow meter layout
+═══════════════════════════════════════════════ -->
+<div class="pipe-system-wrapper">
+  <svg viewBox="0 0 1200 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:110px;display:block;">
+    <defs>
+      <linearGradient id="ab_pm4" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e2e8f0"/>
+        <stop offset="20%" stop-color="#f8fafc"/>
+        <stop offset="50%" stop-color="#cbd5e1"/>
+        <stop offset="78%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+      <linearGradient id="ab_jg4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#94a3b8"/>
+        <stop offset="50%" stop-color="#64748b"/>
+        <stop offset="100%" stop-color="#94a3b8"/>
+      </linearGradient>
+      <linearGradient id="ab_wg4" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="transparent"/>
+        <stop offset="50%" stop-color="rgba(59,130,246,0.55)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </linearGradient>
+      <linearGradient id="ab_vg4" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1d4ed8"/>
+        <stop offset="100%" stop-color="#1e40af"/>
+      </linearGradient>
+    </defs>
+
+    <rect width="1200" height="110" fill="#f1f5f9"/>
+
+    <!-- Main pipe -->
+    <rect x="0" y="38" width="1200" height="34" fill="url(#ab_pm4)"/>
+    <rect x="0" y="43" width="1200" height="7" fill="rgba(255,255,255,0.7)"/>
+    <rect x="0" y="38" width="1200" height="2" fill="#94a3b8"/>
+    <rect x="0" y="70" width="1200" height="2" fill="#64748b"/>
+
+    <!-- Water flow -->
+    <rect x="-450" y="48" width="450" height="9" fill="url(#ab_wg4)" rx="2" opacity="0.65">
+      <animate attributeName="x" from="-450" to="1400" dur="2.8s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Left flange -->
+    <rect x="0" y="32" width="26" height="46" fill="url(#ab_jg4)" rx="12"/>
+    <rect x="4" y="36" width="18" height="38" fill="#cbd5e1" rx="8"/>
+    <circle cx="13" cy="55" r="6" fill="#1d4ed8" opacity="0.7"/>
+
+    <!-- Reducer at x=120 -->
+    <polygon points="108,36 140,42 140,68 108,74" fill="url(#ab_jg4)"/>
+    <polygon points="140,42 165,44 165,66 140,68" fill="#cbd5e1"/>
+    <polygon points="165,44 190,42 190,68 165,66" fill="#cbd5e1"/>
+    <polygon points="190,42 222,36 222,74 190,68" fill="url(#ab_jg4)"/>
+
+    <!-- FLOW METER at x=310 -->
+    <rect x="296" y="28" width="58" height="54" fill="url(#ab_jg4)" rx="6"/>
+    <rect x="300" y="32" width="50" height="46" fill="#dde4ee" rx="4"/>
+    <circle cx="325" cy="55" r="17" fill="white" stroke="#1d4ed8" stroke-width="1.5"/>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0 325 55;360 325 55" dur="3.5s" repeatCount="indefinite" additive="sum"/>
+      <line x1="325" y1="55" x2="334" y2="44" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+      <line x1="325" y1="55" x2="316" y2="66" stroke="#1d4ed8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    </g>
+    <circle cx="325" cy="55" r="3.5" fill="#475569"/>
+
+    <!-- Coupling at x=445 -->
+    <rect x="435" y="32" width="24" height="46" fill="url(#ab_jg4)" rx="3"/>
+    <rect x="438" y="36" width="18" height="38" fill="#dde4ee" rx="2"/>
+
+    <!-- Label pill center -->
+    <rect x="508" y="30" width="132" height="50" fill="white" rx="6" opacity="0.92"/>
+    <rect x="508" y="30" width="132" height="50" fill="none" stroke="rgba(29,78,216,0.2)" stroke-width="1.5" rx="6"/>
+    <text x="574" y="50" fill="#1d4ed8" font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle" letter-spacing="1.5">MEET</text>
+    <text x="574" y="68" fill="#0f172a" font-family="Bebas Neue, sans-serif" font-size="18" text-anchor="middle" letter-spacing="2">THE TEAM</text>
+    <rect x="484" y="32" width="26" height="46" fill="url(#ab_jg4)" rx="3"/>
+    <rect x="638" y="32" width="26" height="46" fill="url(#ab_jg4)" rx="3"/>
+
+    <!-- Check valve at x=760 -->
+    <rect x="748" y="32" width="52" height="46" fill="url(#ab_vg4)" rx="7"/>
+    <rect x="748" y="32" width="52" height="46" fill="none" stroke="#1e3a8a" stroke-width="1.5" rx="7"/>
+    <polygon points="762,55 778,43 778,67" fill="rgba(255,255,255,0.25)"/>
+    <polygon points="776,55 790,43 790,67" fill="rgba(255,255,255,0.5)"/>
+    <circle cx="774" cy="55" r="5" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Coupling at x=900 -->
+    <rect x="890" y="32" width="24" height="46" fill="url(#ab_jg4)" rx="3"/>
+    <rect x="893" y="36" width="18" height="38" fill="#dde4ee" rx="2"/>
+
+    <!-- TEE at x=1040 upward -->
+    <rect x="1028" y="0" width="28" height="42" fill="url(#ab_pm4)"/>
+    <rect x="1033" y="0" width="6" height="40" fill="rgba(255,255,255,0.7)"/>
+    <rect x="1028" y="0" width="1.5" height="42" fill="#94a3b8"/>
+    <rect x="1054" y="0" width="1.5" height="42" fill="#64748b"/>
+    <rect x="1018" y="32" width="48" height="44" fill="url(#ab_jg4)" rx="5"/>
+    <rect x="1022" y="36" width="40" height="36" fill="#dde4ee" rx="3"/>
+    <circle cx="1042" cy="54" r="7" fill="#1d4ed8" opacity="0.8"/>
+    <circle cx="1042" cy="54" r="3.5" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+    </circle>
+    <rect x="1018" y="4" width="50" height="16" fill="#dc2626" rx="8"/>
+    <text x="1043" y="15" fill="white" font-family="JetBrains Mono, monospace" font-size="7" text-anchor="middle" letter-spacing="0.5">PEOPLE</text>
+
+    <!-- Right end -->
+    <rect x="1172" y="32" width="28" height="46" fill="url(#ab_jg4)" rx="12"/>
+    <rect x="1176" y="36" width="20" height="38" fill="#cbd5e1" rx="8"/>
+    <circle cx="1186" cy="55" r="6" fill="#1d4ed8" opacity="0.7"/>
+    <circle cx="1186" cy="55" r="3" fill="#60a5fa">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="1.4s"/>
+    </circle>
+  </svg>
+</div>
+
+<!-- ═══════════════ TEAM SECTION ═══════════════ -->
+<section style="background:var(--off-white);padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <div class="section-label mx-auto mb-4"><i class="fas fa-users text-xs"></i> Meet the Experts</div>
+      <h2 class="font-display text-5xl lg:text-6xl" style="color:var(--navy);">THE PEOPLE BEHIND<br><span style="color:var(--blue-deep);">THE PIPES</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+      <div class="team-card">
+        <div class="team-img">
+          <img src="assets/lennon.png" alt="Founder">
+          <div class="team-img-overlay"></div>
+        </div>
+        <div class="p-5">
+          <div class="font-bold text-navy text-lg">Lennon Govender</div>
+          <div class="text-blue-600 text-xs font-mono uppercase tracking-wider mb-2">Managing Director</div>
+          <p class="text-gray-500 text-sm"></p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img">
+          <img src="assets/pravin.png" alt="Co-Founder">
+          <div class="team-img-overlay"></div>
+        </div>
+        <div class="p-5">
+          <div class="font-bold text-navy text-lg">Pravin Patoriya</div>
+          <div class="text-blue-600 text-xs font-mono uppercase tracking-wider mb-2">Financial Director</div>
+          <p class="text-gray-500 text-sm"></p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img">
+          <img src="assets/tarun.png" alt="Operations">
+          <div class="team-img-overlay"></div>
+        </div>
+        <div class="p-5">
+          <div class="font-bold text-navy text-lg">Tarun Panchal</div>
+          <div class="text-blue-600 text-xs font-mono uppercase tracking-wider mb-2">General Manager</div>
+          <p class="text-gray-500 text-sm"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section style="background:var(--gray-100);padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="cta-banner reveal">
+      <div class="px-8 py-12 md:py-16 md:px-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <div class="section-label bg-white/10 border-white/20 text-white mb-4 inline-flex" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);">Ready to Partner</div>
+          <h3 class="font-display text-4xl md:text-5xl text-white mb-3">Open a Trade Account</h3>
+          <p class="text-white/70 text-base max-w-md">Join 500+ contractors — live stock, bulk pricing, same-day dispatch.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="btn-primary" style="background:white;color:var(--blue-deep);box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+            <i class="fas fa-sign-in-alt text-xs"></i> Access Portal
+          </a>
+          <a href="contact.html" class="btn-outline" style="background:transparent;border-color:rgba(255,255,255,0.4);color:white;">
+            <i class="fas fa-envelope text-xs"></i> Get in Touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer style="background:var(--navy);padding:48px 0 24px;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-water text-white text-sm"></i>
+          </div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:white;line-height:1;">CORE<span style="color:#60a5fa;">PIPES</span></div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;">& Fittings</div>
+          </div>
+        </div>
+        <p class="text-white/50 text-sm leading-relaxed mb-5 max-w-xs">Install it once. Rely on it forever. Premium industrial PVC systems for South Africa's infrastructure.</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);"><i class="fab fa-facebook text-xs"></i></a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);"><i class="fab fa-linkedin text-xs"></i></a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);"><i class="fab fa-whatsapp text-xs"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-mono uppercase tracking-widest mb-4">Navigate</div>
+        <div class="flex flex-col gap-2">
+          <a href="index.html" class="text-white/60 hover:text-white text-sm transition-colors">Home</a>
+          <a href="about.html" class="text-white/60 hover:text-white text-sm transition-colors">Our Story</a>
+          <a href="index.html#catalogue" class="text-white/60 hover:text-white text-sm transition-colors">Catalogue</a>
+          <a href="index.html#tech-specs" class="text-white/60 hover:text-white text-sm transition-colors">Tech Specs</a>
+          <a href="contact.html" class="text-white/60 hover:text-white text-sm transition-colors">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-mono uppercase tracking-widest mb-4">Contact</div>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-start gap-2 text-white/60 text-sm"><i class="fas fa-map-marker-alt text-blue-400 mt-0.5 text-xs flex-shrink-0"></i> 33a Circuit Rd, Westmead, Durban, 3610</div>
+          <div class="flex items-center gap-2 text-white/60 text-sm"><i class="fas fa-phone text-blue-400 text-xs"></i> (+27) 031 700 4099</div>
+          <div class="flex items-center gap-2 text-white/60 text-sm"><i class="fas fa-envelope text-blue-400 text-xs"></i> info@corepipes.co.za</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+      <div class="text-white/30 text-xs font-mono">© 2026 Core Pipes and Fittings — All Rights Reserved</div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-mono text-white/20 uppercase tracking-widest">SABS</span>
+        <span class="text-white/20">·</span>
+        <span class="text-xs font-mono text-white/20 uppercase tracking-widest">SANS 966</span>
+        <span class="text-white/20">·</span>
+        <span class="text-xs font-mono text-white/20 uppercase tracking-widest">ISO Certified</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobile-nav');
+    const icon = document.getElementById('ham-icon');
+    if(nav.classList.contains('hidden')) {
+      nav.classList.remove('hidden');
+      icon.className = 'fas fa-times text-sm';
+    } else {
+      nav.classList.add('hidden');
+      icon.className = 'fas fa-bars text-sm';
+    }
+  }
+
+  function closeMNav() {
+    document.getElementById('mobile-nav').classList.add('hidden');
+    document.getElementById('ham-icon').className = 'fas fa-bars text-sm';
+  }
+
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if(window.scrollY > 30) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.addEventListener('click', function(e) {
+    const mobileNav = document.getElementById('mobile-nav');
+    const hamburger = document.getElementById('hamburger');
+    if(mobileNav && !mobileNav.classList.contains('hidden') &&
+       !mobileNav.contains(e.target) &&
+       !hamburger.contains(e.target)) {
+      mobileNav.classList.add('hidden');
+      document.getElementById('ham-icon').className = 'fas fa-bars text-sm';
+    }
+  });
+</script>
+
+</body>
+</html>

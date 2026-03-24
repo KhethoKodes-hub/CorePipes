@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact Us | Core Pipes & Fittings | Industrial Supply</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Bebas Neue', 'sans-serif'],
+            body: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --off-white: #f8fafc;
+      --blue-light: #dbeafe;
+      --blue-mid: #3b82f6;
+      --blue-deep: #1d4ed8;
+      --navy: #0f172a;
+      --navy-mid: #1e3a5f;
+      --navy-soft: #1e40af;
+      --red-accent: #dc2626;
+      --red-soft: #fee2e2;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --green: #059669;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--navy); overflow-x: hidden; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-deep); border-radius: 99px; }
+
+    /* ── PIPE DIVIDER ── */
+    .pipe-divider {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      margin: 0;
+      position: relative;
+    }
+    .pipe-divider-inner {
+      width: 100%;
+      height: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pipe-outer {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 40%, #e2e8f0 100%);
+      border-top: 2px solid #94a3b8;
+      border-bottom: 2px solid #94a3b8;
+    }
+    .pipe-inner {
+      position: absolute;
+      top: 4px; left: 0; right: 0; bottom: 4px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(203,213,225,0.6) 100%);
+    }
+    .pipe-shine {
+      position: absolute;
+      top: 3px; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), transparent);
+    }
+    .pipe-flow {
+      position: absolute;
+      top: 50%; left: -60%;
+      transform: translateY(-50%);
+      width: 40%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, rgba(59,130,246,0.6), rgba(29,78,216,0.4), transparent);
+      border-radius: 99px;
+      animation: pipeFlow 3s ease-in-out infinite;
+    }
+    @keyframes pipeFlow { 0%{left:-60%} 100%{left:110%} }
+    .pipe-joint {
+      flex-shrink: 0;
+      width: 30px;
+      height: 28px;
+      background: linear-gradient(135deg, #94a3b8, #64748b);
+      border-radius: 4px;
+      position: relative;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+    }
+    .pipe-joint::before {
+      content: '';
+      position: absolute;
+      top: 4px; left: 4px; right: 4px; bottom: 4px;
+      background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+      border-radius: 2px;
+    }
+    .pipe-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      background: white;
+      border: 1.5px solid var(--gray-200);
+      padding: 4px 18px;
+      border-radius: 99px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      z-index: 2;
+    }
+
+    /* ── GLASS EFFECTS ── */
+    .glass {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.85);
+    }
+    .glass-navy {
+      background: rgba(15,23,42,0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: all 0.4s ease;
+    }
+    #navbar.scrolled {
+      box-shadow: 0 4px 32px rgba(15,23,42,0.12);
+    }
+    .nav-inner {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(29,78,216,0.10);
+    }
+    .nav-link {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.25s;
+      letter-spacing: 0.01em;
+    }
+    .nav-link:hover { color: var(--blue-deep); background: rgba(29,78,216,0.06); }
+    .nav-link.active { color: var(--blue-deep); font-weight: 600; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      border-radius: 12px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 6px 24px rgba(29,78,216,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(29,78,216,0.5);
+      background: linear-gradient(135deg, #1e40af, var(--blue-mid));
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 30px;
+      background: white;
+      color: var(--blue-deep);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 2px solid rgba(29,78,216,0.25);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover {
+      border-color: var(--blue-deep);
+      background: rgba(29,78,216,0.04);
+      transform: translateY(-2px);
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      background: rgba(29,78,216,0.07);
+      border: 1px solid rgba(29,78,216,0.18);
+      padding: 6px 16px;
+      border-radius: 99px;
+    }
+
+    /* ── CARDS ── */
+    .contact-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 4px 20px rgba(15,23,42,0.06);
+    }
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(29,78,216,0.15);
+      border-color: rgba(59,130,246,0.3);
+    }
+
+    /* ── FORM STYLES ── */
+    .form-panel {
+      background: white;
+      border-radius: 24px;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(15,23,42,0.06);
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--navy);
+      background: var(--off-white);
+      outline: none;
+      transition: all 0.3s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--blue-deep);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(29,78,216,0.08);
+    }
+    .form-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 6px;
+      display: block;
+      letter-spacing: 0.03em;
+    }
+    .form-label .req {
+      color: var(--red-accent);
+    }
+
+    /* ── INFO CARD ── */
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .info-item:last-child { border-bottom: none; }
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    /* ── HERO SECTION ── */
+    .contact-hero {
+      min-height: 60vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg,
+        rgba(255,255,255,0.97) 0%,
+        rgba(248,250,252,0.92) 35%,
+        rgba(219,234,254,0.75) 65%,
+        rgba(29,78,216,0.35) 85%,
+        rgba(15,23,42,0.45) 100%);
+    }
+
+    /* ── STAT CARD ── */
+    .stat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(15,23,42,0.05);
+    }
+    .stat-card:hover {
+      border-color: rgba(59,130,246,0.35);
+      box-shadow: 0 8px 32px rgba(29,78,216,0.12);
+      transform: translateY(-4px);
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── FAQ ACCORDION ── */
+    .faq-item {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .faq-item:hover {
+      border-color: rgba(59,130,246,0.3);
+      box-shadow: 0 4px 20px rgba(29,78,216,0.08);
+    }
+    .faq-question {
+      padding: 18px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      transition: all 0.3s;
+    }
+    .faq-question:hover {
+      background: rgba(29,78,216,0.03);
+    }
+    .faq-chevron {
+      transition: transform 0.3s ease;
+      color: var(--blue-deep);
+    }
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 20px;
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 20px 20px;
+    }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── FLOATING CARD ── */
+    .float-card {
+      animation: floatY 6s ease-in-out infinite;
+    }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+    /* ── FORM SUCCESS ── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .form-success.show {
+      display: block;
+      animation: fadeIn 0.4s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .success-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #059669, #10b981);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+      box-shadow: 0 0 40px rgba(5,150,105,0.35);
+    }
+
+    /* ── REGIONAL OFFICE CARD ── */
+    .region-card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+    .region-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-mid));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .region-card:hover::after { transform: scaleX(1); }
+    .region-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(29,78,216,0.13);
+      border-color: rgba(59,130,246,0.3);
+    }
+
+    /* ── HOURS CARD ── */
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--gray-200);
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .open-badge {
+      background: rgba(5,150,105,0.1);
+      color: #059669;
+      padding: 2px 8px;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    @media (max-width: 768px) {
+      .stat-num { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-18">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));box-shadow:0 4px 14px rgba(29,78,216,0.35);">
+            <i class="fas fa-water text-white text-sm"></i>
+          </div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:0.06em;color:var(--navy);line-height:1;">
+              CORE<span style="color:var(--blue-deep);">PIPES</span>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--gray-400);text-transform:uppercase;line-height:1;">& Fittings</div>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">Our Story</a>
+          <a href="contact.html" class="nav-link active">Contact</a>
+        </div>
+
+        <!-- Right -->
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="btn-primary text-sm px-5 py-2.5 hidden lg:flex" style="padding:10px 22px;">
+            <i class="fas fa-arrow-left text-xs"></i> Back to Home
+          </a>
+          <button onclick="toggleMobileNav()" id="hamburger" class="lg:hidden w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-gray-500 hover:border-blue-300 hover:text-blue-700 transition-all">
+            <i class="fas fa-bars text-sm" id="ham-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile Nav -->
+  <div id="mobile-nav" class="hidden" style="background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray-200);">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
+      <a href="index.html" onclick="closeMNav();return false;" class="nav-link text-base">Home</a>
+      <a href="about.html" onclick="closeMNav();return false;" class="nav-link text-base">Our Story</a>
+      <a href="contact.html" onclick="closeMNav();return false;" class="nav-link text-base active">Contact</a>
+      <div class="pt-2 pb-1">
+        <a href="index.html" class="btn-primary w-full justify-center">
+          <i class="fas fa-arrow-left text-xs"></i> Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════════ HERO SECTION ═══════════════ -->
+<section class="contact-hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=90" alt="Industrial pipes and infrastructure">
+    <div class="hero-bg-overlay"></div>
+  </div>
+
+  <!-- Floating decorative elements -->
+  <div class="absolute right-0 top-0 w-1/3 h-full overflow-hidden hidden lg:block pointer-events-none" style="z-index:1;">
+    <div class="absolute right-20 top-32 w-48 h-48 float-card" style="animation-delay:0s;">
+      <div class="rounded-2xl overflow-hidden shadow-2xl">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="PVC pipes" class="w-full h-full object-cover">
+      </div>
+    </div>
+    <div class="absolute right-64 top-80 w-36 h-36 float-card" style="animation-delay:2s;">
+      <div class="rounded-2xl overflow-hidden shadow-2xl">
+        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=400&q=80" alt="Plumbing fittings" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-20 pt-32">
+    <div class="max-w-3xl">
+      <div class="section-label mb-6">
+        <i class="fas fa-clock text-xs"></i> Mon–Fri · 07:00–17:00 SAST
+      </div>
+      <h1 class="font-display text-6xl lg:text-7xl xl:text-8xl mb-5 leading-[0.92] tracking-wide">
+        LET'S <span style="background:linear-gradient(135deg, var(--blue-deep), var(--blue-mid), #60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">TALK</span><br>TRADE.
+      </h1>
+      <p class="text-gray-600 text-lg font-light leading-relaxed max-w-xl">
+        Whether it's a bulk quote, a technical question, or you're ready to open an account — our trade team responds within <strong class="text-blue-700">4 business hours</strong>.
+      </p>
+    </div>
+  </div>
+
+  <!-- Bottom Stats Bar -->
+  <div class="absolute bottom-0 left-0 right-0 z-10">
+    <div class="glass border-t border-white/60 py-4 px-4">
+      <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:divide-x divide-gray-300/50">
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">&lt;4<span style="color:var(--red-accent);">h</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Response Time</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">500<span style="color:var(--red-accent);">+</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Active Trade Accounts</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">24<span style="color:var(--red-accent);">/7</span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Online Portal Access</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="stat-num text-4xl" style="color:var(--blue-deep);">14<span style="color:var(--red-accent);"></span></div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-mono">Delivery Vehicles</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PIPE DIVIDER ═══════════════ -->
+<div style="padding:32px 0;background:var(--gray-100);">
+  <div class="max-w-7xl mx-auto px-4 relative">
+    <div class="pipe-divider">
+      <div class="pipe-joint"></div>
+      <div class="pipe-divider-inner flex-1">
+        <div class="pipe-outer"></div>
+        <div class="pipe-inner"></div>
+        <div class="pipe-shine"></div>
+        <div class="pipe-flow"></div>
+        <div class="pipe-label">Get in Touch</div>
+      </div>
+      <div class="pipe-joint"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ QUICK CONTACT CARDS ═══════════════ -->
+<section style="background:white;padding:80px 0 40px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+      <div class="contact-card p-6 text-center">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-phone text-white text-xl"></i>
+        </div>
+        <div class="font-mono text-xs text-blue-600 uppercase tracking-wider mb-2">Trade Hotline</div>
+        <div class="font-display text-2xl text-navy mb-2">(+27) 031 700 4099</div>
+        <div class="text-gray-500 text-sm mb-3">Direct line to our trade desk. No queues, no bots.</div>
+        <a href="tel:+27317004099" class="inline-flex items-center gap-2 text-blue-600 text-sm font-semibold hover:gap-3 transition-all">
+          Call Now <i class="fas fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+      <div class="contact-card p-6 text-center">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-envelope text-white text-xl"></i>
+        </div>
+        <div class="font-mono text-xs text-blue-600 uppercase tracking-wider mb-2">Email</div>
+        <div class="font-display text-xl text-navy mb-2">info@corepipes.co.za</div>
+        <div class="text-gray-500 text-sm mb-3">Responses within 4 business hours guaranteed.</div>
+        <a href="mailto:info@corepipes.co.za" class="inline-flex items-center gap-2 text-blue-600 text-sm font-semibold hover:gap-3 transition-all">
+          Send Email <i class="fas fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+      <div class="contact-card p-6 text-center">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fab fa-whatsapp text-white text-xl"></i>
+        </div>
+        <div class="font-mono text-xs text-blue-600 uppercase tracking-wider mb-2">WhatsApp Trade</div>
+        <div class="font-display text-xl text-navy mb-2">+27 82 555 0101</div>
+        <div class="text-gray-500 text-sm mb-3">Send specs, photos, or cut lists directly to our team.</div>
+        <a href="https://wa.me/27825550101" class="inline-flex items-center gap-2 text-blue-600 text-sm font-semibold hover:gap-3 transition-all">
+          Open Chat <i class="fas fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+      <div class="contact-card p-6 text-center">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          <i class="fas fa-map-marker-alt text-white text-xl"></i>
+        </div>
+        <div class="font-mono text-xs text-blue-600 uppercase tracking-wider mb-2">Head Office</div>
+        <div class="font-display text-base text-navy mb-2">33a Circuit Rd, Westmead, Durban</div>
+        <div class="text-gray-500 text-sm mb-3">Collection available Mon–Fri. Call ahead to arrange.</div>
+        <a href="https://maps.google.com" class="inline-flex items-center gap-2 text-blue-600 text-sm font-semibold hover:gap-3 transition-all">
+          Get Directions <i class="fas fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PIPE DIVIDER ═══════════════ -->
+<div style="padding:32px 0;background:var(--gray-100);">
+  <div class="max-w-7xl mx-auto px-4 relative">
+    <div class="pipe-divider">
+      <div class="pipe-joint"></div>
+      <div class="pipe-divider-inner flex-1">
+        <div class="pipe-outer"></div>
+        <div class="pipe-inner"></div>
+        <div class="pipe-shine"></div>
+        <div class="pipe-flow" style="animation-delay:1s;"></div>
+        <div class="pipe-label">Send a Message</div>
+      </div>
+      <div class="pipe-joint"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CONTACT FORM & INFO ═══════════════ -->
+<section style="background:var(--off-white);padding:40px 0 80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-8">
+
+      <!-- Contact Form -->
+      <div class="form-panel reveal">
+        <div class="p-6 md:p-8">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <div class="section-label mb-3"><i class="fas fa-comment-dots text-xs"></i> Enquiry Form</div>
+              <h3 class="font-display text-3xl text-navy">Send a Message</h3>
+            </div>
+            <div class="flex items-center gap-2 px-3 py-2 rounded-full" style="background:rgba(5,150,105,0.1);">
+              <i class="fas fa-circle text-green-500 text-xs"></i>
+              <span class="text-xs font-mono text-gray-600">Avg. response &lt; 4hrs</span>
+            </div>
+          </div>
+
+          <div id="form-content">
+            <form id="contact-form">
+              <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label class="form-label">Full Name <span class="req">*</span></label>
+                  <input type="text" class="form-input" placeholder="Your name" id="fullname">
+                </div>
+                <div>
+                  <label class="form-label">Company Name</label>
+                  <input type="text" class="form-input" placeholder="Your company" id="company">
+                </div>
+              </div>
+              <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label class="form-label">Email <span class="req">*</span></label>
+                  <input type="email" class="form-input" placeholder="you@company.co.za" id="email">
+                </div>
+                <div>
+                  <label class="form-label">Phone</label>
+                  <input type="tel" class="form-input" placeholder="+27 31 700 4099" id="phone">
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="form-label">Enquiry Type <span class="req">*</span></label>
+                <select class="form-select" id="enquiry-type">
+                  <option value="">Select a topic...</option>
+                  <option>General Enquiry</option>
+                  <option>Request a Quote</option>
+                  <option>Trade Account Application</option>
+                  <option>Technical Support</option>
+                  <option>Order Status</option>
+                  <option>Product Availability</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <label class="form-label">Message <span class="req">*</span></label>
+                <textarea class="form-textarea" rows="5" placeholder="Tell us how we can help..." id="message"></textarea>
+              </div>
+              <button type="button" onclick="submitContactForm()" class="btn-primary w-full justify-center">
+                <i class="fas fa-paper-plane text-xs"></i> Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Success State -->
+          <div id="form-success" class="form-success">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <div class="font-display text-2xl text-navy mb-2">Message Sent!</div>
+            <p class="text-gray-500 mb-4">
+              Thank you — your enquiry has been received.<br>
+              A member of our trade team will be in touch within <strong class="text-blue-600">4 business hours.</strong>
+            </p>
+            <button onclick="resetContactForm()" class="btn-outline">
+              <i class="fas fa-redo text-xs"></i> Send Another
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Info Sidebar -->
+      <div class="reveal">
+        <div class="form-panel mb-6">
+          <div class="p-6 md:p-8">
+            <h3 class="font-display text-2xl text-navy mb-4">Visit Us</h3>
+            <div class="rounded-xl overflow-hidden mb-6 h-48">
+              <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80" alt="Office location" class="w-full h-full object-cover">
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <div class="font-semibold text-navy">Head Office</div>
+                <div class="text-gray-500 text-sm">33a Circuit Rd, Westmead, Durban, 3610</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <div class="font-semibold text-navy">Trade Hotline</div>
+                <div class="text-gray-500 text-sm">(+27) 031 700 4099</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <div class="font-semibold text-navy">Email</div>
+                <div class="text-gray-500 text-sm">info@corepipes.co.za</div>
+                <div class="text-gray-500 text-sm">sales@corepipes.co.za</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trading Hours -->
+        <div class="form-panel">
+          <div class="p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <i class="fas fa-clock text-blue-600 text-xl"></i>
+              <h3 class="font-display text-2xl text-navy">Trading Hours</h3>
+            </div>
+            <div class="hours-row">
+              <span class="text-gray-600">Monday – Thursday</span>
+              <span class="font-semibold text-navy">07:00 – 17:00 <span class="open-badge">Open</span></span>
+            </div>
+            <div class="hours-row">
+              <span class="text-gray-600">Friday</span>
+              <span class="font-semibold text-navy">07:00 – 16:00</span>
+            </div>
+            <div class="hours-row">
+              <span class="text-gray-600">Saturday</span>
+              <span class="font-semibold text-navy">08:00 – 12:00</span>
+            </div>
+            <div class="hours-row">
+              <span class="text-gray-600">Sunday</span>
+              <span class="text-gray-400">Closed</span>
+            </div>
+            <div class="hours-row">
+              <span class="text-gray-600">Public Holidays</span>
+              <span class="text-gray-400">Closed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PIPE DIVIDER ═══════════════ -->
+<div style="padding:32px 0;background:var(--gray-100);">
+  <div class="max-w-7xl mx-auto px-4 relative">
+    <div class="pipe-divider">
+      <div class="pipe-joint"></div>
+      <div class="pipe-divider-inner flex-1">
+        <div class="pipe-outer"></div>
+        <div class="pipe-inner"></div>
+        <div class="pipe-shine"></div>
+        <div class="pipe-flow" style="animation-delay:2s;"></div>
+        <div class="pipe-label">Regional Offices</div>
+      </div>
+      <div class="pipe-joint"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ REGIONAL OFFICES ═══════════════ -->
+<section style="background:white;padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <div class="section-label mx-auto mb-4"><i class="fas fa-map text-xs"></i> Nationwide Presence</div>
+      <h2 class="font-display text-5xl lg:text-6xl" style="color:var(--navy);">REGIONAL<br><span style="color:var(--blue-deep);">COVERAGE</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+      <div class="region-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-building text-white text-sm"></i>
+          </div>
+          <div>
+            <div class="font-display text-2xl text-navy">Head Office</div>
+            <div class="text-xs text-gray-500 font-mono">National Distribution Hub</div>
+          </div>
+        </div>
+        <p class="text-gray-600 text-sm mb-3"><strong>Germiston, Gauteng</strong><br>14 Industrial Road, Germiston, 1401</p>
+        <p class="text-gray-600 text-sm"><i class="fas fa-phone text-blue-600 text-xs mr-2"></i> +27 11 555 0100<br><i class="fas fa-envelope text-blue-600 text-xs mr-2"></i> trade@corepipes.co.za</p>
+      </div>
+      <div class="region-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-water text-white text-sm"></i>
+          </div>
+          <div>
+            <div class="font-display text-2xl text-navy">Western Cape</div>
+            <div class="text-xs text-gray-500 font-mono">Regional Hub</div>
+          </div>
+        </div>
+        <p class="text-gray-600 text-sm mb-3"><strong>Cape Town</strong><br>7 Trade Park Drive, Blackheath, 7580</p>
+        <p class="text-gray-600 text-sm"><i class="fas fa-phone text-blue-600 text-xs mr-2"></i> +27 21 555 0200<br><i class="fas fa-envelope text-blue-600 text-xs mr-2"></i> capetown@corepipes.co.za</p>
+      </div>
+      <div class="region-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <i class="fas fa-road text-white text-sm"></i>
+          </div>
+          <div>
+            <div class="font-display text-2xl text-navy">KwaZulu-Natal</div>
+            <div class="text-xs text-gray-500 font-mono">Regional Hub</div>
+          </div>
+        </div>
+        <p class="text-gray-600 text-sm mb-3"><strong>Durban</strong><br>22 Prospecton Industrial, Durban, 4133</p>
+        <p class="text-gray-600 text-sm"><i class="fas fa-phone text-blue-600 text-xs mr-2"></i> +27 31 555 0300<br><i class="fas fa-envelope text-blue-600 text-xs mr-2"></i> durban@corepipes.co.za</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PIPE DIVIDER ═══════════════ -->
+<div style="padding:32px 0;background:var(--gray-100);">
+  <div class="max-w-7xl mx-auto px-4 relative">
+    <div class="pipe-divider">
+      <div class="pipe-joint"></div>
+      <div class="pipe-divider-inner flex-1">
+        <div class="pipe-outer"></div>
+        <div class="pipe-inner"></div>
+        <div class="pipe-shine"></div>
+        <div class="pipe-flow" style="animation-delay:0.5s;"></div>
+        <div class="pipe-label">FAQs</div>
+      </div>
+      <div class="pipe-joint"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ FAQ SECTION ═══════════════ -->
+<section style="background:var(--off-white);padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <div class="section-label mx-auto mb-4"><i class="fas fa-question-circle text-xs"></i> Common Questions</div>
+      <h2 class="font-display text-5xl lg:text-6xl" style="color:var(--navy);">FREQUENTLY<br><span style="color:var(--blue-deep);">ASKED</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4 reveal">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How long does it take to open a trade account?</span>
+          <i class="fas fa-chevron-down faq-chevron"></i>
+        </div>
+        <div class="faq-answer">Verified applications are typically approved within <strong>1 business day</strong>. You'll need your CIPC registration, a copy of your ID, and a bank confirmation letter. Credit accounts may take 2–3 days pending credit checks.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What is your minimum order quantity?</span>
+          <i class="fas fa-chevron-down faq-chevron"></i>
+        </div>
+        <div class="faq-answer">MOQs vary by product. Standard fittings have no minimum. Pipe lengths typically start at <strong>20 units per size</strong> for wholesale pricing. Full-pallet orders attract the best rates. Contact us for a project-specific BOM.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Do you deliver outside KwaZulu-Natal?</span>
+          <i class="fas fa-chevron-down faq-chevron"></i>
+        </div>
+        <div class="faq-answer">Yes. We deliver nationally through our <strong>Cape Town and Gauteng hubs</strong>, and use national courier partners for fittings and sundries. Delivery lead times vary by region — typically 1–3 business days outside metro areas.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I get custom pipe lengths cut to spec?</span>
+          <i class="fas fa-chevron-down faq-chevron"></i>
+        </div>
+        <div class="faq-answer">Absolutely. Our <strong>custom cutting service</strong> is available to all trade account holders. Submit a cut list via email or through the portal. Orders placed before 10:00 are cut and dispatched the same day.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What payment methods do you accept?</span>
+          <i class="fas fa-chevron-down faq-chevron"></i>
+        </div>
+        <div class="faq-answer">We accept <strong>EFT, credit card, and account payments</strong> (for approved credit accounts). COD is available for standard orders. All invoices are issued immediately on dispatch with 30/60-day terms for qualifying accounts.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What is your returns policy?</span>
+          <i class="fas fa-chevron-down faq-chevron"></i>
+        </div>
+        <div class="faq-answer">Unused, unopened stock can be returned within <strong>30 days</strong> of delivery. We arrange collection at no charge for orders over R2,500. Credit notes are processed within 48 hours. Defective stock is handled under manufacturer warranty.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section style="background:var(--navy);padding:80px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="rounded-3xl overflow-hidden relative" style="background:linear-gradient(135deg, var(--blue-deep), var(--blue-mid));">
+      <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M30 0 L60 30 L30 60 L0 30 Z" fill="white" opacity="0.2"/%3E%3C/svg%3E'); background-size: 30px 30px;"></div>
+      <div class="relative z-10 py-12 md:py-16 px-8 md:px-12 text-center">
+        <div class="section-label bg-white/10 border-white/20 text-white mb-4 inline-flex">Ready to Partner</div>
+        <h3 class="font-display text-4xl md:text-5xl text-white mb-3">Open a Trade Account</h3>
+        <p class="text-white/80 text-base max-w-md mx-auto mb-8">Join 500+ contractors — live stock, bulk pricing, same-day dispatch.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="index.html" class="btn-primary bg-white text-blue-deep hover:bg-gray-100" style="background:white;color:var(--blue-deep);box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+            <i class="fas fa-sign-in-alt text-xs"></i> Access Portal
+          </a>
+          <a href="tel:+27317004099" class="btn-outline bg-transparent border-white/30 text-white hover:bg-white/10 hover:border-white/50">
+            <i class="fas fa-phone text-xs"></i> Call Trade Desk
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer style="background:var(--navy);padding:48px 0 24px;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+          </div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:white;line-height:1;">CORE<span style="color:#60a5fa;">PIPES</span></div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;">& Fittings</div>
+          </div>
+        </div>
+        <p class="text-white/50 text-sm leading-relaxed mb-5 max-w-xs">Install it once. Rely on it forever. Premium industrial PVC systems for South Africa's infrastructure.</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);"><i class="fab fa-facebook text-xs"></i></a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);"><i class="fab fa-linkedin text-xs"></i></a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);"><i class="fab fa-whatsapp text-xs"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-mono uppercase tracking-widest mb-4">Navigate</div>
+        <div class="flex flex-col gap-2">
+          <a href="index.html" class="text-white/60 hover:text-white text-sm transition-colors">Home</a>
+          <a href="about.html" class="text-white/60 hover:text-white text-sm transition-colors">Our Story</a>
+          <a href="index.html#catalogue" class="text-white/60 hover:text-white text-sm transition-colors">Catalogue</a>
+          <a href="index.html#tech-specs" class="text-white/60 hover:text-white text-sm transition-colors">Tech Specs</a>
+          <a href="contact.html" class="text-white/60 hover:text-white text-sm transition-colors">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-mono uppercase tracking-widest mb-4">Contact</div>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-start gap-2 text-white/60 text-sm"><i class="fas fa-map-marker-alt text-blue-400 mt-0.5 text-xs flex-shrink-0"></i> 33a Circuit Rd, Westmead, Durban, 3610</div>
+          <div class="flex items-center gap-2 text-white/60 text-sm"><i class="fas fa-phone text-blue-400 text-xs"></i> (+27) 031 700 4099</div>
+          <div class="flex items-center gap-2 text-white/60 text-sm"><i class="fas fa-envelope text-blue-400 text-xs"></i> info@corepipes.co.za</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+      <div class="text-white/30 text-xs font-mono">© 2026 Core Pipes and Fittings — All Rights Reserved</div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-mono text-white/20 uppercase tracking-widest">SABS</span>
+        <span class="text-white/20">·</span>
+        <span class="text-xs font-mono text-white/20 uppercase tracking-widest">SANS 966</span>
+        <span class="text-white/20">·</span>
+        <span class="text-xs font-mono text-white/20 uppercase tracking-widest">ISO Certified</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile navigation
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobile-nav');
+    const icon = document.getElementById('ham-icon');
+    if(nav.classList.contains('hidden')) {
+      nav.classList.remove('hidden');
+      icon.className = 'fas fa-times text-sm';
+    } else {
+      nav.classList.add('hidden');
+      icon.className = 'fas fa-bars text-sm';
+    }
+  }
+  
+  function closeMNav() {
+    document.getElementById('mobile-nav').classList.add('hidden');
+    document.getElementById('ham-icon').className = 'fas fa-bars text-sm';
+  }
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if(window.scrollY > 30) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  // Scroll reveal animation
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  
+  // Close mobile nav on click outside
+  document.addEventListener('click', function(e) {
+    const mobileNav = document.getElementById('mobile-nav');
+    const hamburger = document.getElementById('hamburger');
+    if(mobileNav && !mobileNav.classList.contains('hidden') && 
+       !mobileNav.contains(e.target) && 
+       !hamburger.contains(e.target)) {
+      mobileNav.classList.add('hidden');
+      document.getElementById('ham-icon').className = 'fas fa-bars text-sm';
+    }
+  });
+
+  // FAQ Accordion
+  function toggleFaq(element) {
+    const item = element.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    // Toggle clicked
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Form submission
+  function submitContactForm() {
+    const fullname = document.getElementById('fullname')?.value;
+    const email = document.getElementById('email')?.value;
+    const message = document.getElementById('message')?.value;
+    
+    if (!fullname || !email || !message) {
+      alert('Please fill in all required fields (*)');
+      return;
+    }
+    
+    document.getElementById('form-content').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+  }
+  
+  function resetContactForm() {
+    document.getElementById('form-content').style.display = 'block';
+    document.getElementById('form-success').classList.remove('show');
+    document.getElementById('contact-form')?.reset();
+  }
+
+  // Auto-detect open status for trading hours
+  (function markOpenStatus() {
+    const now = new Date();
+    const day = now.getDay();
+    const hour = now.getHours() + now.getMinutes() / 60;
+    let isOpen = false;
+    if (day >= 1 && day <= 4 && hour >= 7 && hour < 17) isOpen = true;
+    if (day === 5 && hour >= 7 && hour < 16) isOpen = true;
+    if (day === 6 && hour >= 8 && hour < 12) isOpen = true;
+    
+    const badge = document.querySelector('.open-badge');
+    if (badge && !isOpen) {
+      badge.textContent = 'Closed';
+      badge.style.background = 'rgba(220,38,38,0.1)';
+      badge.style.color = '#dc2626';
+    }
+  })();
+</script>
+
+</body>
+</html>

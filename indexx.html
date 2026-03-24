@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PipeForce Industrial — Premium Pipe Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════════════════
+   ROOT & RESET
+════════════════════════════════════════════════════ */
+:root {
+  --ore:   #f97316;
+  --ore-d: #c2410c;
+  --ore-x: #7c2d12;
+  --steel: #1c2b3a;
+  --steel2:#0f1e2b;
+  --rust:  #b45309;
+  --paper: #fdfaf6;
+  --warm:  #fff8f0;
+  --mist:  rgba(249,115,22,.09);
+  --ink:   #0b0806;
+  --T3:    #64748b;
+  --T4:    #94a3b8;
+  --s1: 0 2px 8px rgba(11,8,6,.08), 0 1px 3px rgba(11,8,6,.06);
+  --s2: 0 6px 24px rgba(11,8,6,.12), 0 2px 6px rgba(11,8,6,.07);
+  --s3: 0 16px 52px rgba(11,8,6,.18), 0 4px 12px rgba(11,8,6,.08);
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── Custom cursor ── */
+#cur {
+  position: fixed; top: 0; left: 0;
+  width: 10px; height: 10px;
+  background: var(--ore);
+  border-radius: 50%;
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: width .28s var(--ease), height .28s var(--ease), background .28s;
+  mix-blend-mode: multiply;
+}
+#cur.big {
+  width: 46px; height: 46px;
+  background: rgba(249,115,22,.14);
+  border: 1.5px solid var(--ore);
+}
+::selection { background: rgba(249,115,22,.22); }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--warm); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--ore), var(--rust)); border-radius: 99px; }
+
+/* ════════════════════════════════════════════════════
+   HEADER
+════════════════════════════════════════════════════ */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 800;
+  transition: background .45s, box-shadow .45s;
+}
+header.scrolled {
+  background: rgba(11,8,6,.92);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(249,115,22,.2), 0 4px 24px rgba(0,0,0,.3);
+}
+.hdr-inner {
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 36px; height: 76px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+/* Logo */
+.logo-wrap { display: flex; align-items: center; gap: 14px; text-decoration: none; cursor: pointer; }
+.logo-pipe {
+  width: 48px; height: 48px; position: relative; flex-shrink: 0;
+}
+.logo-pipe svg { width: 100%; height: 100%; }
+.logo-text { display: flex; flex-direction: column; }
+.logo-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.55rem; color: white; letter-spacing: .08em; line-height: 1;
+}
+.logo-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .68rem; font-weight: 600;
+  color: var(--ore); letter-spacing: .18em; text-transform: uppercase;
+}
+
+/* Nav */
+nav { display: flex; align-items: center; gap: 4px; }
+nav a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .82rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.72);
+  text-decoration: none; padding: 8px 14px; border-radius: 6px;
+  transition: color .2s, background .2s; position: relative;
+}
+nav a::after {
+  content: ''; position: absolute;
+  bottom: 4px; left: 14px; right: 14px;
+  height: 1.5px; background: var(--ore);
+  transform: scaleX(0); transition: transform .28s var(--ease);
+}
+nav a:hover { color: white; background: rgba(249,115,22,.1); }
+nav a:hover::after { transform: scaleX(1); }
+
+/* Header CTAs */
+.hdr-btns { display: flex; gap: 10px; align-items: center; }
+.btn-ghost-hdr {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  background: transparent; color: white;
+  border: 1.5px solid rgba(255,255,255,.28); border-radius: 6px;
+  padding: 9px 20px; cursor: pointer; transition: all .28s;
+}
+.btn-ghost-hdr:hover { background: rgba(255,255,255,.1); border-color: white; }
+.btn-ore-hdr {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  background: var(--ore); color: white; border: none;
+  border-radius: 6px; padding: 9px 22px; cursor: pointer;
+  transition: all .28s var(--ease);
+  box-shadow: 0 4px 16px rgba(249,115,22,.4);
+}
+.btn-ore-hdr:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,115,22,.5); }
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+.menu-toggle svg { width: 24px; height: 24px; stroke: white; }
+
+/* ════════════════════════════════════════════════════
+   HERO CAROUSEL
+════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  width: 100%; height: 100vh; min-height: 640px;
+  overflow: hidden;
+}
+
+/* ── Slides ── */
+.hero-slides {
+  position: absolute; inset: 0;
+  display: flex;
+  transition: none; /* JS handles this */
+}
+.hero-slide {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity .9s var(--ease);
+  pointer-events: none;
+}
+.hero-slide.active { opacity: 1; pointer-events: all; }
+
+/* Slide backgrounds */
+.slide-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transform: scale(1.06);
+  transition: transform 6s linear;
+}
+.hero-slide.active .slide-bg { transform: scale(1); }
+
+/* Different overlay per slide */
+.slide-overlay-1 { position:absolute;inset:0;background:linear-gradient(110deg,rgba(11,8,6,.88) 0%,rgba(11,8,6,.65) 50%,rgba(196,65,12,.3) 100%); }
+.slide-overlay-2 { position:absolute;inset:0;background:linear-gradient(250deg,rgba(11,8,6,.9) 0%,rgba(11,8,6,.55) 50%,rgba(28,43,58,.6) 100%); }
+.slide-overlay-3 { position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,8,6,.75) 0%,rgba(124,45,18,.4) 50%,rgba(11,8,6,.9) 100%); }
+.slide-overlay-4 { position:absolute;inset:0;background:linear-gradient(140deg,rgba(28,43,58,.92) 0%,rgba(11,8,6,.6) 50%,rgba(249,115,22,.25) 100%); }
+
+/* Film-grain on each slide */
+.slide-grain {
+  position: absolute; inset: 0; opacity: .04; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px; animation: grain 1.4s steps(2) infinite;
+}
+@keyframes grain {
+  0%  { transform:translate(0,0); }
+  25% { transform:translate(-3px,2px); }
+  50% { transform:translate(2px,-3px); }
+  75% { transform:translate(-2px,3px); }
+  100%{ transform:translate(3px,-2px); }
+}
+
+/* ── Slide content ── */
+.slide-content {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 80px; padding-top: 76px;
+  max-width: 1400px; margin: 0 auto; left: 0; right: 0;
+}
+.slide-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 9rem; line-height: 1;
+  color: rgba(255,255,255,.04);
+  position: absolute; right: 80px; bottom: 80px;
+  letter-spacing: -.02em;
+  pointer-events: none; user-select: none;
+}
+.slide-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(249,115,22,.18); border: 1px solid rgba(249,115,22,.45);
+  border-radius: 4px; padding: 5px 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ore); margin-bottom: 20px; width: fit-content;
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .6s .2s var(--ease), transform .6s .2s var(--ease);
+}
+.slide-tag svg { width: 8px; height: 8px; fill: var(--ore); }
+.hero-slide.active .slide-tag { opacity: 1; transform: translateY(0); }
+
+.slide-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 8.5vw, 7.5rem);
+  line-height: .95; letter-spacing: .02em;
+  color: white; max-width: 720px;
+  margin-bottom: 18px;
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s .35s var(--ease), transform .7s .35s var(--ease);
+}
+.slide-headline .ore { color: var(--ore); }
+.slide-headline .stroke {
+  -webkit-text-stroke: 2px white;
+  color: transparent;
+}
+.hero-slide.active .slide-headline { opacity: 1; transform: translateY(0); }
+
+.slide-sub {
+  font-size: .98rem; color: rgba(255,255,255,.65);
+  line-height: 1.8; max-width: 480px;
+  margin-bottom: 36px; font-weight: 400;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .65s .5s var(--ease), transform .65s .5s var(--ease);
+}
+.hero-slide.active .slide-sub { opacity: 1; transform: translateY(0); }
+
+/* ── HERO BUTTONS — Highly visible ── */
+.slide-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .65s .62s var(--ease), transform .65s .62s var(--ease);
+}
+.hero-slide.active .slide-btns { opacity: 1; transform: translateY(0); }
+
+.btn-hero-primary {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .95rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  background: var(--ore); color: white;
+  border: 2.5px solid var(--ore); border-radius: 6px;
+  padding: 15px 36px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all .3s var(--ease);
+  box-shadow: 0 6px 28px rgba(249,115,22,.55), 0 0 0 4px rgba(249,115,22,.15);
+  position: relative; overflow: hidden;
+  text-decoration: none;
+}
+.btn-hero-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.2), transparent);
+  opacity: 0; transition: opacity .3s;
+}
+.btn-hero-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 40px rgba(249,115,22,.65), 0 0 0 6px rgba(249,115,22,.2); }
+.btn-hero-primary:hover::before { opacity: 1; }
+.btn-hero-primary svg { width: 18px; height: 18px; }
+
+.btn-hero-secondary {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .95rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 2.5px solid rgba(255,255,255,.55); border-radius: 6px;
+  padding: 15px 36px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all .3s var(--ease); text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.15);
+}
+.btn-hero-secondary:hover {
+  background: rgba(255,255,255,.18);
+  border-color: white; transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.btn-hero-secondary svg { width: 18px; height: 18px; }
+
+/* ── Slide stats strip ── */
+.slide-stats {
+  display: flex; gap: 32px; margin-top: 44px;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .65s .75s var(--ease), transform .65s .75s var(--ease);
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding-top: 28px;
+}
+.hero-slide.active .slide-stats { opacity: 1; transform: translateY(0); }
+.sstat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem; color: white; line-height: 1; letter-spacing: .04em;
+}
+.sstat-val span { color: var(--ore); }
+.sstat-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .7rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(255,255,255,.45); margin-top: 4px;
+}
+
+/* ── Carousel controls ── */
+.hero-arrows {
+  position: absolute; bottom: 40px; right: 80px;
+  z-index: 10; display: flex; gap: 10px;
+}
+.hero-arr {
+  width: 48px; height: 48px; border-radius: 4px;
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255,255,255,.22);
+  color: white; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .25s;
+}
+.hero-arr svg { width: 18px; height: 18px; }
+.hero-arr:hover { background: var(--ore); border-color: var(--ore); transform: scale(1.08); }
+
+/* Slide progress dots */
+.hero-dots {
+  position: absolute; bottom: 52px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; display: flex; gap: 8px; align-items: center;
+}
+.hero-dot {
+  position: relative; cursor: pointer;
+  width: 30px; height: 3px; border-radius: 2px;
+  background: rgba(255,255,255,.28); overflow: hidden;
+  transition: width .3s var(--ease);
+}
+.hero-dot.active { width: 56px; background: rgba(255,255,255,.22); }
+.hero-dot-fill {
+  position: absolute; top: 0; left: 0; height: 100%;
+  background: var(--ore); border-radius: 2px;
+  width: 0%; transition: width 5s linear;
+}
+.hero-dot.active .hero-dot-fill { width: 100%; }
+
+/* Scroll cue */
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 80px;
+  z-index: 10; display: flex; align-items: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .68rem; font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(255,255,255,.4);
+}
+.scroll-line {
+  width: 42px; height: 1px;
+  background: linear-gradient(90deg, rgba(249,115,22,.8), transparent);
+  animation: scLine 2s ease-in-out infinite;
+}
+@keyframes scLine {
+  0%,100%{ width:42px; opacity:1; }
+  50%{ width:18px; opacity:.4; }
+}
+
+/* ════════════════════════════════════════════════════
+   PIPE DIVIDER SYSTEM
+   — SVG pipe illustration as section separators
+════════════════════════════════════════════════════ */
+.pipe-divider {
+  width: 100%; overflow: visible;
+  position: relative; z-index: 2;
+  /* negative margin to eliminate gap */
+  margin: -2px 0;
+}
+.pipe-divider svg { display: block; width: 100%; }
+
+/* Pipe color variations */
+.pipe-divider.variant-1 { filter: drop-shadow(0 4px 12px rgba(249,115,22,.18)); }
+.pipe-divider.variant-2 { filter: drop-shadow(0 4px 12px rgba(28,43,58,.3)); }
+.pipe-divider.variant-3 { filter: drop-shadow(0 4px 16px rgba(124,45,18,.25)); }
+.pipe-divider.variant-4 { filter: drop-shadow(0 6px 20px rgba(249,115,22,.22)); }
+
+/* ── Animated pipe flow ── */
+.pipe-flow {
+  stroke-dasharray: 14 8;
+  animation: pipeFlow 1.8s linear infinite;
+}
+@keyframes pipeFlow {
+  to { stroke-dashoffset: -44; }
+}
+.pipe-flow-slow {
+  stroke-dasharray: 10 14;
+  animation: pipeFlow 2.8s linear infinite reverse;
+}
+
+/* ════════════════════════════════════════════════════
+   SECTION BASE
+════════════════════════════════════════════════════ */
+.sec {
+  max-width: 1400px; margin: 0 auto;
+  padding: 80px 36px;
+}
+.sec-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(249,115,22,.08); border: 1px solid rgba(249,115,22,.22);
+  border-radius: 4px; padding: 5px 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ore); margin-bottom: 18px;
+}
+.sec-label svg { width: 8px; height: 8px; fill: var(--ore); }
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1; letter-spacing: .04em; color: var(--ink);
+  margin-bottom: 14px;
+}
+.sec-sub { font-size: .95rem; color: var(--T3); line-height: 1.8; max-width: 540px; }
+
+/* ════════════════════════════════════════════════════
+   PRODUCTS SECTION
+════════════════════════════════════════════════════ */
+.products-bg {
+  background: linear-gradient(160deg, var(--warm) 0%, var(--paper) 50%, #f0f4f8 100%);
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px; margin-top: 48px;
+}
+.prod-card {
+  background: white; border-radius: 12px;
+  border: 1.5px solid rgba(249,115,22,.08);
+  overflow: hidden; position: relative;
+  transition: transform .38s var(--ease), box-shadow .38s var(--ease), border-color .3s;
+  box-shadow: var(--s1); cursor: pointer;
+}
+.prod-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--s3);
+  border-color: rgba(249,115,22,.28);
+}
+.prod-img-wrap {
+  height: 200px; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #f8f3eb, #f0ede8);
+}
+.prod-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .6s var(--ease), filter .4s;
+  filter: brightness(.9) saturate(.85);
+}
+.prod-card:hover .prod-img-wrap img {
+  transform: scale(1.07);
+  filter: brightness(1.02) saturate(1.1);
+}
+/* 360 ring on card hover */
+.prod-img-wrap::before {
+  content: ''; position: absolute; inset: -3px;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(249,115,22,.7) 20%, transparent 45%, rgba(200,130,50,.5) 65%, transparent 85%, transparent 100%);
+  opacity: 0; z-index: 3; pointer-events: none;
+  animation: ringRot 2s linear infinite paused;
+  mask: linear-gradient(#fff,#fff) content-box, linear-gradient(#fff,#fff);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff,#fff) content-box, linear-gradient(#fff,#fff);
+  -webkit-mask-composite: destination-out;
+  padding: 3px; border-radius: 12px 12px 0 0;
+  transition: opacity .35s;
+}
+.prod-card:hover .prod-img-wrap::before { opacity: 1; animation-play-state: running; }
+@keyframes ringRot { to { transform: rotate(360deg); } }
+
+.prod-badge {
+  position: absolute; top: 10px; left: 10px; z-index: 4;
+  background: var(--ore); color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .64rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 3px;
+}
+.prod-overlay {
+  position: absolute; inset: 0; z-index: 4;
+  background: linear-gradient(to top, rgba(11,8,6,.75) 0%, transparent 55%);
+  opacity: 0; transition: opacity .32s;
+  display: flex; align-items: flex-end; padding: 12px; gap: 8px;
+}
+.prod-card:hover .prod-overlay { opacity: 1; }
+.btn-sm-ore {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  background: var(--ore); color: white; border: none; border-radius: 4px;
+  padding: 7px 14px; cursor: pointer; flex: 1; transition: all .22s;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.btn-sm-ore svg { width: 12px; height: 12px; }
+.btn-sm-ore:hover { background: #ea580c; transform: scale(1.03); }
+.btn-sm-ghost {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  background: rgba(255,255,255,.14); backdrop-filter: blur(8px);
+  color: white; border: 1px solid rgba(255,255,255,.3); border-radius: 4px;
+  padding: 7px 12px; cursor: pointer; transition: all .22s;
+  display: flex; align-items: center; gap: 5px;
+}
+.btn-sm-ghost svg { width: 12px; height: 12px; }
+.btn-sm-ghost:hover { background: rgba(255,255,255,.24); }
+.prod-body { padding: 16px; }
+.prod-cat {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .66rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ore); margin-bottom: 5px;
+}
+.prod-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem; font-weight: 700; color: var(--ink);
+  line-height: 1.2; margin-bottom: 6px;
+}
+.prod-spec {
+  font-size: .78rem; color: var(--T3); margin-bottom: 13px; line-height: 1.5;
+}
+.prod-foot { display: flex; justify-content: space-between; align-items: center; }
+.prod-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; color: var(--ink); letter-spacing: .04em;
+}
+.prod-price small { font-size: .7rem; color: var(--T4); font-family: 'DM Sans', sans-serif; text-decoration: line-through; margin-right: 4px; }
+.prod-rating { font-size: .72rem; color: var(--rust); font-weight: 600; display: flex; align-items: center; gap: 3px; }
+.prod-rating svg { width: 12px; height: 12px; fill: #f59e0b; }
+
+/* ════════════════════════════════════════════════════
+   WHY US — DARK PANEL
+════════════════════════════════════════════════════ */
+.why-section {
+  background: var(--steel2);
+  position: relative; overflow: hidden;
+}
+.why-bg-pipe {
+  position: absolute; inset: 0; opacity: .04; pointer-events: none;
+}
+.why-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+@media(max-width:900px){ .why-grid{ grid-template-columns:1fr; } }
+.why-left h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 5rem); line-height: .95;
+  color: white; letter-spacing: .04em; margin-bottom: 20px;
+}
+.why-left h2 em { color: var(--ore); font-style: normal; }
+.why-left p { color: rgba(255,255,255,.55); font-size: .95rem; line-height: 1.85; margin-bottom: 32px; }
+.why-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.why-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px; padding: 22px;
+  transition: all .35s var(--ease);
+}
+.why-card:hover { background: rgba(249,115,22,.1); border-color: rgba(249,115,22,.35); transform: translateY(-5px); }
+.why-icon {
+  width: 44px; height: 44px; border-radius: 8px;
+  background: rgba(249,115,22,.15); border: 1px solid rgba(249,115,22,.3);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+}
+.why-icon svg { width: 22px; height: 22px; stroke: var(--ore); fill: none; stroke-width: 1.8; }
+.why-card h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .92rem; font-weight: 700; color: white; margin-bottom: 6px; letter-spacing: .04em;
+}
+.why-card p { font-size: .8rem; color: rgba(255,255,255,.45); line-height: 1.65; }
+
+/* Stats panel on right */
+.why-right { display: flex; flex-direction: column; gap: 16px; }
+.stat-block {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+  border-radius: 10px; padding: 28px 32px;
+  display: flex; align-items: center; gap: 22px;
+  transition: all .35s var(--ease);
+}
+.stat-block:hover { background: rgba(249,115,22,.08); border-color: rgba(249,115,22,.25); transform: translateX(6px); }
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.4rem; color: var(--ore); line-height: 1; letter-spacing: .04em;
+  flex-shrink: 0; min-width: 110px;
+}
+.stat-info h5 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; font-weight: 700; color: white; margin-bottom: 5px; letter-spacing: .04em;
+}
+.stat-info p { font-size: .8rem; color: rgba(255,255,255,.4); line-height: 1.6; }
+
+/* ════════════════════════════════════════════════════
+   TECH SPECS SECTION  ← clearly visible CTA
+════════════════════════════════════════════════════ */
+.specs-section { background: var(--warm); }
+.specs-inner { max-width: 1400px; margin: 0 auto; padding: 80px 36px; }
+.specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+@media(max-width:900px){ .specs-grid{ grid-template-columns:1fr; } }
+
+.specs-table {
+  background: white; border-radius: 12px;
+  border: 1.5px solid rgba(249,115,22,.12);
+  overflow: hidden; box-shadow: var(--s2);
+  margin-top: 32px;
+}
+.specs-row {
+  display: flex; padding: 14px 20px;
+  border-bottom: 1px solid rgba(249,115,22,.08);
+  transition: background .2s;
+}
+.specs-row:last-child { border-bottom: none; }
+.specs-row:hover { background: rgba(249,115,22,.04); }
+.specs-key {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .8rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--T3); width: 44%; flex-shrink: 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.specs-key svg { width: 14px; height: 14px; stroke: var(--ore); fill: none; stroke-width: 2; flex-shrink: 0; }
+.specs-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .88rem; font-weight: 600; color: var(--ink);
+}
+
+/* ── The big visible "View Tech Specs" CTA ── */
+.specs-cta-wrap {
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 28px; padding: 40px;
+  background: var(--steel2); border-radius: 16px;
+  position: relative; overflow: hidden;
+  box-shadow: var(--s3);
+}
+.specs-cta-wrap::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(249,115,22,.2), transparent 60%);
+  pointer-events: none;
+}
+.specs-cta-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 6rem; line-height: 1; letter-spacing: .04em;
+  color: rgba(255,255,255,.06); position: absolute;
+  bottom: 20px; right: 20px;
+  pointer-events: none; user-select: none;
+}
+.specs-cta-wrap h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem; color: white; line-height: 1; letter-spacing: .04em;
+  position: relative; z-index: 1;
+}
+.specs-cta-wrap h3 span { color: var(--ore); }
+.specs-cta-wrap p {
+  font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.78;
+  max-width: 340px; position: relative; z-index: 1;
+}
+
+/* BIG VISIBLE CTA BUTTONS */
+.btn-specs {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  background: var(--ore); color: white; border: none; border-radius: 8px;
+  padding: 17px 32px; cursor: pointer; width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: all .3s var(--ease); position: relative; z-index: 1;
+  box-shadow: 0 6px 24px rgba(249,115,22,.5);
+  text-decoration: none;
+}
+.btn-specs svg { width: 20px; height: 20px; }
+.btn-specs:hover { background: #ea580c; transform: translateY(-3px); box-shadow: 0 12px 36px rgba(249,115,22,.6); }
+
+.btn-catalogue {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  background: transparent; color: white;
+  border: 2px solid rgba(255,255,255,.35); border-radius: 8px;
+  padding: 15px 32px; cursor: pointer; width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: all .3s var(--ease); position: relative; z-index: 1;
+  text-decoration: none;
+}
+.btn-catalogue svg { width: 20px; height: 20px; }
+.btn-catalogue:hover { background: rgba(255,255,255,.1); border-color: white; transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.25); }
+
+/* ════════════════════════════════════════════════════
+   TESTIMONIAL STRIP
+════════════════════════════════════════════════════ */
+.testi-section { background: var(--paper); }
+.testi-strip {
+  display: flex; gap: 20px; overflow: hidden;
+  position: relative;
+}
+.testi-strip::before, .testi-strip::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+}
+.testi-strip::before { left: 0; background: linear-gradient(90deg, var(--paper), transparent); }
+.testi-strip::after  { right: 0; background: linear-gradient(-90deg, var(--paper), transparent); }
+.testi-track {
+  display: flex; gap: 20px;
+  animation: testiScroll 30s linear infinite;
+}
+.testi-track:hover { animation-play-state: paused; }
+@keyframes testiScroll { to { transform: translateX(-50%); } }
+.testi-card {
+  background: white; border: 1.5px solid rgba(249,115,22,.1);
+  border-radius: 12px; padding: 24px 28px;
+  min-width: 320px; max-width: 320px;
+  box-shadow: var(--s1); flex-shrink: 0;
+}
+.testi-stars { display: flex; gap: 2px; margin-bottom: 12px; }
+.testi-stars svg { width: 14px; height: 14px; fill: #f59e0b; }
+.testi-text {
+  font-size: .86rem; color: var(--ink);
+  line-height: 1.75; margin-bottom: 16px; font-style: italic;
+}
+.testi-author {
+  display: flex; align-items: center; gap: 10px;
+}
+.testi-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--steel), var(--ore));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: white;
+  flex-shrink: 0;
+}
+.testi-name { font-family: 'Barlow Condensed', sans-serif; font-size: .84rem; font-weight: 700; color: var(--ink); }
+.testi-role { font-size: .72rem; color: var(--T3); }
+
+/* ════════════════════════════════════════════════════
+   CTA BAND
+════════════════════════════════════════════════════ */
+.cta-band {
+  position: relative; overflow: hidden;
+  background: var(--steel2);
+}
+.cta-bg-pipes {
+  position: absolute; inset: 0; opacity: .06; pointer-events: none;
+}
+.cta-inner {
+  max-width: 1400px; margin: 0 auto; padding: 80px 36px;
+  display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
+  position: relative; z-index: 1;
+}
+@media(max-width:768px){ .cta-inner{ grid-template-columns:1fr; } }
+.cta-inner h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.6rem); color: white;
+  line-height: .95; letter-spacing: .04em; margin-bottom: 12px;
+}
+.cta-inner h2 em { color: var(--ore); font-style: normal; }
+.cta-inner p { color: rgba(255,255,255,.5); font-size: .9rem; line-height: 1.8; }
+.cta-btns { display: flex; flex-direction: column; gap: 12px; min-width: 220px; }
+
+/* ════════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.45);
+  padding: 64px 36px 36px;
+}
+.foot-grid {
+  max-width: 1400px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 48px; margin-bottom: 48px;
+}
+@media(max-width:900px){ .foot-grid{ grid-template-columns:1fr 1fr; gap:32px; } }
+@media(max-width:480px){ .foot-grid{ grid-template-columns:1fr; } }
+.foot-brand p { font-size: .82rem; line-height: 1.8; margin-top: 14px; max-width: 280px; }
+.foot-col h5 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .7rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ore); margin-bottom: 18px;
+}
+.foot-col ul { list-style: none; }
+.foot-col ul li { margin-bottom: 10px; }
+.foot-col ul li a {
+  font-size: .82rem; color: rgba(255,255,255,.42); text-decoration: none;
+  transition: color .22s; display: inline-flex; align-items: center; gap: 6px;
+}
+.foot-col ul li a:hover { color: var(--ore); }
+.foot-col ul li a svg { width: 12px; height: 12px; opacity: .5; }
+.foot-contact { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+.foot-contact svg { width: 14px; height: 14px; stroke: var(--ore); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 3px; }
+.foot-contact span { font-size: .82rem; line-height: 1.6; }
+
+/* Social icons */
+.socials { display: flex; gap: 9px; margin-top: 20px; }
+.soc {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.5); text-decoration: none;
+  transition: all .22s;
+}
+.soc svg { width: 16px; height: 16px; }
+.soc:hover { background: var(--ore); border-color: var(--ore); color: white; transform: translateY(-3px); box-shadow: 0 6px 16px rgba(249,115,22,.35); }
+
+/* Footer bottom */
+.foot-bottom {
+  max-width: 1400px; margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.foot-bottom p { font-size: .76rem; }
+.foot-badges { display: flex; gap: 8px; }
+.foot-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.22);
+  border-radius: 4px; padding: 3px 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em; color: var(--ore);
+}
+.foot-badge svg { width: 10px; height: 10px; }
+
+/* ════════════════════════════════════════════════════
+   MOBILE MENU OVERLAY
+════════════════════════════════════════════════════ */
+.mob-menu {
+  display: none; position: fixed; inset: 0; z-index: 790;
+  background: rgba(11,8,6,.98); backdrop-filter: blur(20px);
+  flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+}
+.mob-menu.open { display: flex; }
+.mob-menu a {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: .08em;
+  color: rgba(255,255,255,.75); text-decoration: none; transition: color .2s;
+}
+.mob-menu a:hover { color: var(--ore); }
+.mob-close {
+  position: absolute; top: 24px; right: 28px;
+  background: none; border: none; cursor: pointer;
+}
+.mob-close svg { width: 26px; height: 26px; stroke: white; }
+
+/* ════════════════════════════════════════════════════
+   REVEAL ANIMATIONS
+════════════════════════════════════════════════════ */
+.rv { opacity: 0; }
+@keyframes rvUp  { from{opacity:0;transform:translateY(30px)}  to{opacity:1;transform:translateY(0)} }
+@keyframes rvLeft{ from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
+@keyframes rvRt  { from{opacity:0;transform:translateX(30px)}  to{opacity:1;transform:translateX(0)} }
+.rv.up   { animation: rvUp   .7s cubic-bezier(.22,1,.36,1) forwards; }
+.rv.left { animation: rvLeft .7s cubic-bezier(.22,1,.36,1) forwards; }
+.rv.rt   { animation: rvRt   .7s cubic-bezier(.22,1,.36,1) forwards; }
+
+/* ════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════ */
+@media(max-width:768px){
+  .hdr-inner { padding: 0 20px; }
+  nav { display: none; }
+  .hdr-btns .btn-ghost-hdr { display: none; }
+  .menu-toggle { display: block; }
+  .slide-content { padding: 0 24px; padding-top: 76px; }
+  .slide-headline { font-size: 3rem; }
+  .slide-stats { flex-wrap: wrap; gap: 20px; }
+  .hero-arrows { right: 20px; bottom: 30px; }
+  .hero-scroll { left: 24px; bottom: 28px; }
+  .hero-dots { bottom: 38px; }
+  .sec { padding: 60px 20px; }
+  .specs-inner { padding: 60px 20px; }
+  .why-cards { grid-template-columns: 1fr; }
+  .cta-inner { padding: 60px 20px; }
+  footer { padding: 48px 20px 28px; }
+}
+</style>
+</head>
+
+<body>
+<!-- Cursor -->
+<div id="cur"></div>
+
+<!-- ════ MOBILE MENU ════ -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMob()">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="index.html">Home</a>
+  <a href="catalogue.html">Catalogue</a>
+  <a href="about.html">Our Story</a>
+  <a href="contact.html">Contact</a>
+  <a href="services.html">Services</a>
+</div>
+
+<!-- ════ HEADER ════ -->
+<header id="hdr">
+  <div class="hdr-inner">
+    <!-- Logo -->
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-pipe">
+        <!-- SVG pipe logo mark -->
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="18" width="40" height="12" rx="6" fill="#f97316"/>
+          <rect x="4" y="18" width="40" height="5" rx="2" fill="rgba(255,255,255,.18)"/>
+          <circle cx="8" cy="24" r="5" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+          <circle cx="40" cy="24" r="5" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+          <rect x="10" y="6" width="8" height="16" rx="4" fill="#1c2b3a" stroke="#f97316" stroke-width="1.5"/>
+          <rect x="30" y="26" width="8" height="16" rx="4" fill="#1c2b3a" stroke="#f97316" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-brand">PipeForce</span>
+        <span class="logo-sub">Industrial Solutions</span>
+      </div>
+    </a>
+
+    <!-- Nav -->
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="catalogue.html">Catalogue</a>
+      <a href="about.html">Our Story</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="hdr-btns">
+      <button class="btn-ghost-hdr" onclick="window.location.href='catalogue.html'">
+        View Catalogue
+      </button>
+      <button class="btn-ore-hdr" onclick="window.location.href='contact.html'">
+        Get a Quote
+      </button>
+      <button class="menu-toggle" onclick="openMob()" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ════ HERO CAROUSEL ════ -->
+<section class="hero" id="hero">
+
+  <!-- SLIDE 1 — Industrial plant hero -->
+  <div class="hero-slide active" id="slide-0">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=85&auto=format&fit=crop&crop=center');"></div>
+    <div class="slide-overlay-1"></div>
+    <div class="slide-grain"></div>
+    <div class="slide-content">
+      <div class="slide-tag">
+        <svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>
+        Industrial Grade · Certified Quality
+      </div>
+      <h1 class="slide-headline">
+        BUILT FOR THE<br>
+        <span class="ore">TOUGHEST</span><br>
+        <span class="stroke">SYSTEMS</span>
+      </h1>
+      <p class="slide-sub">
+        Premium industrial pipe solutions engineered for extreme pressure, temperature, and longevity. Trusted by 500+ facilities across South Africa.
+      </p>
+      <div class="slide-btns">
+        <a href="catalogue.html" class="btn-hero-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/><rect x="14" y="12" width="8" height="8" rx="1"/></svg>
+          View Catalogue
+        </a>
+        <a href="#specs" class="btn-hero-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Tech Specifications
+        </a>
+      </div>
+      <div class="slide-stats">
+        <div>
+          <div class="sstat-val">500<span>+</span></div>
+          <div class="sstat-lbl">Projects Completed</div>
+        </div>
+        <div>
+          <div class="sstat-val">28<span>yrs</span></div>
+          <div class="sstat-lbl">Industry Experience</div>
+        </div>
+        <div>
+          <div class="sstat-val">100<span>%</span></div>
+          <div class="sstat-lbl">B-BBEE Compliant</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">01</div>
+  </div>
+
+  <!-- SLIDE 2 — Pipe installation -->
+  <div class="hero-slide" id="slide-1">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85&auto=format&fit=crop&crop=center');"></div>
+    <div class="slide-overlay-2"></div>
+    <div class="slide-grain"></div>
+    <div class="slide-content">
+      <div class="slide-tag">
+        <svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>
+        New Range · 2025 Collection
+      </div>
+      <h1 class="slide-headline">
+        PRECISION<br>
+        <span class="ore">ENGINEERED</span><br>
+        PIPEWORK
+      </h1>
+      <p class="slide-sub">
+        From HDPE to stainless steel, our range covers every specification. In-stock and ready for immediate dispatch nationwide.
+      </p>
+      <div class="slide-btns">
+        <a href="catalogue.html" class="btn-hero-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/><rect x="14" y="12" width="8" height="8" rx="1"/></svg>
+          View Catalogue
+        </a>
+        <a href="#specs" class="btn-hero-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Tech Specifications
+        </a>
+      </div>
+      <div class="slide-stats">
+        <div>
+          <div class="sstat-val">150<span>+</span></div>
+          <div class="sstat-lbl">Product SKUs</div>
+        </div>
+        <div>
+          <div class="sstat-val">24<span>hr</span></div>
+          <div class="sstat-lbl">Lead Time</div>
+        </div>
+        <div>
+          <div class="sstat-val">5<span>yr</span></div>
+          <div class="sstat-lbl">Warranty</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">02</div>
+  </div>
+
+  <!-- SLIDE 3 — Steel pipes warehouse -->
+  <div class="hero-slide" id="slide-2">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1800&q=85&auto=format&fit=crop&crop=center');"></div>
+    <div class="slide-overlay-3"></div>
+    <div class="slide-grain"></div>
+    <div class="slide-content">
+      <div class="slide-tag">
+        <svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>
+        In Stock · Ready to Ship
+      </div>
+      <h1 class="slide-headline">
+        MASSIVE<br>
+        <span class="ore">STOCK</span><br>
+        <span class="stroke">ON HAND</span>
+      </h1>
+      <p class="slide-sub">
+        Our Johannesburg warehouse holds 10,000+ linear metres of pipe across 40 sizes. Get what you need — today.
+      </p>
+      <div class="slide-btns">
+        <a href="catalogue.html" class="btn-hero-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/><rect x="14" y="12" width="8" height="8" rx="1"/></svg>
+          View Catalogue
+        </a>
+        <a href="#specs" class="btn-hero-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          Tech Specifications
+        </a>
+      </div>
+      <div class="slide-stats">
+        <div>
+          <div class="sstat-val">10k<span>m+</span></div>
+          <div class="sstat-lbl">Pipe Stock</div>
+        </div>
+        <div>
+          <div class="sstat-val">40<span>+</span></div>
+          <div class="sstat-lbl">Pipe Sizes</div>
+        </div>
+        <div>
+          <div class="sstat-val">JHB</div>
+          <div class="sstat-lbl">Nationwide Delivery</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">03</div>
+  </div>
+
+  <!-- SLIDE 4 — Site installation team -->
+  <div class="hero-slide" id="slide-3">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1800&q=85&auto=format&fit=crop&crop=center');"></div>
+    <div class="slide-overlay-4"></div>
+    <div class="slide-grain"></div>
+    <div class="slide-content">
+      <div class="slide-tag">
+        <svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>
+        End-to-End Service
+      </div>
+      <h1 class="slide-headline">
+        SUPPLY.<br>
+        <span class="ore">INSTALL.</span><br>
+        CERTIFY.
+      </h1>
+      <p class="slide-sub">
+        Beyond supply — our certified installation teams bring your piping systems to life, on time and within spec. Full project management included.
+      </p>
+      <div class="slide-btns">
+        <a href="catalogue.html" class="btn-hero-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/><rect x="14" y="12" width="8" height="8" rx="1"/></svg>
+          View Catalogue
+        </a>
+        <a href="#specs" class="btn-hero-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          Tech Specifications
+        </a>
+      </div>
+      <div class="slide-stats">
+        <div>
+          <div class="sstat-val">ISO<span>·9001</span></div>
+          <div class="sstat-lbl">Certified Installers</div>
+        </div>
+        <div>
+          <div class="sstat-val">72<span>hr</span></div>
+          <div class="sstat-lbl">Site Mobilisation</div>
+        </div>
+        <div>
+          <div class="sstat-val">0</div>
+          <div class="sstat-lbl">LTI Record</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">04</div>
+  </div>
+
+  <!-- Arrows -->
+  <div class="hero-arrows">
+    <button class="hero-arr" onclick="heroGo(-1)" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="hero-arr" onclick="heroGo(1)" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- Progress dots -->
+  <div class="hero-dots">
+    <div class="hero-dot active" onclick="heroSet(0)"><div class="hero-dot-fill"></div></div>
+    <div class="hero-dot" onclick="heroSet(1)"><div class="hero-dot-fill"></div></div>
+    <div class="hero-dot" onclick="heroSet(2)"><div class="hero-dot-fill"></div></div>
+    <div class="hero-dot" onclick="heroSet(3)"><div class="hero-dot-fill"></div></div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll to explore</span>
+  </div>
+</section>
+
+<!-- ════ PIPE DIVIDER 1 — Entry / elbow joint ════ -->
+<div class="pipe-divider variant-1">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="pg1" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#7c2d12"/>
+        <stop offset="30%"  stop-color="#f97316"/>
+        <stop offset="70%"  stop-color="#c2410c"/>
+        <stop offset="100%" stop-color="#7c2d12"/>
+      </linearGradient>
+      <linearGradient id="pg1h" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="rgba(255,255,255,.28)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,.22)"/>
+      </linearGradient>
+    </defs>
+    <!-- Background fill -->
+    <rect width="1440" height="90" fill="#fdfaf6"/>
+    <!-- Main horizontal pipe body -->
+    <rect x="0" y="28" width="1440" height="34" rx="17" fill="url(#pg1)"/>
+    <!-- Highlight top sheen -->
+    <rect x="0" y="28" width="1440" height="12" rx="6" fill="url(#pg1h)"/>
+    <!-- Shadow bottom -->
+    <rect x="0" y="52" width="1440" height="10" rx="5" fill="rgba(0,0,0,.18)"/>
+    <!-- Weld rings evenly spaced -->
+    <rect x="120"  y="22" width="18" height="46" rx="9" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+    <rect x="360"  y="22" width="18" height="46" rx="9" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+    <rect x="600"  y="22" width="18" height="46" rx="9" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+    <rect x="840"  y="22" width="18" height="46" rx="9" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+    <rect x="1080" y="22" width="18" height="46" rx="9" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+    <rect x="1300" y="22" width="18" height="46" rx="9" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+    <!-- Flow indicator line inside pipe -->
+    <line x1="0" y1="45" x2="1440" y2="45" stroke="rgba(255,255,255,.12)" stroke-width="2" class="pipe-flow"/>
+    <!-- End caps -->
+    <circle cx="17" cy="45" r="17" fill="#7c2d12" stroke="#f97316" stroke-width="2"/>
+    <circle cx="17" cy="45" r="8"  fill="#c2410c"/>
+    <circle cx="1423" cy="45" r="17" fill="#7c2d12" stroke="#f97316" stroke-width="2"/>
+    <circle cx="1423" cy="45" r="8"  fill="#c2410c"/>
+  </svg>
+</div>
+
+<!-- ════ PRODUCTS SECTION ════ -->
+<section class="products-bg">
+  <div class="sec">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+      <div>
+        <div class="sec-label rv up">
+          <svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>
+          Featured Products
+        </div>
+        <h2 class="sec-title rv up">OUR PIPE RANGE</h2>
+        <p class="sec-sub rv up">Industrial-grade pipe solutions for every application — from domestic plumbing to large-scale industrial.</p>
+      </div>
+      <a href="catalogue.html" style="text-decoration:none;" class="rv rt">
+        <button class="btn-ore-hdr" style="padding:12px 28px;font-size:.82rem;border-radius:8px;display:flex;align-items:center;gap:8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/><rect x="14" y="12" width="8" height="8" rx="1"/></svg>
+          Browse All Products
+        </button>
+      </a>
+    </div>
+
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="prod-card rv up">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="HDPE Pipe">
+          <span class="prod-badge">Best Seller</span>
+          <div class="prod-overlay">
+            <button class="btn-sm-ore" onclick="window.location.href='catalogue.html'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/></svg>
+              Catalogue
+            </button>
+            <button class="btn-sm-ghost" onclick="window.location.href='#specs'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+              Specs
+            </button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">HDPE · Pressure Pipe</div>
+          <div class="prod-name">High-Density Polyethylene Pipe</div>
+          <div class="prod-spec">PN10 · DN110mm · Black · 6m lengths</div>
+          <div class="prod-foot">
+            <div class="prod-price">R486<small>.00</small><span style="font-size:.7rem;color:#64748b;font-family:'DM Sans',sans-serif;"> / 6m</span></div>
+            <div class="prod-rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.9 (182)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="prod-card rv up" style="animation-delay:.06s">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop" alt="Steel Pipe">
+          <span class="prod-badge" style="background:#1c2b3a;">Industrial</span>
+          <div class="prod-overlay">
+            <button class="btn-sm-ore" onclick="window.location.href='catalogue.html'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/></svg>
+              Catalogue
+            </button>
+            <button class="btn-sm-ghost" onclick="window.location.href='#specs'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+              Specs
+            </button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Carbon Steel · Seamless</div>
+          <div class="prod-name">Schedule 40 Carbon Steel Pipe</div>
+          <div class="prod-spec">ASTM A53 · DN100 · 6m lengths · Black</div>
+          <div class="prod-foot">
+            <div class="prod-price">R1,240<small style="text-decoration:none;color:#64748b;"> / 6m</small></div>
+            <div class="prod-rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8 (94)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="prod-card rv up" style="animation-delay:.12s">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&h=400&fit=crop" alt="uPVC Pipe">
+          <span class="prod-badge" style="background:#059669;">On Sale</span>
+          <div class="prod-overlay">
+            <button class="btn-sm-ore" onclick="window.location.href='catalogue.html'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/></svg>
+              Catalogue
+            </button>
+            <button class="btn-sm-ghost" onclick="window.location.href='#specs'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+              Specs
+            </button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">uPVC · Pressure Rated</div>
+          <div class="prod-name">SANS 966 uPVC Pressure Pipe</div>
+          <div class="prod-spec">Class 10 · DN63mm · Blue · 6m lengths</div>
+          <div class="prod-foot">
+            <div class="prod-price"><small>R198</small>R159<span style="font-size:.7rem;color:#64748b;font-family:'DM Sans',sans-serif;"> / 6m</span></div>
+            <div class="prod-rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.7 (211)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="prod-card rv up" style="animation-delay:.18s">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop" alt="Stainless Steel Pipe">
+          <div class="prod-overlay">
+            <button class="btn-sm-ore" onclick="window.location.href='catalogue.html'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/></svg>
+              Catalogue
+            </button>
+            <button class="btn-sm-ghost" onclick="window.location.href='#specs'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+              Specs
+            </button>
+          </div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Stainless Steel · 316L</div>
+          <div class="prod-name">316L Stainless Steel Pipe</div>
+          <div class="prod-spec">ASTM A312 · DN50 · Polished · 6m</div>
+          <div class="prod-foot">
+            <div class="prod-price">R3,860<small style="text-decoration:none;color:#64748b;"> / 6m</small></div>
+            <div class="prod-rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              5.0 (47)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PIPE DIVIDER 2 — T-junction with valve ════ -->
+<div class="pipe-divider variant-2">
+  <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="pg2" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#0f1e2b"/>
+        <stop offset="35%"  stop-color="#1c2b3a"/>
+        <stop offset="65%"  stop-color="#263d50"/>
+        <stop offset="100%" stop-color="#0f1e2b"/>
+      </linearGradient>
+      <linearGradient id="pg2h" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="rgba(249,115,22,.3)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,.3)"/>
+      </linearGradient>
+    </defs>
+    <rect width="1440" height="110" fill="#fdfaf6"/>
+    <!-- Main pipe -->
+    <rect x="0" y="34" width="1440" height="42" rx="21" fill="url(#pg2)"/>
+    <rect x="0" y="34" width="1440" height="14" rx="7" fill="url(#pg2h)"/>
+    <rect x="0" y="62" width="1440" height="14" rx="7" fill="rgba(0,0,0,.22)"/>
+    <!-- Orange flow line -->
+    <line x1="0" y1="55" x2="1440" y2="55" stroke="rgba(249,115,22,.2)" stroke-width="2" class="pipe-flow"/>
+    <!-- T-junction drop-downs at key points -->
+    <!-- Junction left -->
+    <rect x="180" y="0" width="28" height="110" rx="14" fill="#1c2b3a"/>
+    <rect x="184" y="0" width="20" height="4" rx="2" fill="rgba(249,115,22,.4)"/>
+    <circle cx="194" cy="40" r="18" fill="#f97316" stroke="#0f1e2b" stroke-width="3"/>
+    <line x1="185" y1="40" x2="203" y2="40" stroke="white" stroke-width="2.5"/>
+    <line x1="194" y1="31" x2="194" y2="49" stroke="white" stroke-width="2.5"/>
+    <!-- Junction centre -->
+    <rect x="700" y="0" width="28" height="110" rx="14" fill="#1c2b3a"/>
+    <rect x="704" y="0" width="20" height="4" rx="2" fill="rgba(249,115,22,.4)"/>
+    <circle cx="714" cy="40" r="18" fill="#f97316" stroke="#0f1e2b" stroke-width="3"/>
+    <line x1="705" y1="40" x2="723" y2="40" stroke="white" stroke-width="2.5"/>
+    <line x1="714" y1="31" x2="714" y2="49" stroke="white" stroke-width="2.5"/>
+    <!-- Junction right -->
+    <rect x="1232" y="0" width="28" height="110" rx="14" fill="#1c2b3a"/>
+    <rect x="1236" y="0" width="20" height="4" rx="2" fill="rgba(249,115,22,.4)"/>
+    <circle cx="1246" cy="40" r="18" fill="#f97316" stroke="#0f1e2b" stroke-width="3"/>
+    <line x1="1237" y1="40" x2="1255" y2="40" stroke="white" stroke-width="2.5"/>
+    <line x1="1246" y1="31" x2="1246" y2="49" stroke="white" stroke-width="2.5"/>
+    <!-- Weld rings -->
+    <rect x="320"  y="27" width="16" height="56" rx="8" fill="#263d50" stroke="rgba(249,115,22,.35)" stroke-width="1"/>
+    <rect x="540"  y="27" width="16" height="56" rx="8" fill="#263d50" stroke="rgba(249,115,22,.35)" stroke-width="1"/>
+    <rect x="880"  y="27" width="16" height="56" rx="8" fill="#263d50" stroke="rgba(249,115,22,.35)" stroke-width="1"/>
+    <rect x="1080" y="27" width="16" height="56" rx="8" fill="#263d50" stroke="rgba(249,115,22,.35)" stroke-width="1"/>
+    <!-- End flanges -->
+    <rect x="0" y="26" width="24" height="58" rx="4" fill="#0f1e2b" stroke="rgba(249,115,22,.4)" stroke-width="1.5"/>
+    <rect x="1416" y="26" width="24" height="58" rx="4" fill="#0f1e2b" stroke="rgba(249,115,22,.4)" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<!-- ════ WHY CHOOSE US — DARK ════ -->
+<section class="why-section">
+  <div class="why-bg-pipe">
+    <!-- Faint background pipe pattern -->
+    <svg viewBox="0 0 1440 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="200" width="1440" height="12" rx="6" fill="white"/>
+      <rect x="0" y="260" width="1440" height="8" rx="4" fill="white"/>
+      <rect x="200" y="0" width="12" height="500" rx="6" fill="white"/>
+      <rect x="600" y="0" width="8" height="500" rx="4" fill="white"/>
+      <rect x="1000" y="0" width="12" height="500" rx="6" fill="white"/>
+      <rect x="1300" y="0" width="8" height="500" rx="4" fill="white"/>
+    </svg>
+  </div>
+  <div class="sec">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="sec-label" style="background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35);margin-bottom:18px;" class="rv left">
+          <svg viewBox="0 0 8 8" style="fill:var(--ore)"><circle cx="4" cy="4" r="4"/></svg>
+          Why PipeForce
+        </div>
+        <h2 class="rv left">THE FORCE<br>BEHIND <em>GREAT</em><br>SYSTEMS</h2>
+        <p class="rv left">From small-bore domestic to large-diameter industrial — we carry the expertise, stock and service to make your project a success. On time. Every time.</p>
+        <div class="why-cards rv left">
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <h4>SANS Certified</h4>
+            <p>All products meet or exceed SANS and ASTM standards for pressure, temperature and chemical resistance.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h4>Nationwide Stock</h4>
+            <p>Johannesburg warehouse with same-day dispatch across all 9 provinces. No waiting weeks for stock.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h4>24hr Turnaround</h4>
+            <p>Quote to delivery in 24 hours for standard sizes. Emergency orders handled same day for critical jobs.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h4>Level 1 B-BBEE</h4>
+            <p>100% black-owned. Level 1 B-BBEE with 135% procurement recognition. Maximum points for your supply chain.</p>
+          </div>
+        </div>
+      </div>
+      <div class="why-right rv rt">
+        <div class="stat-block">
+          <div class="stat-num">500<span style="font-size:1.8rem;">+</span></div>
+          <div class="stat-info">
+            <h5>Projects Delivered</h5>
+            <p>Municipal, mining, petrochemical, FMCG and residential projects across South Africa and SADC.</p>
+          </div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">28<span style="font-size:1.8rem;">yr</span></div>
+          <div class="stat-info">
+            <h5>Industry Experience</h5>
+            <p>Our technical team has combined expertise spanning every pipe material and application type.</p>
+          </div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">150<span style="font-size:1.8rem;">+</span></div>
+          <div class="stat-info">
+            <h5>Product SKUs In Stock</h5>
+            <p>From DN15 to DN1200 across HDPE, uPVC, steel, copper, stainless and composite materials.</p>
+          </div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">L1<span style="font-size:1.8rem;"> BBEE</span></div>
+          <div class="stat-info">
+            <h5>Transformation Leader</h5>
+            <p>Fully black-owned with 31% black women ownership. Helping clients meet their procurement targets.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PIPE DIVIDER 3 — Elbow bend with gauge ════ -->
+<div class="pipe-divider variant-3">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="pg3a" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#431407"/>
+        <stop offset="25%"  stop-color="#b45309"/>
+        <stop offset="50%"  stop-color="#f97316"/>
+        <stop offset="75%"  stop-color="#b45309"/>
+        <stop offset="100%" stop-color="#431407"/>
+      </linearGradient>
+    </defs>
+    <rect width="1440" height="100" fill="var(--steel2)"/>
+    <!-- Pipe body — diagonal wave to simulate elbow -->
+    <path d="M0,35 Q360,20 720,40 Q1080,60 1440,35" stroke="url(#pg3a)" stroke-width="30" fill="none" stroke-linecap="round"/>
+    <!-- Flow shimmer -->
+    <path d="M0,35 Q360,20 720,40 Q1080,60 1440,35" stroke="rgba(255,255,255,.14)" stroke-width="8" fill="none" stroke-linecap="round" class="pipe-flow-slow"/>
+    <!-- Pressure gauge circles along the wave -->
+    <circle cx="240"  cy="28" r="16" fill="#7c2d12" stroke="#f97316" stroke-width="2"/>
+    <circle cx="240"  cy="28" r="7"  fill="#f97316"/>
+    <text x="240" y="28" text-anchor="middle" dominant-baseline="central" fill="white" font-size="7" font-family="sans-serif" font-weight="bold">BAR</text>
+    <circle cx="720"  cy="40" r="16" fill="#7c2d12" stroke="#f97316" stroke-width="2"/>
+    <circle cx="720"  cy="40" r="7"  fill="#f97316"/>
+    <text x="720" y="40" text-anchor="middle" dominant-baseline="central" fill="white" font-size="7" font-family="sans-serif" font-weight="bold">BAR</text>
+    <circle cx="1200" cy="38" r="16" fill="#7c2d12" stroke="#f97316" stroke-width="2"/>
+    <circle cx="1200" cy="38" r="7"  fill="#f97316"/>
+    <text x="1200" y="38" text-anchor="middle" dominant-baseline="central" fill="white" font-size="7" font-family="sans-serif" font-weight="bold">BAR</text>
+    <!-- Weld seam bolts -->
+    <rect x="80"   y="16" width="14" height="38" rx="7" fill="#b45309" stroke="rgba(255,200,100,.3)" stroke-width="1"/>
+    <rect x="420"  y="10" width="14" height="38" rx="7" fill="#b45309" stroke="rgba(255,200,100,.3)" stroke-width="1"/>
+    <rect x="900"  y="25" width="14" height="38" rx="7" fill="#b45309" stroke="rgba(255,200,100,.3)" stroke-width="1"/>
+    <rect x="1350" y="18" width="14" height="38" rx="7" fill="#b45309" stroke="rgba(255,200,100,.3)" stroke-width="1"/>
+  </svg>
+</div>
+
+<!-- ════ TECH SPECIFICATIONS ════ -->
+<section class="specs-section" id="specs">
+  <div class="specs-inner">
+    <div style="text-align:center;margin-bottom:52px;" class="rv up">
+      <div class="sec-label" style="margin:0 auto 16px;">
+        <svg viewBox="0 0 8 8" style="fill:var(--ore)"><circle cx="4" cy="4" r="4"/></svg>
+        Technical Data
+      </div>
+      <h2 class="sec-title">TECH SPECIFICATIONS</h2>
+      <p class="sec-sub" style="margin:0 auto;">Comprehensive technical data for our most popular pipe ranges. Download full datasheets below.</p>
+    </div>
+    <div class="specs-grid">
+      <!-- Specs table -->
+      <div class="rv left">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:6px;letter-spacing:.04em;">HDPE PIPE — PN10 SERIES</h3>
+        <p style="font-size:.8rem;color:var(--T3);margin-bottom:0;">SANS 4427-2 / ISO 4427 Compliant</p>
+        <div class="specs-table">
+          <div class="specs-row">
+            <div class="specs-key">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+              Diameter Range
+            </div>
+            <div class="specs-val">DN20mm — DN1200mm</div>
+          </div>
+          <div class="specs-row">
+            <div class="specs-key">
+              <svg viewBox="0 0 24 24"><path d="M12 22V12m0 0V2m0 10l-4-4m4 4l4-4"/></svg>
+              Pressure Ratings
+            </div>
+            <div class="specs-val">PN4 / PN6 / PN8 / PN10 / PN16</div>
+          </div>
+          <div class="specs-row">
+            <div class="specs-key">
+              <svg viewBox="0 0 24 24"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0V14.76a4.5 4.5 0 105 0z"/></svg>
+              Temperature Range
+            </div>
+            <div class="specs-val">-40°C to +60°C</div>
+          </div>
+          <div class="specs-row">
+            <div class="specs-key">
+              <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+              Material Grade
+            </div>
+            <div class="specs-val">PE100 / MRS 10.0 MPa</div>
+          </div>
+          <div class="specs-row">
+            <div class="specs-key">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              Length
+            </div>
+            <div class="specs-val">6m / 12m / coil (small bore)</div>
+          </div>
+          <div class="specs-row">
+            <div class="specs-key">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Certification
+            </div>
+            <div class="specs-val">SANS 4427 · SABS Mark Holder</div>
+          </div>
+          <div class="specs-row">
+            <div class="specs-key">
+              <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              Warranty
+            </div>
+            <div class="specs-val">50-year design life · 5yr install warranty</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Panel — CLEARLY VISIBLE -->
+      <div class="specs-cta-wrap rv rt">
+        <div class="specs-cta-badge">SPECS</div>
+        <h3>DOWNLOAD<br><span>FULL SPECS</span><br>& DATASHEETS</h3>
+        <p>Access complete technical datasheets, installation guides, pressure-temperature charts and chemical resistance tables for our entire pipe range.</p>
+        <a href="catalogue.html" class="btn-specs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M4 6h16M4 10h16M4 14h10"/><rect x="14" y="12" width="8" height="8" rx="1"/></svg>
+          View Full Catalogue
+        </a>
+        <a href="contact.html" class="btn-catalogue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Request Technical Consultation
+        </a>
+        <!-- Mini pipe graphic inside cta -->
+        <svg viewBox="0 0 260 40" style="position:absolute;bottom:0;left:0;right:0;width:100%;opacity:.08;" preserveAspectRatio="none">
+          <rect x="0" y="12" width="260" height="16" rx="8" fill="white"/>
+          <circle cx="20" cy="20" r="8" fill="white"/>
+          <circle cx="80" cy="20" r="8" fill="white"/>
+          <circle cx="140" cy="20" r="8" fill="white"/>
+          <circle cx="200" cy="20" r="8" fill="white"/>
+          <circle cx="240" cy="20" r="8" fill="white"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PIPE DIVIDER 4 — Complex manifold ════ -->
+<div class="pipe-divider variant-4">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="pg4m" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#0f1e2b"/>
+        <stop offset="20%"  stop-color="#1c2b3a"/>
+        <stop offset="50%"  stop-color="#263d50"/>
+        <stop offset="80%"  stop-color="#1c2b3a"/>
+        <stop offset="100%" stop-color="#0f1e2b"/>
+      </linearGradient>
+      <linearGradient id="pg4top" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#7c2d12"/>
+        <stop offset="50%"  stop-color="#f97316"/>
+        <stop offset="100%" stop-color="#7c2d12"/>
+      </linearGradient>
+    </defs>
+    <rect width="1440" height="120" fill="var(--warm)"/>
+    <!-- Upper thin pipe -->
+    <rect x="0" y="10" width="1440" height="18" rx="9" fill="url(#pg4top)"/>
+    <rect x="0" y="10" width="1440" height="6" rx="3" fill="rgba(255,255,255,.22)"/>
+    <!-- Flow in upper pipe -->
+    <line x1="0" y1="19" x2="1440" y2="19" stroke="rgba(255,255,255,.15)" stroke-width="2" class="pipe-flow"/>
+    <!-- Lower main pipe -->
+    <rect x="0" y="52" width="1440" height="52" rx="26" fill="url(#pg4m)"/>
+    <rect x="0" y="52" width="1440" height="18" rx="9" fill="rgba(249,115,22,.18)"/>
+    <rect x="0" y="82" width="1440" height="22" rx="11" fill="rgba(0,0,0,.28)"/>
+    <!-- Flow lower -->
+    <line x1="0" y1="78" x2="1440" y2="78" stroke="rgba(249,115,22,.15)" stroke-width="2" class="pipe-flow-slow"/>
+    <!-- Vertical risers connecting upper to lower -->
+    <rect x="180"  y="10" width="20" height="52" rx="10" fill="#1c2b3a" stroke="rgba(249,115,22,.4)" stroke-width="1.5"/>
+    <rect x="480"  y="10" width="20" height="52" rx="10" fill="#1c2b3a" stroke="rgba(249,115,22,.4)" stroke-width="1.5"/>
+    <rect x="780"  y="10" width="20" height="52" rx="10" fill="#1c2b3a" stroke="rgba(249,115,22,.4)" stroke-width="1.5"/>
+    <rect x="1080" y="10" width="20" height="52" rx="10" fill="#1c2b3a" stroke="rgba(249,115,22,.4)" stroke-width="1.5"/>
+    <rect x="1300" y="10" width="20" height="52" rx="10" fill="#1c2b3a" stroke="rgba(249,115,22,.4)" stroke-width="1.5"/>
+    <!-- Ball valves on risers -->
+    <circle cx="190"  cy="36" r="14" fill="#f97316" stroke="#0f1e2b" stroke-width="2.5"/>
+    <rect x="184"  y="33" width="12" height="6" rx="3" fill="white" opacity=".8"/>
+    <circle cx="490"  cy="36" r="14" fill="#f97316" stroke="#0f1e2b" stroke-width="2.5"/>
+    <rect x="484"  y="33" width="12" height="6" rx="3" fill="white" opacity=".8"/>
+    <circle cx="790"  cy="36" r="14" fill="#f97316" stroke="#0f1e2b" stroke-width="2.5"/>
+    <rect x="784"  y="33" width="12" height="6" rx="3" fill="white" opacity=".8"/>
+    <circle cx="1090" cy="36" r="14" fill="#f97316" stroke="#0f1e2b" stroke-width="2.5"/>
+    <rect x="1084" y="33" width="12" height="6" rx="3" fill="white" opacity=".8"/>
+    <circle cx="1310" cy="36" r="14" fill="#f97316" stroke="#0f1e2b" stroke-width="2.5"/>
+    <rect x="1304" y="33" width="12" height="6" rx="3" fill="white" opacity=".8"/>
+    <!-- Main pipe weld rings -->
+    <rect x="80"   y="44" width="18" height="68" rx="9" fill="#263d50" stroke="rgba(249,115,22,.3)" stroke-width="1.5"/>
+    <rect x="360"  y="44" width="18" height="68" rx="9" fill="#263d50" stroke="rgba(249,115,22,.3)" stroke-width="1.5"/>
+    <rect x="640"  y="44" width="18" height="68" rx="9" fill="#263d50" stroke="rgba(249,115,22,.3)" stroke-width="1.5"/>
+    <rect x="920"  y="44" width="18" height="68" rx="9" fill="#263d50" stroke="rgba(249,115,22,.3)" stroke-width="1.5"/>
+    <rect x="1200" y="44" width="18" height="68" rx="9" fill="#263d50" stroke="rgba(249,115,22,.3)" stroke-width="1.5"/>
+    <!-- End flanges -->
+    <rect x="0" y="42" width="28" height="72" rx="5" fill="#0f1e2b" stroke="rgba(249,115,22,.45)" stroke-width="2"/>
+    <rect x="1412" y="42" width="28" height="72" rx="5" fill="#0f1e2b" stroke="rgba(249,115,22,.45)" stroke-width="2"/>
+  </svg>
+</div>
+
+<!-- ════ TESTIMONIALS ════ -->
+<section class="testi-section">
+  <div class="sec">
+    <div style="text-align:center;margin-bottom:40px;" class="rv up">
+      <div class="sec-label" style="margin:0 auto 14px;">
+        <svg viewBox="0 0 8 8" style="fill:var(--ore)"><circle cx="4" cy="4" r="4"/></svg>
+        Client Testimonials
+      </div>
+      <h2 class="sec-title">TRUSTED ON SITE</h2>
+    </div>
+    <div class="testi-strip">
+      <div class="testi-track">
+        <!-- Cards duplicated for seamless loop -->
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">"PipeForce delivered 2,400m of HDPE pipe to our Limpopo site within 48 hours of order. Quality was exceptional and the pricing was highly competitive."</p>
+          <div class="testi-author">
+            <div class="testi-av">JM</div>
+            <div><div class="testi-name">James Mahlangu</div><div class="testi-role">Site Engineer · Eskom Medupi</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">"Their B-BBEE credentials helped us meet our procurement targets while getting top-quality stainless pipe for our food-grade processing facility."</p>
+          <div class="testi-author">
+            <div class="testi-av">NK</div>
+            <div><div class="testi-name">Nomvula Khumalo</div><div class="testi-role">Procurement Manager · Tiger Brands</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">"As a civil contractor working on municipal water projects, having a pipe supplier who understands SANS compliance and delivers on time is invaluable."</p>
+          <div class="testi-author">
+            <div class="testi-av">TD</div>
+            <div><div class="testi-name">Thabo Dlamini</div><div class="testi-role">Director · Dlamini Civil Works</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">"We've been sourcing all our carbon steel pipe from PipeForce for 3 years. Their technical support during spec selection saved us significant project costs."</p>
+          <div class="testi-author">
+            <div class="testi-av">RV</div>
+            <div><div class="testi-name">Riaan van Wyk</div><div class="testi-role">Mechanical Engineer · Sasol</div></div>
+          </div>
+        </div>
+        <!-- Duplicates for seamless scroll -->
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">"PipeForce delivered 2,400m of HDPE pipe to our Limpopo site within 48 hours of order. Quality was exceptional and the pricing was highly competitive."</p>
+          <div class="testi-author">
+            <div class="testi-av">JM</div>
+            <div><div class="testi-name">James Mahlangu</div><div class="testi-role">Site Engineer · Eskom Medupi</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">"Their B-BBEE credentials helped us meet our procurement targets while getting top-quality stainless pipe for our food-grade processing facility."</p>
+          <div class="testi-author">
+            <div class="testi-av">NK</div>
+            <div><div class="testi-name">Nomvula Khumalo</div><div class="testi-role">Procurement Manager · Tiger Brands</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">"As a civil contractor working on municipal water projects, having a pipe supplier who understands SANS compliance and delivers on time is invaluable."</p>
+          <div class="testi-author">
+            <div class="testi-av">TD</div>
+            <div><div class="testi-name">Thabo Dlamini</div><div class="testi-role">Director · Dlamini Civil Works</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">"We've been sourcing all our carbon steel pipe from PipeForce for 3 years. Their technical support during spec selection saved us significant project costs."</p>
+          <div class="testi-author">
+            <div class="testi-av">RV</div>
+            <div><div class="testi-name">Riaan van Wyk</div><div class="testi-role">Mechanical Engineer · Sasol</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CTA BAND ════ -->
+<section class="cta-band">
+  <div class="cta-bg-pipes">
+    <svg viewBox="0 0 1440 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="120" width="1440" height="14" rx="7" fill="white"/>
+      <rect x="0" y="160" width="1440" height="9" rx="4" fill="white"/>
+      <rect x="300" y="0" width="14" height="300" rx="7" fill="white"/>
+      <rect x="800" y="0" width="9" height="300" rx="4" fill="white"/>
+      <rect x="1200" y="0" width="14" height="300" rx="7" fill="white"/>
+      <circle cx="300" cy="120" r="18" fill="white"/>
+      <circle cx="800" cy="160" r="14" fill="white"/>
+      <circle cx="1200" cy="120" r="18" fill="white"/>
+    </svg>
+  </div>
+  <div class="cta-inner">
+    <div>
+      <h2>READY TO <em>SPECIFY</em><br>YOUR NEXT PROJECT?</h2>
+      <p>Our technical team will help you select the right pipe specification, prepare a detailed BOQ, and deliver your order to site — anywhere in South Africa.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="contact.html" class="btn-specs" style="text-decoration:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.85 19.79 19.79 0 01.09 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Get a Free Quote
+      </a>
+      <a href="catalogue.html" class="btn-catalogue" style="text-decoration:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/><rect x="14" y="12" width="8" height="8" rx="1"/></svg>
+        Download Catalogue
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="foot-grid">
+    <!-- Brand -->
+    <div class="foot-brand">
+      <a href="index.html" class="logo-wrap" style="text-decoration:none;">
+        <div class="logo-pipe" style="width:40px;height:40px;">
+          <svg viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="18" width="40" height="12" rx="6" fill="#f97316"/>
+            <rect x="4" y="18" width="40" height="5" rx="2" fill="rgba(255,255,255,.18)"/>
+            <circle cx="8" cy="24" r="5" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+            <circle cx="40" cy="24" r="5" fill="#c2410c" stroke="#f97316" stroke-width="1.5"/>
+            <rect x="10" y="6" width="8" height="16" rx="4" fill="#1c2b3a" stroke="#f97316" stroke-width="1.5"/>
+            <rect x="30" y="26" width="8" height="16" rx="4" fill="#1c2b3a" stroke="#f97316" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-brand" style="font-size:1.3rem;">PipeForce</span>
+          <span class="logo-sub">Industrial Solutions</span>
+        </div>
+      </a>
+      <p>Premium industrial pipe solutions for South Africa's mining, municipal, petrochemical and construction sectors. Proudly black-owned. Level 1 B-BBEE.</p>
+      <div class="socials">
+        <a href="#" class="soc" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" class="soc" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="soc" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="soc" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="soc" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="foot-col">
+      <h5>Products</h5>
+      <ul>
+        <li><a href="catalogue.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>HDPE Pipe</a></li>
+        <li><a href="catalogue.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>uPVC Pressure Pipe</a></li>
+        <li><a href="catalogue.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>Carbon Steel Pipe</a></li>
+        <li><a href="catalogue.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>Stainless Steel Pipe</a></li>
+        <li><a href="catalogue.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>Copper Pipe</a></li>
+        <li><a href="catalogue.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>Fittings & Valves</a></li>
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div class="foot-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>Our Story</a></li>
+        <li><a href="services.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>Services</a></li>
+        <li><a href="catalogue.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>Catalogue</a></li>
+        <li><a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>Contact Us</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>B-BBEE Certificate</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <div class="foot-contact">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>14 Industrial Drive, Germiston,<br>Gauteng, 1401</span>
+      </div>
+      <div class="foot-contact">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.85 19.79 19.79 0 01.09 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <span>(011) 473-1467</span>
+      </div>
+      <div class="foot-contact">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>info@pipeforce.co.za</span>
+      </div>
+      <div class="foot-contact">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Mon–Fri · 07:00 – 17:00</span>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <div class="foot-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Level 1 B-BBEE
+        </div>
+        <div class="foot-badge">🇿🇦 Proudly SA</div>
+        <div class="foot-badge">ISO 9001</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <p>© 2025 PipeForce Industrial Solutions. All rights reserved.</p>
+    <p style="font-size:.72rem;">Privacy Policy · Terms of Service · POPI Act Compliance</p>
+  </div>
+</footer>
+
+<script>
+/* ══ CURSOR ══ */
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => { cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px'; });
+document.addEventListener('mousedown', () => cur.classList.add('click'));
+document.addEventListener('mouseup',   () => cur.classList.remove('click'));
+document.addEventListener('mouseover', e => {
+  e.target.closest('a, button, .prod-card, .why-card, .stat-block, .testi-card, nav a, .soc, .hero-arr, .hero-dot')
+    ? cur.classList.add('big') : cur.classList.remove('big');
+});
+
+/* ══ HERO CAROUSEL ══ */
+let heroIdx = 0, heroTimer = null;
+const slides = document.querySelectorAll('.hero-slide');
+const dots   = document.querySelectorAll('.hero-dot');
+const TOTAL  = slides.length;
+
+function heroSet(i) {
+  // Remove active from current
+  slides[heroIdx].classList.remove('active');
+  dots[heroIdx].classList.remove('active');
+  // Reset dot fill
+  dots[heroIdx].querySelector('.hero-dot-fill').style.transition = 'none';
+  dots[heroIdx].querySelector('.hero-dot-fill').style.width = '0%';
+
+  heroIdx = (i + TOTAL) % TOTAL;
+
+  slides[heroIdx].classList.add('active');
+  dots[heroIdx].classList.add('active');
+
+  // Restart fill animation
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const fill = dots[heroIdx].querySelector('.hero-dot-fill');
+      fill.style.transition = 'width 5s linear';
+      fill.style.width = '100%';
+    });
+  });
+
+  clearInterval(heroTimer);
+  heroTimer = setInterval(() => heroGo(1), 5000);
+}
+
+function heroGo(d) { heroSet(heroIdx + d); }
+
+// Start carousel
+heroSet(0);
+
+/* ══ HEADER SCROLL ══ */
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ══ MOBILE MENU ══ */
+function openMob()  { document.getElementById('mobMenu').classList.add('open');  document.body.style.overflow='hidden'; }
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); document.body.style.overflow=''; }
+
+/* ══ SCROLL REVEAL ══ */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    el.style.animationDelay = el.dataset.delay || '0s';
+    if (el.classList.contains('up'))   el.classList.add('up');
+    if (el.classList.contains('left')) el.classList.add('left');
+    if (el.classList.contains('rt'))   el.classList.add('rt');
+    ro.unobserve(el);
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+
+/* ══ SMOOTH SCROLL for anchor links ══ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
