@@ -83,7 +83,6 @@
 
 .about-hero { min-height: 80vh; position: relative; display: flex; align-items: flex-end; overflow: visible; padding-bottom: 80px; }
 @media (max-width: 768px) { .about-hero { min-height: 90vh; padding-bottom: 100px; } }
-
     .hero-bg img.loaded { transform: scale(1); }
 .hero-stats-bar { position: absolute; bottom: 0; left: 0; right: 0; z-index: 10; }
     .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
@@ -561,92 +560,6 @@
   .counter {
     display: inline-block;
   }
-
-  .glass-content {
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-right: 2px solid rgba(59,130,246,0.5);
-    border-left: 2px solid rgba(59,130,246,0.5);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    transition: all 0.4s ease;
-  }
-  
-  .glass-content:hover {
-    background: rgba(255,255,255,0.25);
-    border-color: rgba(255,255,255,0.4);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-  }
-  
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 18px;
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(29,78,216,0.2);
-    border-radius: 99px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--blue-deep);
-  }
-  
-  .hero-badge-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #10b981;
-    box-shadow: 0 0 8px #10b981;
-    animation: pulse 2s infinite;
-  }
-  
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
-  
-  .about-hero {
-    min-height: 85vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  
-  .hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transform: scale(1.04);
-    transition: transform 8s ease-out;
-  }
-  
-  .hero-bg img.loaded {
-    transform: scale(1);
-  }
-  
-  .hero-bg-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);
-  }
-  
-  
-  
-  @media (max-width: 768px) {
-    .stat-num { font-size: 2.8rem; }
-    .about-hero { min-height: 70vh; }
-    .glass-content { padding: 24px 16px !important; }
-    .glass-content h1 { font-size: 2.5rem !important; }
-  }
   </style>
 </head>
 
@@ -693,49 +606,192 @@
 
 <main>
 
-<!-- ═══════════════ HERO — SAME STUNNING STYLE AS CONTACT PAGE ═══════════════ -->
-<section class="about-hero">
+<!-- ═══════════════ HERO — WHERE HEART MEETS STEEL ═══════════════ -->
+<section class="about-hero" style="overflow: hidden;">
   <div class="hero-bg">
     <img src="assets/pipework3.png" alt="Industrial pipes and infrastructure" onload="this.classList.add('loaded')">
-    <div class="hero-bg-overlay"></div>
+    <div class="hero-bg-overlay" style="background: radial-gradient(circle at 30% 50%, rgba(0,0,0,0.3) 0%, rgba(15,23,42,0.7) 100%);"></div>
   </div>
 
-  <!-- Centered Glassmorphism Container -->
-  <div class="relative z-10 w-full flex items-center justify-center px-4 sm:px-6 lg:px-8" style="min-height: 70vh;">
-    <div class="glass-content max-w-4xl mx-auto px-8 sm:px-12 lg:px-16 py-12 md:py-16 text-center rounded-3xl">
-      <div class="hero-badge mb-6 mx-auto inline-flex" style="background: rgba(255,255,255,0.9); backdrop-filter: blur(8px); border: 1px solid rgba(29,78,216,0.2);">
-        <span class="hero-badge-dot"></span>
-        Established 2010 · South Africa
+  
+
+  <!-- Animated flowing lines (representing water flow) -->
+  <div class="flow-lines" style="position: absolute; inset: 0; z-index: 4; pointer-events: none;">
+    <svg style="position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="transparent"/>
+          <stop offset="50%" stop-color="rgba(59,130,246,0.3)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </linearGradient>
+        <path id="flowPath" d="M0,400 Q200,380 400,400 T800,380 T1200,400" fill="none"/>
+      </defs>
+      <path d="M0,500 L1200,500" stroke="url(#flowGrad)" stroke-width="2" stroke-dasharray="8 12">
+        <animate attributeName="stroke-dashoffset" values="0;100" dur="3s" repeatCount="indefinite"/>
+      </path>
+      <path d="M0,540 L1200,540" stroke="url(#flowGrad)" stroke-width="1.5" stroke-dasharray="6 10">
+        <animate attributeName="stroke-dashoffset" values="0;80" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+      </path>
+    </svg>
+  </div>
+
+  <!-- Main content container -->
+  <div class="relative z-20 w-full flex items-center justify-center" style="min-height: 75vh;">
+    <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+      
+      <!-- Warm welcome badge with gentle pulse 
+      <div class="inline-flex items-center gap-3 px-6 py-2.5 rounded-full mb-10" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); animation: gentleGlow 2s ease-in-out infinite;">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+        </span>
+        <span class="text-xs font-mono tracking-wider text-amber-200/90">WELCOME TO THE FAMILY</span>
+        <span class="text-amber-400/50 text-xs">✦</span>
+        <span class="text-xs font-mono tracking-wider text-white/70">EST. 2010</span>
+      </div>-->
+
+      <!-- Main headline with emotional weight -->
+      <div style="animation: fadeInUp 1s cubic-bezier(0.2, 0.9, 0.4, 1.1) 0.2s both;">
+        <h1 class="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl mb-6 leading-[0.92] tracking-wide">
+          <span class="block text-white drop-shadow-2xl" style="text-shadow: 0 4px 20px rgba(0,0,0,0.3);">MORE THAN</span>
+          <span class="block mt-2">
+            <span class="relative inline-block">
+              <span class="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500" style="background: linear-gradient(135deg, #fff, #60a5fa, #3b82f6); -webkit-background-clip: text; background-clip: text;">PIPES</span>
+              <svg class="absolute -bottom-2 left-0 w-full h-4" viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path d="M0,10 L300,10" stroke="url(#waveGrad)" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 6">
+                  <animate attributeName="stroke-dashoffset" values="0;24" dur="1.5s" repeatCount="indefinite"/>
+                </path>
+                <defs>
+                  <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#3b82f6"/>
+                    <stop offset="50%" stop-color="#60a5fa"/>
+                    <stop offset="100%" stop-color="#3b82f6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span class="text-white">, WE BUILD</span>
+          </span>
+          <span class="block text-red mt-2">TRUST.</span>
+        </h1>
       </div>
-      <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mb-5 leading-[0.92] tracking-wide text-white drop-shadow-lg" style="text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
-        FORGED IN<br>
-        <span style="background:linear-gradient(135deg, #fff, var(--blue-mid), #60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">STEEL &amp; PIPE</span>
-      </h1>
-      <p class="text-white/95 text-base sm:text-lg font-light leading-relaxed max-w-xl mx-auto drop-shadow-md">
-        Over <strong class="text-blue-200">15 years</strong> supplying South Africa's construction and plumbing industry with industrial-grade PVC solutions — from a single warehouse to a national distribution network.
-      </p>
+
+      <!-- Emotional paragraph with heart-touching message -->
+      <div style="animation: fadeInUp 1s ease-out 0.4s both;">
+        <p class="text-white/90 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-8" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+          We're not just supplying pipes — we're supporting the hands that build South Africa. 
+          <span class="block mt-3 text-blue-200/90 font-medium">Every connection we make is a promise kept. Every delivery, a dream realized.</span>
+        </p>
+      </div>
+
+      <!-- Heartfelt testimonial/quote with animated border -->
+      <div style="animation: fadeInUp 1s ease-out 0.6s both;">
+        <div class="relative max-w-lg mx-auto mb-10">
+          <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+            <i class="fas fa-quote-left text-blue-400/30 text-3xl"></i>
+          </div>
+          <div class="pt-8 px-6">
+            <p class="text-white/80 text-sm italic leading-relaxed font-light">
+              "The best pipeline in the world is built on human connection. Every pipe we lay carries water to a home, a school, a future."
+            </p>
+            <div class="mt-3 flex items-center justify-center gap-2">
+              <div class="w-8 h-px bg-gradient-to-r from-transparent to-blue-400"></div>
+              <span class="text-blue-300/70 text-[10px] font-mono tracking-wider">— FOUNDER'S CREED</span>
+              <div class="w-8 h-px bg-gradient-to-l from-transparent to-blue-400"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to action buttons with emotional icons -->
+      <div class="flex flex-wrap items-center justify-center gap-5" style="animation: fadeInUp 1s ease-out 0.8s both;">
+        <a href="#values" class="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
+          <i class="fas fa-heart text-red-300 group-hover:scale-110 transition-transform text-sm"></i>
+          <span class="relative z-10">Our Promise to You</span>
+          <i class="fas fa-arrow-right text-xs relative z-10 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+        <a href="#team" class="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/30 text-white font-bold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-white/20 hover:scale-105">
+          <i class="fas fa-users text-blue-300 group-hover:rotate-3 transition-transform"></i>
+          <span>Meet the People Behind It</span>
+          <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
+      <!-- Warm community stat badges -->
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-4" style="animation: fadeInUp 1s ease-out 1s both;">
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-400/30 transition-all duration-300 group">
+          <i class="fas fa-handshake text-blue-400 text-sm group-hover:scale-110 transition-transform"></i>
+          <span class="text-white/70 text-xs font-mono group-hover:text-white transition-colors">500+ Trusted Partners</span>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-400/30 transition-all duration-300 group">
+          <i class="fas fa-clock text-blue-400 text-sm group-hover:scale-110 transition-transform"></i>
+          <span class="text-white/70 text-xs font-mono group-hover:text-white transition-colors">15 Years of Service</span>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-400/30 transition-all duration-300 group">
+          <i class="fas fa-truck-fast text-blue-400 text-sm group-hover:scale-110 transition-transform"></i>
+          <span class="text-white/70 text-xs font-mono group-hover:text-white transition-colors">Same-Day Dispatch</span>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-400/30 transition-all duration-300 group">
+          <i class="fas fa-leaf text-green-400 text-sm group-hover:scale-110 transition-transform"></i>
+          <span class="text-white/70 text-xs font-mono group-hover:text-white transition-colors">Recycling Programme</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Bottom Stats Bar -->
+  <!-- Gentle scroll indicator with emotional message -->
+  <div class="absolute bottom-28 left-1/2 transform -translate-x-1/2 z-20 animate-bounce-slow">
+    <div class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
+      <span class="text-white/40 text-[9px] font-mono tracking-widest uppercase">Scroll to feel the story</span>
+      <div class="w-[1px] h-10 bg-gradient-to-b from-blue-400 to-transparent"></div>
+      <i class="fas fa-chevron-down text-white/30 text-xs animate-pulse"></i>
+    </div>
+  </div>
+
+  <!-- Bottom Stats Bar with emotional subtext -->
   <div class="absolute bottom-0 left-0 right-0 z-10">
-    <div class="glass border-t border-white/60 py-4 px-4" style="background: rgba(15,23,42,0.75); backdrop-filter: blur(16px);">
-      <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:divide-x divide-gray-500/30">
-        <div class="text-center px-4">
-          <div class="stat-num text-4xl" style="color:var(--blue-deep);">15<span style="color:var(--red-accent);">+</span></div>
-          <div class="text-xs text-white/60 uppercase tracking-widest font-mono">Years of Excellence</div>
+    <div class="glass border-t border-white/20 py-5 px-4" style="background: rgba(15,23,42,0.75); backdrop-filter: blur(20px);">
+      <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-0">
+        <div class="text-center px-4 group cursor-pointer">
+          <div class="flex items-center justify-center gap-2 mb-1">
+            <i class="fas fa-calendar-alt text-blue-400 text-xs group-hover:scale-110 transition-transform"></i>
+            <div class="stat-num text-4xl flex items-center justify-center gap-0.5" style="color:var(--blue-deep);">
+              <span class="counter" data-target="15">0</span><span style="color:var(--red-accent);">+</span>
+            </div>
+          </div>
+          <div class="text-xs text-white/60 uppercase tracking-widest font-mono group-hover:text-blue-300 transition-colors">Years of Excellence</div>
+          <div class="text-[10px] text-white/30 mt-0.5">building with heart</div>
         </div>
-        <div class="text-center px-4">
-          <div class="stat-num text-4xl" style="color:var(--blue-deep);">500<span style="color:var(--red-accent);">+</span></div>
-          <div class="text-xs text-white/60 uppercase tracking-widest font-mono">Contractors Served</div>
+        <div class="text-center px-4 group cursor-pointer">
+          <div class="flex items-center justify-center gap-2 mb-1">
+            <i class="fas fa-smile text-blue-400 text-xs group-hover:scale-110 transition-transform"></i>
+            <div class="stat-num text-4xl flex items-center justify-center gap-0.5" style="color:var(--blue-deep);">
+              <span class="counter" data-target="500">0</span><span style="color:var(--red-accent);">+</span>
+            </div>
+          </div>
+          <div class="text-xs text-white/60 uppercase tracking-widest font-mono group-hover:text-blue-300 transition-colors">Contractors Served</div>
+          <div class="text-[10px] text-white/30 mt-0.5">each one a partner</div>
         </div>
-        <div class="text-center px-4">
-          <div class="stat-num text-4xl" style="color:var(--blue-deep);">120<span style="color:var(--red-accent);">t</span></div>
-          <div class="text-xs text-white/60 uppercase tracking-widest font-mono">Monthly Volume</div>
+        <div class="text-center px-4 group cursor-pointer">
+          <div class="flex items-center justify-center gap-2 mb-1">
+            <i class="fas fa-water text-blue-400 text-xs group-hover:scale-110 transition-transform"></i>
+            <div class="stat-num text-4xl flex items-center justify-center gap-0.5" style="color:var(--blue-deep);">
+              <span class="counter" data-target="120">0</span><span style="color:var(--red-accent);">t</span>
+            </div>
+          </div>
+          <div class="text-xs text-white/60 uppercase tracking-widest font-mono group-hover:text-blue-300 transition-colors">Monthly Volume</div>
+          <div class="text-[10px] text-white/30 mt-0.5">flowing to communities</div>
         </div>
-        <div class="text-center px-4">
-          <div class="stat-num text-4xl" style="color:var(--blue-deep);">8K<span style="color:var(--red-accent);">m²</span></div>
-          <div class="text-xs text-white/60 uppercase tracking-widest font-mono">Distribution Centre</div>
+        <div class="text-center px-4 group cursor-pointer">
+          <div class="flex items-center justify-center gap-2 mb-1">
+            <i class="fas fa-heart text-red-400 text-xs group-hover:scale-110 transition-transform"></i>
+            <div class="stat-num text-4xl flex items-center justify-center gap-0.5" style="color:var(--blue-deep);">
+              <span class="counter" data-target="68">0</span>
+            </div>
+          </div>
+          <div class="text-xs text-white/60 uppercase tracking-widest font-mono group-hover:text-blue-300 transition-colors">Team Members</div>
+          <div class="text-[10px] text-white/30 mt-0.5">one family, one mission</div>
         </div>
       </div>
     </div>
